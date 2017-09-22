@@ -1,0 +1,90 @@
+#menu{
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  max-height: 325px;
+  overflow: scroll;
+  background: linear-gradient(rgba(173,102,102,0.8), rgba(153,51,51,0.8), rgba(173,102,102,0.8));
+  border-radius: 20px;
+  z-index: 2;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+#menu.open{
+  background: #f1f1f1;
+  border-radius: 5px;
+  z-index:4;
+}
+
+#menu .menu-row{
+  display: none;
+}
+
+#menu .menu-row.selected, #menu.open .menu-row{
+  display: block;
+}
+
+#menu .selected, #menu.open .menu-row:hover{
+  color: white;
+}
+
+#menu.open .menu-row{
+  color: black;
+}
+
+#menu.open .menu-row:hover{
+  background-color: rgb(173,102,102);
+}
+
+#menu .selected .icon-container{
+  background: url(../assets/MenuIcon.png) no-repeat 50% 50%;
+}
+
+#menu.open .selected .icon-container{
+  background-image: none;
+}
+
+#menu.open .selected .icon-container:before{
+  content: "✓";
+}
+
+.menu-row{
+  height: 25px;
+  line-height: 25px;
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  color: black;
+}
+
+.icon-container{
+  float: left;
+  margin-left: 10px;
+  width: 22px;
+  height: 100%;
+  text-align: center;
+}
+
+.tag-name{
+  float: left;
+  margin-left: 10px;
+  min-width: 125px;
+}
+
+#menu.open .tag-name{
+  padding-left: 10px;
+  padding-right: 0px;
+}
+
+.tag-name, #menu.open .all-sites {
+  padding-left: 0px;
+  padding-right: 10px;
+}
+
+.tag-count{
+  float: left;
+  font-size: 12px;
+  text-align: right;
+  padding: 0 15px 0 5px;
+  width: 20px;
+}

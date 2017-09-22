@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+  <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/css/esri.css">
+  <link rel="stylesheet" href="styles/normalize.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/menu.css">
+  <link rel="stylesheet" href="styles/zoom.css">
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>A People's Guide to Energy</h1>
+      <p>A guide to sites of energy production and consumption
+        that highlights perspectives and communities often left out of
+        conventional energy maps, histories and narratives.
+      </p>
+    </header>
+
+    <div class="clearfix">
+      <div id="map">
+
+        <div id="menu" class="open no-select">
+             <!-- content added programmatically -->
+        </div>
+
+        <div id= "zoom-controls">
+          <div id="zoom-home-button" class="zoom-button-container zoom-button">
+            <span class="esri-icon-home"></span>
+          </div>
+          <div class="zoom-button-container">
+            <div id="zoom-in-button" class="zoom-button">
+              <span class="esri-icon-plus"></span>
+            </div>
+            <div id="zoom-out-button" class="zoom-button">
+              <span class="esri-icon-minus"></span>
+            </div>
+          </div>
+        </div>
+
+        <svg id="popup-container">
+          <rect id = "popup-background"/>
+          <polygon id="pointer"/>
+
+          <div id="popup">
+            <div id="project-info">
+              <div id="project-title"></div>
+              <div id="project-author"></div>
+              <img id="project-image">
+              <div id="project-text"></div>
+            </div>
+            <iframe id="project-display"></iframe>
+            <div class="popup-menu no-select">
+              <div id="zoom-button" class="popup-menu-item">
+                <span class="icon esri-icon-zoom-in-magnifying-glass"></span>
+                  Zoom To
+              </div>
+              <div id="read-more-button" class="popup-menu-item">
+                <span class="icon esri-icon-review"></span>
+                Read More
+              </div>
+              <div id="close-button" class="popup-menu-item">
+                <span class="icon esri-icon-close"></span>
+                Close
+              </div>
+            </div>
+          </div>
+        </svg>
+      </div>
+
+      <aside>
+        <h1>Creators</h1>
+        <p>
+          <a href="http://sfsu.academia.edu/AutumnThoyre">Autumn Thoyre
+          (organizer)</a>, students at San Francisco State University,
+          and students and staff at Colgate University
+        </p>
+
+        <h1>Inspiration</h1>
+        <p>
+          “What would happen if we refocused our attention on those people
+          and places systematically left off the map?” – Laura Pulido,
+          Laura Barraclough and Wendy Cheng, in
+          <a href="http://www.ucpress.edu/book.php?isbn=9780520270817">
+          A People’s Guide to Los Angeles (2012)</a>
+        </p>
+      </aside>
+    </div>
+
+    <footer>
+      <p>Share This</p>
+    </footer>
+  </main>
+
+  <script src="https://js.arcgis.com/3.21/"></script>
+  <script src="scripts/map.js"></script>
+  <script src="scripts/menu.js"></script>
+  <script src="scripts/popup.js"></script>
+
+</body>
+</html>
