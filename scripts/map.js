@@ -4,6 +4,8 @@ var popup;
 var siteDataObj;
 var menu;
 
+'use strict';
+
 //------------------------------------------------------------------------------
 
 require(["esri/map",

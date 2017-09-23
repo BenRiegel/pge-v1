@@ -166,13 +166,13 @@ function Menu(){
 
   for (var i = 0; i < tagArray.length; i++){
    var tagCount = (i == 0)? siteDataObj.siteAttributesArray.length : siteDataObj.tagCountObj[tagArray[i]];
-   menu.innerHTML += this.createRowHTML(i, tagArray[i], tagCount);
+   this.domNode.innerHTML += this.createRowHTML(i, tagArray[i], tagCount);
   }
 
   //calculates the max width of the div elements and reassigns the max width to all of them
   //not happy with this and buggy; find better way to do this
   var maxWidth = 0;
-  var tagNames = menu.getElementsByClassName("tag-name");
+  var tagNames = this.domNode.getElementsByClassName("tag-name");
   for (var i = 0; i < tagNames.length; i++){
     if (tagNames[i].offsetWidth > maxWidth){
       maxWidth = tagNames[i].offsetWidth;
@@ -185,7 +185,7 @@ function Menu(){
     tagNames[i].style.width = maxWidth.toString()+"px";
   }
 
-  var allSitesRow = document.querySelector(".menu-row");
+  var allSitesRow = document.getElementsByClassName("menu-row")[0];
   this.selectRow(allSitesRow);
   this.close();
   this.domNode.style.visibility = "visible";
