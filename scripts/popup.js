@@ -1,9 +1,7 @@
 
 function Popup(){
 
-  this.popupContainerDomNode = document.getElementById("popup-container");
-  this.pointerDomNode = document.getElementById("pointer");
-  this.popupDomNode = document.getElementById("popup");
+  this.popupDomNode = document.getElementById("popup-container");
   this.state = "closed";
   this.isVisible = "false";
   this.selectedMapPoint;
@@ -13,9 +11,18 @@ function Popup(){
 
   this.expand = function(){
     this.state = "open-expanded";
+
+    var popupSVG = document.getElementById("popup-svg");
+    popupSVG.setAttribute("width", 935);
+    popupSVG.setAttribute("height",545);
+    var popupBackground = document.getElementById("popup-background");
+    popupBackground.setAttribute("height", 485);
+    popupBackground.setAttribute("width", 875);
+    popupBackground.setAttribute("x", 20);
+    popupBackground.setAttribute("y", 20);
+
     document.getElementById('read-more-button').childNodes[2].textContent = " Read Less";
     document.getElementById("project-display").src = this.link;
-    this.popupContainerDomNode.classList.add("expanded");
     this.popupDomNode.classList.add("expanded");
   }
 
@@ -25,7 +32,6 @@ function Popup(){
     this.state = "open-contracted";
     document.getElementById('read-more-button').childNodes[2].textContent = " Read More";
     document.getElementById("project-display").src = "";
-    this.popupContainerDomNode.classList.remove("expanded");
     this.popupDomNode.classList.remove("expanded");
     this.display();
   }
@@ -74,8 +80,6 @@ function Popup(){
   //----------------------------------------------------------------------------
 
   this.hide = function(){
-    this.popupContainerDomNode.classList.remove("visible");
-    this.pointerDomNode.classList.remove("visible");
     this.popupDomNode.classList.remove("visible");
     this.isVisible = false;
   }
@@ -83,8 +87,6 @@ function Popup(){
   //----------------------------------------------------------------------------
 
   this.show = function(){
-    this.popupContainerDomNode.classList.add("visible");
-    this.pointerDomNode.classList.add("visible");
     this.popupDomNode.classList.add("visible");
     this.isVisible = true;
   }
@@ -101,6 +103,8 @@ function Popup(){
     document.getElementById("project-title").textContent = attributes.projectName;
     document.getElementById("project-text").textContent = attributes.introText;
 
+    document.getElementById("project-image").style.display = "inline";
+    document.getElementById("project-image").src = "";
     if (attributes.introImageLink == ""){
       document.getElementById("project-image").style.display = "none";
     } else {
@@ -146,7 +150,7 @@ function Popup(){
       return;
     }
 
-    var rect = this.popupDomNode.getBoundingClientRect();
+    var rect = document.getElementById("popup-content").getBoundingClientRect();
     var popupWidth = (rect.right - rect.left);
     var popupHeight = (rect.bottom - rect.top);
     var popupMidX = popupWidth/2;
@@ -175,67 +179,68 @@ function Popup(){
 
     switch(placeDirection){
       case "ne":
-        popupOffsetTop = y;
-        popupOffsetLeft = x - popupWidth - padding*2;
-        pointerStr = (popupWidth-borderRadius) + ",0 " + (popupWidth+padding) + ",-" + padding + " " + popupWidth+ "," + borderRadius;
+        popupOffsetTop = y + padding;
+        popupOffsetLeft = x - popupWidth - padding;
+        pointerStr = (popupWidth-borderRadius + padding) + "," + padding + " " + (popupWidth+padding*2) + ",0" +  " " + (popupWidth + padding)+ "," + (borderRadius + padding);
         break;
       case "nw":
-        popupOffsetTop = y;
-        popupOffsetLeft = x;
-        pointerStr = "-" + padding + ",-" + padding + " " + borderRadius + ",0 0," + borderRadius;
+        popupOffsetTop = y + padding;
+        popupOffsetLeft = x + padding;
+        pointerStr = "0,0 " + (padding + borderRadius) + "," + (padding) + " " + padding + "," + (borderRadius+padding);
         break;
       case "se":
-        popupOffsetTop = y - popupHeight - padding*2;
-        popupOffsetLeft = x - popupWidth - padding*2;
-        pointerStr = (popupWidth + padding) + "," + (popupHeight + padding) + " " + (popupWidth-borderRadius)+"," + popupHeight;
-        pointerStr += " " + popupWidth + "," + (popupHeight - borderRadius);
+        popupOffsetTop = y - popupHeight - padding;
+        popupOffsetLeft = x - popupWidth - padding;
+        pointerStr = (popupWidth + padding * 2) + "," + (popupHeight + padding * 2) + " " + (popupWidth-borderRadius+padding)+"," + (popupHeight+padding);
+        pointerStr += " " + (popupWidth + padding) + "," + (popupHeight - borderRadius + padding);
         break;
       case "sw":
-        popupOffsetTop = y - popupHeight - padding*2;
-        popupOffsetLeft = x;
-        pointerStr = "-" + padding + "," + (popupHeight+padding) + " 0," + (popupHeight-borderRadius) + " " + borderRadius + "," + popupHeight;
+        popupOffsetTop = y - popupHeight - padding;
+        popupOffsetLeft = x + padding;
+        pointerStr = "0," + (popupHeight + padding * 2) + " " + padding + " ," + (popupHeight-borderRadius + padding) + " " + (borderRadius + padding) + "," + (popupHeight + padding);
         break;
       case "n":
-        popupOffsetTop = y;
-        popupOffsetLeft = mapMidX - popupMidX-padding;
-        pointerOffset = x - (mapMidX - popupMidX );
-        pointerStr = (pointerOffset-pointerWidth) + ",1 " + (pointerOffset + pointerWidth)+ ",1 " + pointerOffset + "," + (-padding);
+        popupOffsetTop = y + padding;
+        popupOffsetLeft = mapMidX - popupMidX;
+        pointerOffset = x - (mapMidX - popupMidX) + padding;
+        pointerStr = (pointerOffset-pointerWidth) + "," + padding + " " + (pointerOffset + pointerWidth) + "," + padding + " " + pointerOffset + ",0";
         break;
       case "s":
-        popupOffsetTop = y - popupHeight - padding*2;
-        popupOffsetLeft = mapMidX - popupMidX-padding;
-        pointerOffset = x - (mapMidX - popupMidX );
-        pointerStr = (pointerOffset - pointerWidth) + "," + (popupHeight-1) + " " + (pointerOffset + pointerWidth) + ",";
-        pointerStr += (popupHeight-1) + " " + pointerOffset + "," + (popupHeight + padding);
+        popupOffsetTop = y - popupHeight - padding;
+        popupOffsetLeft = mapMidX - popupMidX;
+        pointerOffset = x - (mapMidX - popupMidX) + padding;
+        pointerStr = (pointerOffset - pointerWidth) + "," + (popupHeight + padding-1) + " " + (pointerOffset + pointerWidth) + ",";
+        pointerStr += (popupHeight + padding-1) + " " + pointerOffset + "," + (popupHeight + padding * 2);
         break;
       case "e":
-        popupOffsetTop = mapMidY - popupMidY-padding;
-        popupOffsetLeft = x - popupWidth - padding*2;
-        pointerOffset = y - (mapMidY - popupMidY );
-        pointerStr = (popupWidth-1) + "," + (pointerOffset-pointerWidth) + " " + (popupWidth-1) + "," + (pointerOffset+pointerWidth) + " ";
-        pointerStr += (popupWidth+padding) + "," + pointerOffset;
+        popupOffsetTop = mapMidY - popupMidY;
+        popupOffsetLeft = x - popupWidth - padding;
+        pointerOffset = y - (mapMidY - popupMidY) + padding;
+        pointerStr = (popupWidth + padding) + "," + (pointerOffset - pointerWidth) + " " + (popupWidth + padding) + "," + (pointerOffset + pointerWidth) + " ";
+        pointerStr += (popupWidth + padding * 2) + "," + pointerOffset;
         break;
       case "w":
-        popupOffsetTop = mapMidY - popupMidY-padding;
-        popupOffsetLeft = x;
-        pointerOffset = y - (mapMidY - popupMidY);
-        pointerStr = "1," + (pointerOffset-pointerWidth) + " 1," + (pointerOffset+pointerWidth) + " " + (-padding) + "," + pointerOffset;
+        popupOffsetTop = mapMidY - popupMidY;
+        popupOffsetLeft = x + padding;
+        pointerOffset = y - (mapMidY - popupMidY) + padding;
+        pointerStr = "0," + pointerOffset + " " + padding + "," + (pointerOffset + pointerWidth) + " " + padding + "," + (pointerOffset - pointerWidth);
         break;
     }
 
-    this.pointerDomNode.setAttribute("points", pointerStr);
+    document.getElementById("popup-pointer").setAttribute("points", pointerStr);
 
-    this.popupContainerDomNode.style.width = popupWidth.toString() + "px";
-    this.popupContainerDomNode.style.height = popupHeight.toString() + "px";
-    this.popupContainerDomNode.style.left = popupOffsetLeft.toString() + "px";
-    this.popupContainerDomNode.style.top = popupOffsetTop.toString() + "px";
-
-    this.popupDomNode.style.left = (popupOffsetLeft + padding).toString() + "px";
-    this.popupDomNode.style.top = (popupOffsetTop + padding).toString() + "px";
+    var popupSVG = document.getElementById("popup-svg");
+    popupSVG.setAttribute("height", popupHeight + padding * 2);
+    popupSVG.setAttribute("width", popupWidth + padding * 2);
 
     var popupBackground = document.getElementById("popup-background");
-    popupBackground.setAttribute("rx", borderRadius);
-    popupBackground.setAttribute("ry", borderRadius);
+    popupBackground.setAttribute("height", popupHeight);
+    popupBackground.setAttribute("width", popupWidth);
+    popupBackground.setAttribute("x", padding);
+    popupBackground.setAttribute("y", padding);
+
+    this.popupDomNode.style.left = (popupOffsetLeft).toString() + "px";
+    this.popupDomNode.style.top = (popupOffsetTop).toString() + "px";
 
     this.show();
   };

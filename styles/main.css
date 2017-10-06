@@ -28,7 +28,7 @@ header p {
 }
 
 #map{
-  box-shadow: 0px 0px 10px #444444;
+  box-shadow: 0px 0px 5px #444444;
   width: 905px;
   height: 515px;
   float: left;

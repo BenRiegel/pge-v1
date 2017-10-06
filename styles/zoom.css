@@ -7,9 +7,9 @@
 }
 
 .zoom-button-container{
-  color: #666666;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.25);
+  border-radius: 5px;
   background-color: white;
-  box-shadow: 1px 1px 4px rgba(0,0,0,0.25);
 }
 
 .zoom-button{
@@ -19,19 +19,29 @@
   font-size: 14px;
   font-weight: bold;
   text-align: center;
+  color: #333333;
 }
 
 .zoom-button:hover{
-  background-color: #eeeeee;
-}
-
-#zoom-in-button{
-  margin-top: 12px;
-  border-bottom: 1px solid #d0d0d0;
+  box-shadow: inset 0px 0px 3px rgb(173,102,102);
 }
 
 .zoom-button span{
   position: relative;
   left:1px;
   top: 3px;
+}
+
+#zoom-home-button{
+  border-radius: 5px;
+}
+
+#zoom-in-button{
+  border-radius: 5px 5px 0 0;
+  margin-top: 12px;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+#zoom-out-button{
+  border-radius: 0 0 5px 5px;
 }
