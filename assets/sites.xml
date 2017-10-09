@@ -4,7 +4,7 @@
     <projectName>Fracking in Dimock, PA</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>41.7406</lat>
     <lon>-75.9231</lon>
     <tags>Fossil fuels, Mining, Natural Gas</tags>
@@ -17,7 +17,7 @@
     <projectName>Fairfield Renewable Energy Power Plant and Resource Recovery Project, Curtis Bay, MD</projectName>
     <author>Andrew Brummer</author>
     <university>Colgate</university>
-    <semester>Fall 2016</semester>
+    <year>2016</year>
     <lat>39.227916</lat>
     <lon>-76.576868</lon>
     <tags>Bioenergy, Power Plants, Renewables, Waste-to-Energy</tags>
@@ -30,7 +30,7 @@
     <projectName>Haifa Bay Oil Refineries, Israel</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>32.793455</lat>
     <lon>35.052369</lon>
     <tags>Fossil fuels, Oil, Refining</tags>
@@ -43,7 +43,7 @@
     <projectName>Coal Mining in Kusum Tola, India</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>22.110487</lat>
     <lon>84.926909</lon>
     <tags>Coal, Fossil fuels, Mining</tags>
@@ -56,7 +56,7 @@
     <projectName>Proposed Nuclear Waste Storage in Yucca Mountain, Nevada, U.S.</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>36.85166326</lat>
     <lon>-116.422664976</lon>
     <tags>Nuclear, Nuclear Energy</tags>
@@ -69,7 +69,7 @@
     <projectName>Three Gorges Dam, China</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>30.8227</lat>
     <lon>111.0034</lon>
     <tags>Hydroelectricity, Power Plants, Renewables</tags>
@@ -82,7 +82,7 @@
     <projectName>Nchanga Copper Mine, Zambia</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>-12.513056</lat>
     <lon>27.854167</lon>
     <tags>Consumption, Energy Consumption, Mining</tags>
@@ -95,7 +95,7 @@
     <projectName>Proposed Susitna Dam, AK</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>62.822778</lat>
     <lon>-148.548611</lon>
     <tags>Hydroelectricity, Power Plants, Renewables</tags>
@@ -106,9 +106,9 @@
 
   <site>
     <projectName>Tehri Dam in Uttarakhand, India</projectName>
-    <author></author>
+    <author>2016</author>
     <university>Colgate</university>
-    <semester></semester>
+    <year></year>
     <lat>30.3781</lat>
     <lon>78.4804</lon>
     <tags>Hydroelectricity, Power Plants, Renewables</tags>
@@ -121,7 +121,7 @@
     <projectName>Proposed Hyperion Oil Refinery, Elk Point, SD</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>42.683307</lat>
     <lon>-96.683214</lon>
     <tags>Fossil fuels, Oil, Refining</tags>
@@ -134,7 +134,7 @@
     <projectName>Oil Refining in Port Arthur, TX</projectName>
     <author>Zakaria Imessaoudene</author>
     <university>Colgate</university>
-    <semester>Fall 2016</semester>
+    <year>2016</year>
     <lat>29.862259</lat>
     <lon>-93.965231</lon>
     <tags>Oil, Refining</tags>
@@ -147,7 +147,7 @@
     <projectName>PM2.5 Non-Attainment Area: Fairbanks North Star Borough, AK</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>65.063430</lat>
     <lon>-146.885979</lon>
     <tags>Bioenergy, Consumption, Energy Consumption, Renewables, Residential Sector</tags>
@@ -160,7 +160,7 @@
     <projectName>Alberta Oil Sands Mining, Canada</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>58.711227</lat>
     <lon>-111.147988</lon>
     <tags>Fossil fuels, Mining, Oil</tags>
@@ -173,7 +173,7 @@
     <projectName>Coal Mountaintop Removal Mining in McDowell County, WV</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>37.37</lat>
     <lon>-81.65</lon>
     <tags>Coal, Fossil fuels, Mining</tags>
@@ -186,7 +186,7 @@
     <projectName>Hoa Binh Dam, Vietnam</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>20.8129</lat>
     <lon>105.3257</lon>
     <tags>Hydroelectricity, Power Plants, Renewables</tags>
@@ -199,7 +199,7 @@
     <projectName>Natural Gas Drilling in Guernsey County, OH</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>40.05</lat>
     <lon>-81.5</lon>
     <tags>Fossil fuels, Mining, Natural Gas</tags>
@@ -212,7 +212,7 @@
     <projectName>Glen Canyon Dam, AZ</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>36.9372</lat>
     <lon>-111.4837</lon>
     <tags>Hydroelectricity, Power Plants, Renewables</tags>
@@ -225,7 +225,7 @@
     <projectName>Fisk and Crawford Coal Plant, IL</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>41.828611</lat>
     <lon>-87.722778</lon>
     <tags>Coal, Fossil fuels, Power Plants</tags>
@@ -238,7 +238,7 @@
     <projectName>Jharia Coal Field, India</projectName>
     <author>Dan Martucci</author>
     <university>Colgate</university>
-    <semester>Fall 2016</semester>
+    <year>2016</year>
     <lat>23.751568</lat>
     <lon>86.420345</lon>
     <tags>Coal, Fossil fuels, Mining</tags>
@@ -251,7 +251,7 @@
     <projectName>The Embodied Implications of Your iPhone</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>22.648841</lat>
     <lon>114.045948</lon>
     <tags>Consumption, Energy Consumption, Industrial Sector, Residential Sector</tags>
@@ -264,7 +264,7 @@
     <projectName>Electrical Energy Poverty in Cape Town, South Africa</projectName>
     <author>Meg Ryan</author>
     <university>Colgate</university>
-    <semester>Fall 2016</semester>
+    <year>2016</year>
     <lat>-34.028423</lat>
     <lon>18.361141</lon>
     <tags>Consumption, Energy Consumption, Energy poverty, Residential Sector</tags>
@@ -277,7 +277,7 @@
     <projectName>Coal River Mountaintop Removal, WV</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>38.073248</lat>
     <lon>-81.977964</lon>
     <tags>Coal, Fossil fuels, Mining</tags>
@@ -290,7 +290,7 @@
     <projectName>Centralia Coal Fire, PA</projectName>
     <author>Sarah Byer</author>
     <university>Colgate</university>
-    <semester>Fall 2014</semester>
+    <year>2014</year>
     <lat>40.803333</lat>
     <lon>-76.341667</lon>
     <tags>Coal, Fossil fuels, Mining</tags>
@@ -303,7 +303,7 @@
     <projectName>Proposed Drilling in the 1002 Area of Arctic National Wildlife Refuge, AK</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>69.847526</lat>
     <lon>-145.245699</lon>
     <tags>Fossil fuels, Mining, Oil</tags>
@@ -316,7 +316,7 @@
     <projectName>Beverly Hills West Facility Oil and Gas Drilling, CA</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2014</year>
     <lat>34.0563</lat>
     <lon>-118.3894</lon>
     <tags>Fossil fuels, Mining, Natural Gas, Oil</tags>
@@ -329,7 +329,7 @@
     <projectName>Sugarcane Ethanol in Piracicaba, Brazil</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>-22.710492</lat>
     <lon>-47.697930</lon>
     <tags>Bioenergy, Renewables</tags>
@@ -342,7 +342,7 @@
     <projectName>Ranger Uranium Mine, Australia</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>-12.6848</lat>
     <lon>132.9107</lon>
     <tags>Mining, Nuclear, Nuclear Energy</tags>
@@ -355,7 +355,7 @@
     <projectName>Four Mile Uranium Mine, Australia</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>-30.146833</lat>
     <lon>139.506639</lon>
     <tags>Mining, Nuclear, Nuclear Energy</tags>
@@ -368,7 +368,7 @@
     <projectName>BP Oil Spill, Gulf of Mexico</projectName>
     <author>Kevin Adams</author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>28.736628</lat>
     <lon>-88.365997</lon>
     <tags>Fossil fuels, Mining, Oil</tags>
@@ -381,7 +381,7 @@
     <projectName>Navajo Generating Station, Navajo Nation</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>36.9035</lat>
     <lon>-111.3908</lon>
     <tags>Coal, Fossil fuels, Power Plants</tags>
@@ -394,7 +394,7 @@
     <projectName>Sardar Sarovar Dam, India</projectName>
     <author>Saurabh Bhatia</author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>21.8305</lat>
     <lon>73.7485</lon>
     <tags>Hydroelectricity, Power Plants, Renewables</tags>
@@ -407,7 +407,7 @@
     <projectName>South Durban Oil Refineries, South Africa</projectName>
     <author></author>
     <university>Colgate</university>
-    <semester></semester>
+    <year>2016</year>
     <lat>-29.974418</lat>
     <lon>30.964259</lon>
     <tags>Fossil fuels, Oil, Refining</tags>

@@ -113,13 +113,13 @@ function Popup(){
 
     var authorDiv = document.getElementById("project-author");
     if (attributes.author != ""){
-      authorDiv.textContent = "by " + attributes.author + ", " + attributes.university + " University";
+      authorDiv.textContent = "by " + attributes.author + ", " + attributes.university + " University, " + attributes.year;
     } else {
-      authorDiv.textContent = "written at " + attributes.university + " University"
+      authorDiv.textContent = "written at " + attributes.university + " University in " + attributes.year;
     }
-    if (attributes.semester != ""){
+    /*if (attributes.semester != ""){
       authorDiv.textContent += ", " + attributes.semester;
-    }
+    }*/
 
     this.state = "open-contracted";
     this.display();
