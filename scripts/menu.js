@@ -1,5 +1,4 @@
 
-
 //------------------------------------------------------------------------------
 
 function Menu(){
@@ -77,24 +76,6 @@ function Menu(){
 
   //----------------------------------------------------------------------------
 
-  /*this.createRowHTML = function(num, tagName, tagCount){
-
-    var allSitesText = (num == 0)? " all-sites" : "";
-
-    var htmlStr =
-        '<div class ="menu-row" data-rownum="' + num + '" data-tagname="' + tagName +'">'
-    +   '  <div class="icon-container"></div>'
-    +   '  <div class="tag-name' + allSitesText + '">' + tagName + '</div>'
-    +   '  <div class="tag-count">' + tagCount + '</div>'
-    +   '</div>'
-    ;
-
-    return htmlStr;
-  };*/
-
-  //----------------------------------------------------------------------------
-
-
   var self = this;
 
   this.domNode.addEventListener("click", function(evt){
@@ -114,8 +95,7 @@ function Menu(){
 
   //----------------------------------------------------------------------------
 
-
-  document.getElementById("menu").innerHTML = tempSiteDataObj.createMenuRowHTML();
+  document.getElementById("menu").innerHTML = siteDataObj.createMenuRowHTML();
 
 
 

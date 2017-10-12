@@ -70,7 +70,7 @@
   font-size: 12px;
   font-weight: normal;
   margin: 0 auto;
-  cursor: pointer;
+  cursor: default;
   text-align: center;
   color:#888888;
 }
@@ -84,12 +84,13 @@
   color:#333333;
 }
 
+
 #popup-container.expanded #zoom-button{
-  cursor: default;
+  display: none;
 }
 
 #popup-container.expanded #zoom-button:hover{
-  color:#888888;
+  /*color:#888888;*/
 }
 
 #popup-container.expanded #popup-pointer{

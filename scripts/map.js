@@ -1,7 +1,6 @@
 //global variables
 var map;
 var popup;
-var siteDataObj;
 var menu;
 
 'use strict';
@@ -46,6 +45,7 @@ require(["esri/map",
                var currentSiteTags = currentGraphic.attributes.tags;
                (currentSiteTags.includes(newTagName))? currentGraphic.show() : currentGraphic.hide();
              }
+             this.centerAndZoom([-5, 28], 2);
            }
 
            map.getNewMapZoomLevel =  function(delta){
@@ -74,31 +74,21 @@ require(["esri/map",
 
              var graphicsLayer = new GraphicsLayer();
 
-             console.log(map.getScale());
-             tempSiteDataObj.createSiteGraphics(graphicsLayer);
-             /*for (var i = 0; i < siteDataObj.siteAttributesArray.length; i++){
-
-               var currentSiteInfo = siteDataObj.siteAttributesArray[i];
-               var point = new Point(currentSiteInfo.lon, currentSiteInfo.lat);
-               var lineSymbol = new SimpleLineSymbol();
-               lineSymbol.setStyle(SimpleLineSymbol.STYLE_SOLID);
-               lineSymbol.setWidth(2);
-               lineSymbol.setColor(new Color([255,255,255]));
-               var markerSymbol = new SimpleMarkerSymbol();
-               markerSymbol.setStyle(SimpleMarkerSymbol.STYLE_CIRCLE);
-               markerSymbol.setSize(15);
-               markerSymbol.setOutline(lineSymbol);
-               markerSymbol.setColor(new Color([173,102,102]));
-               var attributes = currentSiteInfo;
-               var pointGraphic = new Graphic(point, markerSymbol, attributes);
-               graphicsLayer.add(pointGraphic);
-             }*/
+             siteDataObj.createSiteGraphics(graphicsLayer);
 
              graphicsLayer.on("click",function(evt){popup.selectSite(evt);});
+             graphicsLayer.on("mouse-over", function(evt){
+               evt.graphic.symbol.setSize(16);
+               evt.graphic.draw();
+
+             });
+             graphicsLayer.on("mouse-out", function(evt){
+               evt.graphic.symbol.setSize(14);
+               evt.graphic.draw();
+             });
 
              this.addLayer(graphicsLayer);
            });
-
 
            //zoom control event handlers
            document.getElementById("zoom-home-button").addEventListener("click", function(){

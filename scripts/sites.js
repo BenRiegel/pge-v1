@@ -1,6 +1,6 @@
 
 //rename eventually
-var tempSiteDataObj = (function(){
+var siteDataObj = (function(){
 
   var tagsObj;
   var xmlhttp = new XMLHttpRequest();
@@ -43,7 +43,7 @@ var tempSiteDataObj = (function(){
       var tagCount = tagsObj[key].count;
       var indentLevel = tagsObj[key].indentLevel;
       htmlStr += `
-        <div class='menu-row indent-level-${indentLevel}' data-rownum='${i}' data-tagname='${key}'>
+        <div class='menu-row no-select indent-level-${indentLevel}' data-rownum='${i}' data-tagname='${key}'>
           <div class="icon-container"></div>
           <div class="tag-name">${key}</div>
           <div class="tag-count">${tagCount}</div>
