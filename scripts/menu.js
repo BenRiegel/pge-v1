@@ -1,50 +1,4 @@
 
-var getSiteData = function(){
-
-  var siteAttributesArray = [];
-  var tagCountObj = new Object();
-
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", "../assets/sites.xml", false);
-  xmlhttp.send();
-  xmlDoc = xmlhttp.responseXML;
-  var sites = xmlDoc.getElementsByTagName("site");
-
-  for (var i = 0; i < sites.length; i++){
-
-    var currentSiteAttributes = new Object();
-    currentSiteAttributes.projectName = sites[i].getElementsByTagName("projectName")[0].textContent;
-    currentSiteAttributes.author = sites[i].getElementsByTagName("author")[0].textContent;
-    currentSiteAttributes.university = sites[i].getElementsByTagName("university")[0].textContent;
-    currentSiteAttributes.year = sites[i].getElementsByTagName("year")[0].textContent;
-    currentSiteAttributes.lat = sites[i].getElementsByTagName("lat")[0].textContent;
-    currentSiteAttributes.lon = sites[i].getElementsByTagName("lon")[0].textContent;
-    currentSiteAttributes.introText = sites[i].getElementsByTagName("introText")[0].textContent;
-    currentSiteAttributes.introImageLink = sites[i].getElementsByTagName("introImageLink")[0].textContent;
-    currentSiteAttributes.link = sites[i].getElementsByTagName("link")[0].textContent;
-    currentSiteAttributes.tagString = sites[i].getElementsByTagName("tags")[0].textContent;
-    currentSiteAttributes.tagArray = [];
-
-    var tags = currentSiteAttributes.tagString.split(',');
-    for (var j = 0; j < tags.length; j++){
-      currentSiteAttributes.tagArray.push(tags[j].trim());
-    }
-    siteAttributesArray.push(currentSiteAttributes);
-  }
-
-  for (var i = 0; i < siteAttributesArray.length; i++){
-    var currentTagArray = siteAttributesArray[i].tagArray;
-    for (var j = 0; j < currentTagArray.length; j++){
-      currentTag = currentTagArray[j];
-      if (!(currentTag in tagCountObj)){
-        tagCountObj[currentTag] = 0;
-      }
-      tagCountObj[currentTag]++;
-    }
-  }
-
-  return {siteAttributesArray: siteAttributesArray, tagCountObj: tagCountObj};
-};
 
 //------------------------------------------------------------------------------
 
@@ -59,11 +13,11 @@ function Menu(){
   this.open = function(){
     this.domNode.classList.add("open");
     this.isOpen = true;
-    var selectedRowNum = this.selectedRow.dataset.rownum;
+    /*var selectedRowNum = this.selectedRow.dataset.rownum;
     if (selectedRowNum > 12) {
       var newScrollPositon = 25*(selectedRowNum - 12);
       this.domNode.scrollTop = newScrollPositon;
-    }
+    }*/
   }
 
   //----------------------------------------------------------------------------
@@ -123,7 +77,7 @@ function Menu(){
 
   //----------------------------------------------------------------------------
 
-  this.createRowHTML = function(num, tagName, tagCount){
+  /*this.createRowHTML = function(num, tagName, tagCount){
 
     var allSitesText = (num == 0)? " all-sites" : "";
 
@@ -136,7 +90,7 @@ function Menu(){
     ;
 
     return htmlStr;
-  };
+  };*/
 
   //----------------------------------------------------------------------------
 
@@ -160,30 +114,27 @@ function Menu(){
 
   //----------------------------------------------------------------------------
 
-  var tagArray = Object.keys(siteDataObj.tagCountObj);
-  tagArray.sort();
-  tagArray.unshift("All Sites");
 
-  for (var i = 0; i < tagArray.length; i++){
-   var tagCount = (i == 0)? siteDataObj.siteAttributesArray.length : siteDataObj.tagCountObj[tagArray[i]];
-   this.domNode.innerHTML += this.createRowHTML(i, tagArray[i], tagCount);
-  }
+  document.getElementById("menu").innerHTML = tempSiteDataObj.createMenuRowHTML();
+
+
 
   //calculates the max width of the div elements and reassigns the max width to all of them
   //not happy with this and buggy; find better way to do this
   var maxWidth = 0;
   var tagNames = this.domNode.getElementsByClassName("tag-name");
   for (var i = 0; i < tagNames.length; i++){
+//    console.log(tagNames[i].textContent + " " + tagNames[i].offsetWidth);
     if (tagNames[i].offsetWidth > maxWidth){
       maxWidth = tagNames[i].offsetWidth;
     }
   }
   console.log(maxWidth);
 
-  var tagNames = this.domNode.getElementsByClassName("tag-name");
+  /*var tagNames = this.domNode.getElementsByClassName("tag-name");
   for (var i = 0; i < tagNames.length; i++){
     tagNames[i].style.width = maxWidth.toString()+"px";
-  }
+  }*/
 
   var allSitesRow = document.getElementsByClassName("menu-row")[0];
   this.selectRow(allSitesRow);

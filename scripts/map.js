@@ -24,7 +24,7 @@ require(["esri/map",
                   SimpleMarkerSymbol,
                   Color){
 
-           siteDataObj = getSiteData();   //in menu.js
+        //   siteDataObj = getSiteData();   //in menu.js
            menu = new Menu();             //in menu.js
            popup = new Popup();           //in popup.js
 
@@ -41,16 +41,10 @@ require(["esri/map",
            map.toggleGraphicsLayers = function(newTagName){
              var layerId = this.graphicsLayerIds[0];
              var graphicsLayer = this.getLayer(layerId);
-             if (newTagName == "All Sites"){
-               for (var i = 0; i < graphicsLayer.graphics.length; i++){
-                 graphicsLayer.graphics[i].show();
-               }
-             } else {
-               for (var i = 0; i < graphicsLayer.graphics.length; i++){
-                 var currentGraphic = graphicsLayer.graphics[i];
-                 var currentSiteTagArray = currentGraphic.attributes.tagArray;
-                 (currentSiteTagArray.includes(newTagName))? currentGraphic.show() : currentGraphic.hide();
-               }
+             for (var i = 0; i < graphicsLayer.graphics.length; i++){
+               var currentGraphic = graphicsLayer.graphics[i];
+               var currentSiteTags = currentGraphic.attributes.tags;
+               (currentSiteTags.includes(newTagName))? currentGraphic.show() : currentGraphic.hide();
              }
            }
 
@@ -80,7 +74,8 @@ require(["esri/map",
 
              var graphicsLayer = new GraphicsLayer();
 
-             for (var i = 0; i < siteDataObj.siteAttributesArray.length; i++){
+             tempSiteDataObj.createSiteGraphics(graphicsLayer);
+             /*for (var i = 0; i < siteDataObj.siteAttributesArray.length; i++){
 
                var currentSiteInfo = siteDataObj.siteAttributesArray[i];
                var point = new Point(currentSiteInfo.lon, currentSiteInfo.lat);
@@ -96,12 +91,13 @@ require(["esri/map",
                var attributes = currentSiteInfo;
                var pointGraphic = new Graphic(point, markerSymbol, attributes);
                graphicsLayer.add(pointGraphic);
-             }
+             }*/
 
              graphicsLayer.on("click",function(evt){popup.selectSite(evt);});
 
              this.addLayer(graphicsLayer);
            });
+
 
            //zoom control event handlers
            document.getElementById("zoom-home-button").addEventListener("click", function(){
