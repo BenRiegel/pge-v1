@@ -96,6 +96,41 @@
   visibility:hidden;
 }
 
+#loader{
+  position: absolute;
+  top:0px;
+  left:0px;
+  width: 875px;
+  height:445px;
+  background-color:white;
+  display:none;
+}
+
+#animation{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  margin: -33px 0 0 -33px;
+  border: 16px solid #d0d0d0;
+  border-radius: 50%;
+  border-top: 16px solid rgb(173,102,102);
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 #project-display{
   padding-left:120px;
   width: 755px;

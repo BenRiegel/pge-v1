@@ -21,6 +21,7 @@ function Popup(){
     popupBackground.setAttribute("x", 20);
     popupBackground.setAttribute("y", 20);
 
+    document.getElementById("loader").style.display = "block";
     document.getElementById('read-more-button').childNodes[2].textContent = " Read Less";
     document.getElementById("project-display").src = this.link;
     this.popupDomNode.classList.add("expanded");
@@ -30,6 +31,7 @@ function Popup(){
 
   this.contract = function(){
     this.state = "open-contracted";
+    document.getElementById("loader").style.display = "none";
     document.getElementById('read-more-button').childNodes[2].textContent = " Read More";
     document.getElementById("project-display").src = "";
     this.popupDomNode.classList.remove("expanded");
@@ -261,6 +263,10 @@ function Popup(){
   });
 
   document.getElementById("read-more-button").addEventListener("click", function(evt){
-     self.toggleExpanded();
+    self.toggleExpanded();
+  });
+
+  document.getElementById("project-display").addEventListener("load", function(){
+    document.getElementById("loader").style.display = "none";
   });
 };

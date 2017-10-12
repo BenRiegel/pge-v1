@@ -74,6 +74,7 @@ require(["esri/map",
 
              var graphicsLayer = new GraphicsLayer();
 
+             console.log(map.getScale());
              tempSiteDataObj.createSiteGraphics(graphicsLayer);
              /*for (var i = 0; i < siteDataObj.siteAttributesArray.length; i++){
 
