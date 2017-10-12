@@ -408,15 +408,366 @@
   },
 
   {
-    "projectName": "Project Name",
+    "siteName": "Kaltim Prima Coal Mine, East Kalimantan, Indonesia",
+    "projectName": "",
     "author": "",
     "university": "San Francisco State",
-    "year": 2017,
-    "lat": 0,
-    "lon": 0,
-    "tags": ["Mining", "Natural Gas", "Fossil Fuels"],
+    "year": "2017",
+    "lat": "-0.478764",
+    "lon": "117.153",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Santa Ursula, Oaxaca MX",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "18.006944",
+    "lon": "-96.234722",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Buffalo Hollow Creek Coal Mine",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "37.7883",
+    "lon": "-81.9535",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Charles Huskon No. 1 Mine. Cameron, Az",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "35.876897",
+    "lon": "-111.393001",
+    "tags": [],
     "introText": "Text goes here",
-    "introImageLink":"",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Midnite Mine, Washington State",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "47.941667",
+    "lon": "-118.093056",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Cherokee Station, Denver,Colorado Coal powerplant",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "39.808382",
+    "lon": "-104.964278",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Gibson Generating Station, Indiana,",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "38.371938",
+    "lon": "-87.767215",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Bella Romero Academy, Greeley, Colorado",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "40.405486",
+    "lon": "-104.656565",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "JADUGUDA MINES; JADUGUDA, JHARKHAND, INDIA",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "22.65311",
+    "lon": "86.34638",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Turkey Point, Homestead Florida, nuclear power plant",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "25.435330",
+    "lon": "-80.331259",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Guizhou Fa'er Power Station, in Shuicheng County, Liupanshui Prefecture, Guizhou Province, China",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "26.3259319",
+    "lon": "104.7705622",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Chevron Oil Refinery",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "37.943260",
+    "lon": "-122.374959",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Waukegan Generating Station",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "42.383399",
+    "lon": "-87.814409",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Bridgeport Generating Station in Bridgeport, Connecticut",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "41.1865",
+    "lon": "-73.1952",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "the Somaïr Uranium mine in Arlit, Niger",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "18.7390",
+    "lon": "7.3895",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Mundra Ultra Mega Power Project, Mundra, Gujarat, India",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "22.8156072",
+    "lon": "69.5281453",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Grand Bayou Village",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "29.508674",
+    "lon": "-89.765454",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Iquitos, Peru. Loreto Region. Iquitos Refinery: Petró Peru",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "-3.633527",
+    "lon": "-73.205933",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Datong Coal Mine, Datong, Shanxi province, China.",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "40.005339",
+    "lon": "113.179594",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Tummalapalle Uranium Mine",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "14.31000000",
+    "lon": "78.25444444",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Burnaby Terminal, (Kinder Morgan Trans Mountain Pipeline System), Burnaby, BC, Canada",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "49.269005",
+    "lon": "-122.931905",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Canyon Mine, Grand Canyon, Arizona",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "35.883333",
+    "lon": "-112.095556",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Ishpingo-Tambococha-Tiputini and it is located in the Yasuni National Park in Ecuador",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "-1.1006555",
+    "lon": "-75.80690820000001",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "BP oil refinery, Texas City, Texas.",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "29.3",
+    "lon": "-94.9",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "The Rare Earths Facility in Chicago, Illinois",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "41.872808",
+    "lon": "-88.206647",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
+    "urlLink": ""
+  },
+
+  {
+    "siteName": "Fukushima Daiichi Nuclear Power Plant",
+    "projectName": "",
+    "author": "",
+    "university": "San Francisco State",
+    "year": "2017",
+    "lat": "37.421389",
+    "lon": "141.032500",
+    "tags": [],
+    "introText": "",
+    "introImageLink": "",
     "urlLink": ""
   }
 
