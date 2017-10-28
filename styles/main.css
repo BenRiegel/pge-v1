@@ -23,7 +23,7 @@ header h1{
 header p {
   font-family: 'Lora', serif;
   font-size: 12px;
-  margin: 5px 0 35px 0;
+  margin: 5px 0 25px 0;
   color: #666666;
 }
 
@@ -33,6 +33,7 @@ header p {
   height: 515px;
   float: left;
   position: relative;
+  overflow:hidden;
 }
 
 aside{

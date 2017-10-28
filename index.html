@@ -11,24 +11,24 @@
   <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/css/esri.css">
   <link rel="stylesheet" href="styles/normalize.css">
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/map.css">
   <link rel="stylesheet" href="styles/icons.css">
   <link rel="stylesheet" href="styles/menu.css">
   <link rel="stylesheet" href="styles/zoom.css">
-  <link rel="stylesheet" href="styles/popup.css">
 </head>
 
 <body>
   <main>
     <header>
       <h1>A People's Guide to Energy</h1>
-      <p>A guide to sites of energy injustice around the world.
-      </p>
+      <p>A guide to sites of energy injustice around the world</p>
     </header>
 
     <div class="clearfix">
       <div id="map">
 
-        <div id="menu" class="open no-select"></div>
+        <!-- rename no-select -->
+        <div id="menu" class="no-select"></div>
 
         <div id= "zoom-controls">
           <div class="zoom-button-container">
@@ -46,51 +46,16 @@
           </div>
         </div>
 
-        <div id="popup-container">
+        <div id="map-images-container"></div>
+        <div id="point-graphics-container"></div>
 
-          <svg id="popup-svg">
-            <rect id = "popup-background" rx="10" ry="10"/>
-            <polygon id="popup-pointer"/>
-          </svg>
-
-          <div id="popup-content">
-            <div id="project-info">
-              <div id="project-title"></div>
-              <div id="project-author"></div>
-              <img id="project-image">
-              <div id="project-text"></div>
-            </div>
-
-            <div id="loader">
-              <div id="animation"></div>
-            </div>
-            <iframe id="project-display"></iframe>
-
-            <div class="popup-menu no-select">
-              <div id="zoom-button" class="popup-menu-item">
-                <span class="icon esri-icon-zoom-in-magnifying-glass"></span>
-                Zoom To
-              </div>
-              <div id="read-more-button" class="popup-menu-item">
-                <span class="icon esri-icon-review"></span>
-                Read More
-              </div>
-              <div id="close-button" class="popup-menu-item">
-                <span class="icon esri-icon-close"></span>
-                Close
-              </div>
-            </div>
-
-          </div>
-
-        </div>
       </div>
 
       <aside>
         <h1>Creators</h1>
         <p>
           <a href="http://sfsu.academia.edu/AutumnThoyre">Autumn Thoyre
-          (organizer)</a> and students at San Francisco State University and Colgate University
+          (organizer)</a> & students at San Francisco State & Colgate Universities
         </p>
 
         <h1>Inspiration</h1>
@@ -103,15 +68,17 @@
       </aside>
     </div>
 
-    <footer>
-    </footer>
+    <footer></footer>
   </main>
 
-  <script src="https://js.arcgis.com/3.21/"></script>
-  <script src="scripts/sites.js"></script>
-  <script src="scripts/map.js"></script>
-  <script src="scripts/menu.js"></script>
-  <script src="scripts/popup.js"></script>
-
+  <script src="scripts/EventDispatcher.js"></script>
+  <script src="scripts/AjaxService.js"></script>
+  <script src="scripts/MapModel.js"></script>
+  <script src="scripts/SitesModel.js"></script>
+  <script src="scripts/MenuView.js"></script>
+  <script src="scripts/SitesView.js"></script>
+  <script src="scripts/MapView.js"></script>
+  <script src="scripts/Controller.js"></script>
+  <script src="scripts/App.js"></script>
 </body>
 </html>

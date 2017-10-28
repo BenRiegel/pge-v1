@@ -6,10 +6,9 @@
   overflow: scroll;
   background-color: white;
   border-radius: 20px;
-  z-index: 2;
+  z-index: 3;
   cursor: default;
   box-shadow: 0px 0px 3px rgba(0,0,0,0.25);
-  visibility: hidden;
   color: #333333;
 }
 
@@ -68,7 +67,7 @@
 .tag-name{
   float: left;
   width: 117px;   /*from console */
-  margin-left:8px;
+  padding-left:8px;
 }
 
 .tag-name::before{
@@ -90,5 +89,4 @@
   text-align: right;
   padding: 0 15px 0 15px;
   width: 15px;
-  border:0px solid green;
 }

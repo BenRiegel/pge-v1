@@ -1,0 +1,33 @@
+#point-graphics-container{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+}
+
+.site-point{
+  position:absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: rgba(134,38,51, 0.85);
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.25);
+  color:white;
+  font-size: 12px;
+  text-align:center;
+}
+
+.site-point:hover{
+  cursor:pointer;
+}
+
+#map-images-container{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.map-image{
+  position: absolute;
+  width: 256px;
+  height: 256px;
+}
