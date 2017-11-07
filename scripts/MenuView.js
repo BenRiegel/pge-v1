@@ -1,7 +1,7 @@
 var MenuView = function () {
 
-  var tagCountRequest = new Event();
   var selectNewTagEvent = new Event();
+  var tagCountObjRequest = new Event();
 
   var menu = document.getElementById("menu");
   var currentSelectedRow = null;
@@ -33,11 +33,12 @@ var MenuView = function () {
   }
 
   var init = function(selectedTagName){
+    var tagCountObj = tagCountObjRequest.fire();
     var htmlStr = "";
     for (var i = 0; i < menuElementList.length; i++){
       var tagName = menuElementList[i].tagName;
       var indentLevel = menuElementList[i].indentLevel;
-      var tagCount = tagCountRequest.fire(tagName);
+      var tagCount = tagCountObj[tagName];
       var selectedText = (tagName == selectedTagName)? "selected" : "";
       htmlStr += `
         <div class='menu-row no-select ${selectedText} indent-level-${indentLevel}' data-tagname='${tagName}'>
@@ -59,11 +60,11 @@ var MenuView = function () {
     menu.classList.toggle("open");
   });
 
-  //exposed variables ----------------------------------------------------------
+  //public variables -----------------------------------------------------------
 
   return {
-    tagCountRequest: tagCountRequest,
     selectNewTagEvent: selectNewTagEvent,
+    tagCountObjRequest: tagCountObjRequest,
     init: init,
   };
 };

@@ -1,92 +1,187 @@
+var AjaxServiceController = function(sitesModel){
 
-var Controller = function(models, views){
-
-  // events --------------------------------------------------------------------
-
-  models.sitesModel.dataLoadingCompleteEvent.setHandler(function(){
-    models.mapModel.init();
-    views.mapView.drawBasemap();
-    views.menuView.init("All Sites");
-  });
-
-  views.mapView.newScaleLevelEvent.setHandler(function(newScaleLevel){
-    models.mapModel.setScaleLevel(newScaleLevel);
-    views.mapView.drawBasemap();
-    views.sitesView.drawPoints();
-  });
-
-  views.mapView.viewportRecenterEvent.setHandler(function(newLocation){
-    models.mapModel.setNewLocation(newLocation);
-    views.mapView.drawBasemap();  //this is redundant except when zooming home; not sure what to do about this
-    views.sitesView.drawPoints();
-  });
-
-  views.mapView.attemptMapJumpEvent.setHandler(function(jumpProperties){
-    views.mapView.mapJumpHandler(jumpProperties);
-  });
-
-  views.mapView.panMoveEvent.setHandler(function(panData){
-    models.mapModel.updateViewportOffset(panData);
-    views.sitesView.updatePointScreenLocations();
-    views.mapView.panBasemap(panData);
-  });
-
-  views.mapView.panEndEvent.setHandler(function(panData){
-    models.mapModel.updateViewportCenter(panData);
-    views.mapView.drawBasemap();
-    views.sitesView.drawPoints();
-  });
-
-  views.menuView.selectNewTagEvent.setHandler(function(tagName){
-    models.sitesModel.selectSites(tagName);
-    views.sitesView.drawPoints();
-  });
-
-  // data requests -------------------------------------------------------------
-
-  models.sitesModel.sitesRequest.setHandler(function(){
-    return models.ajaxService.getJSONData();
-  });
-
-  models.sitesModel.wmCoordsRequest.setHandler(function(geoCoords){
-    return models.mapModel.calculateWMCoords(geoCoords);
-  });
-
-  views.menuView.tagCountRequest.setHandler(function(tagName){
-    return models.sitesModel.getTagCount(tagName);
-  });
-
-  views.sitesView.sitesRequest.setHandler (function(){
-    return models.sitesModel.getSites();
-  });
-
-  views.sitesView.mapPropertiesRequest.setHandler(function(){
-    return models.mapModel.getCurrentMapProperties();
-  });
-
-  views.sitesView.screenCoordsRequest.setHandler(function(mapCoords){
-    return models.mapModel.calculateScreenCoords(mapCoords);
-  });
-
-  views.mapView.getScaleLevelChangeResults.setHandler(function(properties){
-    return models.mapModel.getScaleLevelChangeResults(properties);
-  });
-
-  views.mapView.getMapRecenterResults.setHandler(function(properties){
-    return models.mapModel.getMapRecenterResults(properties);
-  });
-
-  views.mapView.basemapTilesHTMLRequest.setHandler(function(){
-    return models.mapModel.createBasemapTilesHTML();
-  });
-
-  //ajax callback handler ------------------------------------------------------
-  //this should go last after all other handlers have been loaded
-  if (models.ajaxService.readyEvent.hasFired){
-    models.sitesModel.processSitesData();
+  if (this.readyEvent.hasFired){
+    sitesModel.processSitesData();
   } else {
-    models.ajaxService.readyEvent.setHandler(function(){
-      models.sitesModel.processSitesData();
+    this.readyEvent.setHandler(function(){
+      sitesModel.processSitesData();
     });
   }
-};
+}
+
+//------------------------------------------------------------------------------
+
+var MapModelController = function(viewportModel, sitesView, basemapView){
+/*  this.newScaleLevelEvent.setHandler(function(tileScale){
+    sitesView.drawPoints();
+    basemapView.drawPoints(tileScale);
+  });*/
+}
+
+//------------------------------------------------------------------------------
+
+var ViewportModelController = function(mapModel, sitesView, mapView, basemapView){
+
+/*  this.viewportMoveEvent.setHandler(function(){
+    sitesView.panPoints();
+    basemapView.panBasemap();
+  });*/
+
+  //----------------------------------------------------------------------------
+
+  this.worldCoordsRequest.setHandler(function(geoCoords){
+    return mapModel.calculateWorldCoords(geoCoords);
+  });
+
+  this.mapCoordsRequest.setHandler(function(worldCoords){
+    return mapModel.calculateMapCoords(worldCoords);
+  });
+
+  this.mapPropertiesRequest.setHandler(function(){
+    return mapModel.getCurrentMapProperties();
+  });
+
+  this.rectifiedWorldCoordsRequest.setHandler(function(worldCoords){
+    return mapModel.rectifyWorldCoords(worldCoords);
+  });
+
+  this.deltaXWorldRequest.setHandler(function(xPoints){
+    return mapModel.calculateDeltaX(xPoints);
+  });
+}
+
+//------------------------------------------------------------------------------
+
+var SitesModelController = function(ajaxService, mapModel, viewportModel, basemapView, menuView, sitesView){
+
+  this.dataLoadingCompleteEvent.setHandler(function(){
+    mapModel.init();
+    viewportModel.init();
+    basemapView.drawBasemap();
+    menuView.init("All Sites");   //not very happy with this starting everything
+  });
+
+  this.selectSitesEvent.setHandler(function(selectedSites){
+    sitesView.selectSitesHandler(selectedSites);
+  });
+
+  //----------------------------------------------------------------------------
+
+  this.ajaxRequest.setHandler(function(){
+    return ajaxService.getJSONData();
+  });
+
+  this.worldCoordsRequest.setHandler(function(geoCoords){
+    return mapModel.calculateWorldCoords(geoCoords);
+  });
+}
+
+//------------------------------------------------------------------------------
+
+var MenuViewController = function(sitesModel, sitesView){
+
+  this.selectNewTagEvent.setHandler(function(tagName){
+    sitesModel.selectSites(tagName);
+  });
+
+  this.tagCountObjRequest.setHandler(function(){
+    return sitesModel.getTagCountObj();
+  });
+}
+
+//------------------------------------------------------------------------------
+
+var SitesViewController = function(sitesModel, mapModel, viewportModel){
+
+  this.mapPropertiesRequest.setHandler(function(){
+    return mapModel.getCurrentMapProperties();
+  });
+
+  this.mapCoordsRequest.setHandler(function(worldCoords){
+    return mapModel.calculateMapCoords(worldCoords);
+  });
+
+  this.viewportOffsetRequest.setHandler(function(){
+    return viewportModel.sendViewportOffset();
+  });
+}
+
+//------------------------------------------------------------------------------
+
+var BasemapViewController = function(mapModel, viewportModel){
+
+  this.viewportCenterRequest.setHandler(function(){
+    return viewportModel.sendCurrentViewportCenter();
+  });
+
+  this.viewportDimensionsRequest.setHandler(function(){
+    return viewportModel.sendViewportDimensions();
+  });
+
+  this.viewportOffsetRequest.setHandler(function(){
+    return viewportModel.sendViewportOffset();
+  });
+
+  this.mapCoordsRequest.setHandler(function(worldCoords){
+    return mapModel.calculateMapCoords(worldCoords);
+  });
+
+  this.mapPropertiesRequest.setHandler(function(){
+    return mapModel.getCurrentMapProperties();
+  });
+}
+
+//------------------------------------------------------------------------------
+
+var MapViewController = function(sitesModel, viewportModel, mapModel, sitesView, basemapView){
+
+  this.panEvent.setHandler(function(eventProperties){
+    viewportModel.setViewportCenter(eventProperties.newLocation);
+    sitesView.panPoints();
+    basemapView.moveBasemap();
+  });
+
+  this.zoomEvent.setHandler(function(eventProperties){
+    mapModel.setScaleLevel(eventProperties.newScaleLevel);
+    sitesView.drawPoints();
+    basemapView.moveBasemap();
+  });
+
+  this.panZoomEvent.setHandler(function(eventProperties){
+    mapModel.setScaleLevel(eventProperties.newScaleLevel);
+    viewportModel.setViewportCenter(eventProperties.newLocation);
+    sitesView.drawPoints();
+    basemapView.moveBasemap();
+  });
+
+  this.mapMoveEndEvent.setHandler(function(){
+    basemapView.drawBasemap();
+  });
+
+  this.clusterClickEvent.setHandler(function(index){
+    sitesView.flagPreviousClusters(index);
+  });
+
+  this.clusterResetEvent.setHandler(function(){
+    sitesView.resetPreviousClusters();
+  })
+
+  this.pointGraphicMouseOverEvent.setHandler(function(node){
+    sitesView.showToolTip(node);
+  });
+
+  this.pointGraphicMouseOutEvent.setHandler(function(){
+    sitesView.hideToolTip();
+  });
+
+  //------------------------------------------------------------------------------
+
+  this.moveXYResultsRequest.setHandler(function(moveProperties){
+    return viewportModel.sendMoveXYResults(moveProperties);
+  });
+
+  this.moveZResultsRequest.setHandler(function(moveProperties){
+    return mapModel.calculateMoveZResults(moveProperties);
+  });
+
+}

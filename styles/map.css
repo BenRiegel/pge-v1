@@ -6,7 +6,7 @@
 }
 
 .site-point{
-  position:absolute;
+  position: absolute;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background-color: rgba(134,38,51, 0.85);
@@ -14,10 +14,15 @@
   color:white;
   font-size: 12px;
   text-align:center;
+  cursor:pointer;
 }
 
 .site-point:hover{
-  cursor:pointer;
+  background-color: #483D8B;
+}
+
+.site-point.prevCluster{
+  background-color: #483D8B;
 }
 
 #map-images-container{
@@ -28,6 +33,7 @@
 
 .map-image{
   position: absolute;
-  width: 256px;
-  height: 256px;
+  width:256px;
+  height:256px;
+/*  border:1px solid blue;*/
 }

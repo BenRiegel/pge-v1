@@ -1,8 +1,11 @@
 
-var Event = function () {
+var Event = function() {
   this.handler = null;
   this.hasFired = false;
+
+  this.startTime;
 }
+
 
 Event.prototype = {
 

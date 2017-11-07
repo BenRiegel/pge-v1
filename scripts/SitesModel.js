@@ -1,63 +1,56 @@
 var SitesModel = function () {
 
   var dataLoadingCompleteEvent = new Event(),
-      sitesRequest = new Event(),
-      wmCoordsRequest = new Event();
+      selectSitesEvent = new Event(),
+      ajaxRequest = new Event(),
+      worldCoordsRequest = new Event();
 
-  var tagsObj = {},
-      sites = [];
-
-  //helper functions -----------------------------------------------------------
-
-  var getWMCoords = function(){
-    sites.forEach(function(site, i){
-      var geoCoords = {lon: site.lon, lat:site.lat};  //refactor json file eventually to merge lat / lon
-      site.wmCoords = wmCoordsRequest.fire(geoCoords);
-    });
-  };
-
-  var calculateTagCounts = function(){
-    sites.forEach(function(site, i){
-      site.tags.forEach(function(tagName, j){
-        tagsObj[tagName] = (tagName in tagsObj)? tagsObj[tagName] + 1 : 1;
-      });
-    });
-  }
+  var sites = [];
 
   //event handlers -------------------------------------------------------------
 
-  var selectSites = function(tagName){           //responds to menu event
+  var selectSites = function(tagName){
+    var selectedSites = [];
     sites.forEach(function(site, i){
-      site.selected = site.tags.includes(tagName);
+      site.prevCluster = false;
+      if (site.tags.includes(tagName)){
+        selectedSites.push(site);
+      }
     });
+    selectSitesEvent.fire(selectedSites);
   }
 
   var processSitesData = function(){
-    sites = sitesRequest.fire();
-    calculateTagCounts();
-    getWMCoords();
+    sites = ajaxRequest.fire();
+    sites.forEach(function(site, i){
+      site.type = "site";
+      var geoCoords = {lon: site.lon, lat:site.lat};             //refactor json file eventually to merge lat / lon
+      site.worldCoords = worldCoordsRequest.fire(geoCoords);
+    });
     dataLoadingCompleteEvent.fire();
   };
 
   //data request handlers ------------------------------------------------------
 
-  var getTagCount = function(tagName){         //used in MenuView.js
-    return tagsObj[tagName];
-  }
-
-  var getSites = function(tagName){            //used in SitesView.js
-    return sites;
+  var getTagCountObj = function(){
+    var tagsObj = {};
+    sites.forEach(function(site, i){
+      site.tags.forEach(function(tagName, j){
+        tagsObj[tagName] = (tagName in tagsObj)? tagsObj[tagName] + 1 : 1;
+      });
+    });
+    return tagsObj;
   }
 
   //public variables -----------------------------------------------------------
 
   return {
     dataLoadingCompleteEvent: dataLoadingCompleteEvent,
-    sitesRequest: sitesRequest,
-    wmCoordsRequest: wmCoordsRequest,
+    selectSitesEvent: selectSitesEvent,
+    ajaxRequest: ajaxRequest,
+    worldCoordsRequest: worldCoordsRequest,
     selectSites: selectSites,
     processSitesData: processSitesData,
-    getTagCount: getTagCount,
-    getSites: getSites
+    getTagCountObj: getTagCountObj,
   };
 };
