@@ -1,10 +1,26 @@
-var SitesView = function(){
+var SitesView = function(mapServices, viewportServices, sitesModelServices){
 
-  var mapPropertiesRequest = new Event(),
-      mapCoordsRequest = new Event(),
-      viewportOffsetRequest = new Event();
 
-  //var popup = document.getElementById("popup");
+  var clusterClickEvent = new Event(),
+  clusterResetEvent = new Event(),
+  siteSelectionEvent = new Event();
+
+  /*else {
+    var x = parseFloat(evt.target.dataset.worldx);
+    var y = parseFloat(evt.target.dataset.worldy);
+
+    if (evt.target.dataset.type == "cluster"){
+      clusterClickEvent.fire(evt.target.dataset.index);
+      mapMoveHandler({type:"to", location:{x:x, y:y}});
+    } else {
+      siteSelectionEvent.fire(evt.target.dataset.index);
+    }
+  }*/
+
+
+  //private variables ----------------------------------------------------------
+
+  var popup = document.getElementById("popup");
   var pointGraphicsContainer = document.getElementById("point-graphics-container");
   var pointGraphicRadius = 8;
   var selectedSites;
@@ -19,10 +35,9 @@ var SitesView = function(){
   }
 
   var calculateScreenCoords = function(worldCoords){
-    var mapCoords = mapCoordsRequest.fire(worldCoords);
-    var viewportOffset = viewportOffsetRequest.fire();
-    var currentMapProperties = mapPropertiesRequest.fire();
-    var mapSizePx = currentMapProperties.mapSizePx;
+    var mapCoords = mapServices.calculateMapCoords(worldCoords);
+    var viewportOffset = viewportServices.sendViewportOffset();
+    var mapSizePx = mapServices.getCurrentMapSizePx();
     var newX = mapCoords.x - viewportOffset.x;
     var newY = mapCoords.y - viewportOffset.y;
     newX = (newX > mapSizePx)? newX - mapSizePx : newX;
@@ -30,14 +45,13 @@ var SitesView = function(){
     return ({x:newX, y:newY});
   }
 
-  //event handlers -------------------------------------------------------------
+  //public methods -------------------------------------------------------------
 
   var drawPoints = function(){
 
     pointGraphicsContainer.innerHTML = "";
 
-    var currentMapProperties = mapPropertiesRequest.fire();
-    var currentPixelSize = currentMapProperties.pixelSize;
+    var currentPixelSize = mapServices.getCurrentPixelSize();
 
     var selectedSitesCopy = [];
     selectedSites.forEach(function(site, i){
@@ -108,11 +122,12 @@ var SitesView = function(){
       if (createdCluster == null){
 
         var screenCoords = calculateScreenCoords(currentSite.worldCoords);
+
         var numPoints = (currentSite.type == "site")? 1 : currentSite.children.length;
         var prevClusterStr = (currentSite.prevCluster)? "prevCluster" : "";
 
         var node = document.createElement("div");
-        node.className = `site-point ${prevClusterStr} no-select`;
+        node.className = `site-point ${prevClusterStr} no-highlight`;
         node.dataset.type = currentSite.type;
         node.dataset.index = treeIndex;
         node.dataset.worldx = currentSite.worldCoords.x;
@@ -146,8 +161,8 @@ var SitesView = function(){
 
   //----------------------------------------------------------------------------
 
-  var selectSitesHandler = function(sites){
-    selectedSites = sites;
+  var drawNewSelectedSites = function(){
+    selectedSites = sitesModelServices.getSelectedSites();
     drawPoints();
   }
 
@@ -175,34 +190,61 @@ var SitesView = function(){
     });
   }
 
-  var showToolTip = function(node){
-  //  var siteIndex = node.dataset.index;
 
-
-  /*  popup.style.visibility = "visible";
-    var x = node.dataset.screenx;
-    var y = node.dataset.screeny;
-    popup.style.left = `${x-100+1}px`;
-    popup.style.top = `${y-67-12}px`;*/
-
+  var closePopup = function(){
+    popup.classList.remove("visible");
   }
 
-  /*var hideToolTip = function(){
-    popup.style.visibility = "hidden";
-  }*/
+
+  var positionPopup = function(siteIndex){
+    var site = selectedSitesTree[siteIndex];
+    var screenX = site.domNode.dataset.screenx;
+    var screenY = site.domNode.dataset.screeny;
+
+    var rect = document.getElementById("popup").getBoundingClientRect();
+    var popupWidth = (rect.right - rect.left);
+    var popupHeight = (rect.bottom - rect.top);
+    var popupMidX = popupWidth/2;
+    var popupMidY = popupHeight/2;
+
+    popup.style.left = `${screenX - popupMidX}px`;
+    popup.style.top = `${screenY - popupHeight - 6 - 15}px`;
+  }
+
+
+  var siteSelectionHandler = function(siteIndex){
+    var site = selectedSitesTree[siteIndex];
+
+    document.getElementById("project-title").textContent = site.projectName;
+    document.getElementById("project-text").textContent = site.introText;
+    document.getElementById("project-image").style.display = "inline";
+    document.getElementById("project-image").src = "";
+    if (site.introImageLink == ""){
+      document.getElementById("project-image").style.display = "none";
+    } else {
+      document.getElementById("project-image").src = site.introImageLink;
+    }
+
+    var authorDiv = document.getElementById("project-author");
+    if (site.author != ""){
+      authorDiv.textContent = "by " + site.author + ", " + site.university + " University, " + site.year;
+    } else {
+      authorDiv.textContent = "written at " + site.university + " University in " + site.year;
+    }
+
+    popup.classList.add("visible");
+    positionPopup(siteIndex);
+  };
 
   //public variables -----------------------------------------------------------
 
   return {
-    mapPropertiesRequest: mapPropertiesRequest,
-    mapCoordsRequest: mapCoordsRequest,
-    viewportOffsetRequest: viewportOffsetRequest,
     panPoints: panPoints,
-    selectSitesHandler: selectSitesHandler,
+    drawNewSelectedSites: drawNewSelectedSites,
     drawPoints: drawPoints,
     flagPreviousClusters: flagPreviousClusters,
     resetPreviousClusters: resetPreviousClusters,
-    showToolTip: showToolTip,
-  /*  hideToolTip: hideToolTip*/
+    siteSelectionHandler: siteSelectionHandler,
+    closePopup: closePopup
   };
 }

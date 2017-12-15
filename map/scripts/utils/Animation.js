@@ -1,5 +1,7 @@
 
 var Animation = function(){
+
+  this.type;
   this.runFunction;
   this.callbackFunction;
   this.duration;
@@ -12,6 +14,7 @@ var Animation = function(){
     var runTime = timeStamp - startTime;
     var totalProgress = runTime / this.duration;
     totalProgress = Math.min(totalProgress, 1);
+
 
     this.runFunction(args, totalProgress);
 
@@ -31,24 +34,3 @@ var Animation = function(){
     });
   }
 };
-
-
-
-/*Animation.prototype = {
-
-  constructor: Animation,
-
-  cycle: function() {
-    var timeStamp = new Date().getTime();
-    var runTime = timeStamp - startTime;
-    var totalProgress = runTime / duration;
-    totalProgress = Math.min(totalProgress, 1);
-  };
-
-  run: function (arg) {
-    this.startTime = new Date().getTime();
-    requestAnimationFrame(
-    );
-
-  }
-};*/

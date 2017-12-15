@@ -1,10 +1,4 @@
-var BasemapView = function(){
-
-  var viewportDimensionsRequest = new Event(),
-      viewportCenterRequest = new Event(),
-      viewportOffsetRequest = new Event(),
-      mapCoordsRequest = new Event,
-      mapPropertiesRequest = new Event();
+var BasemapView = function(mapServices, viewportServices){
 
   var viewportBufferFactor = 1,
       basemapTileSizePx = 256;
@@ -18,28 +12,28 @@ var BasemapView = function(){
 
   var drawBasemap = function(){
 
-    var initViewportOffset = viewportOffsetRequest.fire();
-    var viewportDimensionsPx = viewportDimensionsRequest.fire();
-    var currentViewportCenter = viewportCenterRequest.fire();
+    var initViewportOffset = viewportServices.sendViewportOffset();
+    var viewportDimensionsPx = viewportServices.sendViewportDimensions();
+    var currentViewportCenter = viewportServices.sendCurrentViewportCenter();
     initViewportCenter = {
-      x: currentViewportCenter.worldCoords.x,
-      y: currentViewportCenter.worldCoords.y,
+      x: currentViewportCenter.x,
+      y: currentViewportCenter.y,
     }
 
-    var currentMapProperties = mapPropertiesRequest.fire();
-    var pixelSize = currentMapProperties.pixelSize;
+    var pixelSize = mapServices.getCurrentPixelSize();
     initPixelSize = pixelSize;
-    var mapSizePx = currentMapProperties.mapSizePx;
-    var currentTileLevel = Math.round(currentMapProperties.scaleLevel);
+    var mapSizePx = mapServices.getCurrentMapSizePx();
+    var currentScaleLevel = mapServices.getCurrentScaleLevel();
+    var currentTileLevel = Math.round(currentScaleLevel);
 
     var bufferedViewportExtentHeight = (viewportBufferFactor * 2 + 1) * viewportDimensionsPx.height * pixelSize;
     var bufferedViewportExtentWidth = (viewportBufferFactor * 2 + 1) * viewportDimensionsPx.width * pixelSize;
 
     var bufferedViewportExtent = {
-      top: currentViewportCenter.worldCoords.y - bufferedViewportExtentHeight / 2,
-      right: currentViewportCenter.worldCoords.x + bufferedViewportExtentWidth / 2,
-      bottom: currentViewportCenter.worldCoords.y + bufferedViewportExtentHeight / 2,
-      left: currentViewportCenter.worldCoords.x - bufferedViewportExtentWidth / 2
+      top: currentViewportCenter.y - bufferedViewportExtentHeight / 2,
+      right: currentViewportCenter.x + bufferedViewportExtentWidth / 2,
+      bottom: currentViewportCenter.y + bufferedViewportExtentHeight / 2,
+      left: currentViewportCenter.x - bufferedViewportExtentWidth / 2
     }
 
     var numTiles = Math.round(mapSizePx / basemapTileSizePx);
@@ -81,13 +75,12 @@ var BasemapView = function(){
   //----------------------------------------------------------------------------
 
   var moveBasemap = function(){
-    var currentMapProperties = mapPropertiesRequest.fire();
-    var currentPixelSize = currentMapProperties.pixelSize;
+    var currentPixelSize =  mapServices.getCurrentPixelSize();
     var basemapScale = initPixelSize / currentPixelSize;
-    var currentViewportCenter = viewportCenterRequest.fire();
-    var deltaX = currentViewportCenter.worldCoords.x - initViewportCenter.x;
+    var currentViewportCenter = viewportServices.sendCurrentViewportCenter();
+    var deltaX = currentViewportCenter.x - initViewportCenter.x;
     var deltaXPx = deltaX / initPixelSize;
-    var deltaY = currentViewportCenter.worldCoords.y - initViewportCenter.y;
+    var deltaY = currentViewportCenter.y - initViewportCenter.y;
     var deltaYPx = deltaY / initPixelSize;
     mapImagesContainer.style.transform = `scale(${basemapScale},${basemapScale}) translate(${-deltaXPx}px, ${-deltaYPx}px)`;
   }
@@ -95,11 +88,6 @@ var BasemapView = function(){
   //public variables -----------------------------------------------------------
 
   return {
-    viewportDimensionsRequest: viewportDimensionsRequest,
-    viewportCenterRequest: viewportCenterRequest,
-    viewportOffsetRequest: viewportOffsetRequest,
-    mapCoordsRequest: mapCoordsRequest,
-    mapPropertiesRequest: mapPropertiesRequest,
     drawBasemap: drawBasemap,
     moveBasemap: moveBasemap,
   };

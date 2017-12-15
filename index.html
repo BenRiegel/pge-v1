@@ -9,13 +9,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
   <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/css/esri.css">
-  <link rel="stylesheet" href="styles/normalize.css">
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/map.css">
-  <link rel="stylesheet" href="styles/icons.css">
-  <link rel="stylesheet" href="styles/menu.css">
-  <link rel="stylesheet" href="styles/zoom.css">
-  <link rel="stylesheet" href="styles/popup.css">
+  <link rel="stylesheet" href="webmap/styles/icons.css">
+  <link rel="stylesheet" href="webmap/styles/map.css">
+  <link rel="stylesheet" href="app/styles/normalize.css">
+  <link rel="stylesheet" href="app/styles/main.css">
+  <link rel="stylesheet" href="app/styles/menu.css">
+  <link rel="stylesheet" href="app/styles/zoom.css">
+  <link rel="stylesheet" href="app/styles/popup.css">
 </head>
 
 <body>
@@ -26,10 +26,11 @@
     </header>
 
     <div class="clearfix">
-      <div id="map">
 
-        <!-- rename no-select -->
-        <div id="menu" class="no-select"></div>
+  <!--    <div id="menu" class="no-highlight"></div>  -->
+
+
+      <div id="map">
 
         <div id= "zoom-controls">
           <div class="zoom-button-container">
@@ -47,16 +48,40 @@
           </div>
         </div>
 
-        <div id="map-images-container"></div>
-        <div id="point-graphics-container"></div>
-
-        <div id="popup">
-          <div id="pointer" class="s">
-            <div id="pointer-arrow"></div>
-          </div>
+        <div id="basemap-images-container">
+          <div id="basemap-images-frame-0" class="basemap-images-frame"></div>
         </div>
 
-        <div id="tooltip"></div>
+        <div id="point-graphics-container">
+          <div id="point-graphics-frame-0" class="point-graphics-frame"></div>
+        </div>
+
+        <div id="popup">
+
+          <div id="popup-content">
+            <div id="project-info">
+              <div id="project-title"></div>
+              <div id="project-author"></div>
+              <img id="project-image">
+              <div id="project-text"></div>
+            </div>
+          </div>
+
+          <div class="popup-menu no-highlight">
+            <div id="zoom-button" class="popup-menu-item">
+              <span class="icon esri-icon-zoom-in-magnifying-glass"></span>
+              Zoom To
+            </div>
+            <div id="read-more-button" class="popup-menu-item">
+              <span class="icon esri-icon-review"></span>
+              Read More
+            </div>
+            <div id="close-button" class="popup-menu-item">
+              <span class="icon esri-icon-close"></span>
+              Close
+            </div>
+          </div>
+        </div>
 
       </div>
 
@@ -80,17 +105,20 @@
     <footer></footer>
   </main>
 
-  <script src="scripts/Animation.js"></script>
-  <script src="scripts/EventDispatcher.js"></script>
-  <script src="scripts/AjaxService.js"></script>
-  <script src="scripts/MapModel.js"></script>
-  <script src="scripts/ViewportModel.js"></script>
-  <script src="scripts/SitesModel.js"></script>
-  <script src="scripts/SitesView.js"></script>
-  <script src="scripts/BasemapView.js"></script>
-  <script src="scripts/MenuView.js"></script>
-  <script src="scripts/MapView.js"></script>
-  <script src="scripts/Controller.js"></script>
-  <script src="scripts/App.js"></script>
+
+  <script src="webmap/scripts/utils/MapUtils.js"></script>
+  <script src="webmap/scripts/utils/ImageTracker.js"></script>
+  <script src="webmap/scripts/utils/Animation.js"></script>
+  <script src="webmap/scripts/utils/EventDispatcher.js"></script>
+  <script src="webmap/scripts/utils/ServiceDispatcher.js"></script>
+
+  <script src="webmap/scripts/mvc/Model.js"></script>
+  <script src="webmap/scripts/mvc/View.js"></script>
+  <script src="webmap/scripts/mvc/Controller.js"></script>
+  
+  <script src="webmap/scripts/Webmap.js"></script>
+
+
+  <script src="app/scripts/App.js"></script>
 </body>
 </html>

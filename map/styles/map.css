@@ -1,7 +1,5 @@
 #point-graphics-container{
   position: absolute;
-  height: 100%;
-  width: 100%;
   z-index: 2;
 }
 
@@ -35,5 +33,22 @@
   position: absolute;
   width:256px;
   height:256px;
-/*  border:1px solid blue;*/
 }
+
+
+#basemap-images-frame-0{
+  display: none;
+
+}
+
+/*.animate{
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-delay: 0s;
+}
+
+
+@keyframes fade-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}*/

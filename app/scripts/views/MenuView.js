@@ -1,7 +1,6 @@
 var MenuView = function () {
 
-  var selectNewTagEvent = new Event();
-  var tagCountObjRequest = new Event();
+  //private variables ----------------------------------------------------------
 
   var menu = document.getElementById("menu");
   var currentSelectedRow = null;
@@ -24,6 +23,13 @@ var MenuView = function () {
     {tagName: "Energy Poverty", indentLevel:0}
   ];
 
+  //public attributes ----------------------------------------------------------
+
+  var selectNewTagEvent = new Event();
+  var tagCountObjRequest = new Service();
+
+  //private functions ----------------------------------------------------------
+
   var selectNewTag = function(newRow){
     currentSelectedRow.classList.toggle("selected");
     currentSelectedRow = newRow;
@@ -32,8 +38,15 @@ var MenuView = function () {
     selectNewTagEvent.fire(newTagName);
   }
 
+
+  //public methods -------------------------------------------------------------
+
+  var close = function(){
+    menu.classList.remove("open");
+  }
+
   var init = function(selectedTagName){
-    var tagCountObj = tagCountObjRequest.fire();
+    var tagCountObj = tagCountObjRequest.get();
     var htmlStr = "";
     for (var i = 0; i < menuElementList.length; i++){
       var tagName = menuElementList[i].tagName;
@@ -41,7 +54,7 @@ var MenuView = function () {
       var tagCount = tagCountObj[tagName];
       var selectedText = (tagName == selectedTagName)? "selected" : "";
       htmlStr += `
-        <div class='menu-row no-select ${selectedText} indent-level-${indentLevel}' data-tagname='${tagName}'>
+        <div class='menu-row no-highlight ${selectedText} indent-level-${indentLevel}' data-tagname='${tagName}'>
           <div class="icon-container"></div>
           <div class="tag-name">${tagName}</div>
           <div class="tag-count">${tagCount}</div>
@@ -49,8 +62,9 @@ var MenuView = function () {
     }
     menu.innerHTML = htmlStr;
     currentSelectedRow = menu.querySelector(`[data-tagname="${selectedTagName}"]`);
-    selectNewTagEvent.fire(selectedTagName);
   }
+
+  //event listeners ------------------------------------------------------------
 
   menu.addEventListener("click", function(evt){
     var clickedRow = evt.target.parentNode;
@@ -66,5 +80,6 @@ var MenuView = function () {
     selectNewTagEvent: selectNewTagEvent,
     tagCountObjRequest: tagCountObjRequest,
     init: init,
+    close: close,
   };
 };

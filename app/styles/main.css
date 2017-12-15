@@ -70,7 +70,7 @@ footer{
    clear: both;
 }
 
-.no-select{
+.no-highlight{
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
