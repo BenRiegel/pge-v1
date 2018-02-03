@@ -1,0 +1,120 @@
+#popup.expanded::after{
+  display:none;
+}
+
+#project-info{
+  display:block;
+  width: 420px;
+  max-height: 335px;
+  margin: 15px 15px 0px 15px;
+  overflow:scroll;
+  font-family:'Lora', serif;
+  font-size: 14px;
+  font-weight:normal;
+}
+
+#popup.expanded #project-info{
+  display:none;
+}
+
+#project-iframe{
+  display: none;
+  border: 0;
+  background-color: white;
+  z-index: 10;
+}
+
+#popup.expanded #project-iframe{
+  display: block;
+  width: 420px;
+  margin: 15px 15px 0px 15px;
+  opacity:0;
+}
+
+#project-title{
+  font-weight:bold;
+}
+
+#project-author{
+  margin: 5px 0 10px 0;
+}
+
+#project-image{
+  width:150px;
+  height:150px;
+  float:left;
+  padding-right:10px;
+}
+
+#project-text{
+  font-size:12px;
+  line-height:18px;
+}
+
+#popup-menu{
+  display: table;
+  height: 50px;
+  line-height: 50px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0 auto;
+  cursor: default;
+  text-align: center;
+  color:#888888;
+}
+
+.popup-menu-item{
+  display: table-cell;
+  width: 125px;
+}
+
+.popup-menu-item:hover{
+  cursor: pointer;
+  color:#333333;
+}
+
+#popup.expanded #zoom-button:hover{
+  cursor: not-allowed;
+  color:#888888;
+}
+
+#loader{
+  display: none;
+  position: absolute;
+  top:15px;
+  left:15px;
+  width: 845px;
+  height:415px;                 /*not sure about this one */
+  background-color:white;
+  z-index: 0;
+}
+
+#popup.loading #loader{
+  display: block;
+}
+
+#animation{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  margin: -33px 0 0 -33px;
+  border: 16px solid #d0d0d0;
+  border-radius: 50%;
+  border-top: 16px solid rgb(173,102,102);
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

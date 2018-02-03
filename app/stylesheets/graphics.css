@@ -1,0 +1,46 @@
+
+/* I don't know what this is */
+#cluster-info{
+  text-align:center;
+  height:25px;
+  line-height:25px;
+  display:none;
+  padding:3px 10px 3px 10px;
+  color:#888888;
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  border:0px solid red;
+}
+
+#cluster-info:hover{
+  cursor: pointer;
+  color:#333333;
+}
+
+
+
+
+.site-point{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left:50px;
+  top:50px;
+  transform: translate(-50%, -50%);
+  border:0;
+  border-radius: 50%;
+  background-color: rgba(134,38,51, 0.85);
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.25);
+  color:white;
+  font-size: 12px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.site-point:hover{
+  background-color: #483D8B;
+}
+
+.site-point.prevCluster{
+  background-color: #483D8B;
+}

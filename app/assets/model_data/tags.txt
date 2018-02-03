@@ -1,0 +1,17 @@
+[
+  {"name":"All Sites",         "type":"primary"},
+  {"name":"New 2017 Sites",    "type":"primary"},
+  {"name":"Fossil Fuels",      "type":"primary"},
+  {"name":"Coal",              "type":"secondary"},
+  {"name":"Natural Gas",       "type":"secondary"},
+  {"name":"Oil",               "type":"secondary"},
+  {"name":"Nuclear Energy",    "type":"primary"},
+  {"name":"Renewables",        "type":"primary"},
+  {"name":"Bioenergy",         "type":"secondary"},
+  {"name":"Hydroelectricity",  "type":"secondary"},
+  {"name":"Mining",            "type":"primary"},
+  {"name":"Refining",          "type":"primary"},
+  {"name":"Power Plants",      "type":"primary"},
+  {"name":"Consumption",       "type":"primary"},
+  {"name":"Energy Poverty",    "type":"primary"}
+]

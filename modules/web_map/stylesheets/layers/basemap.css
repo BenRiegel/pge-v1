@@ -1,0 +1,18 @@
+#basemap-layer{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#frame-0{
+}
+
+#frame-1{
+  display:none;
+}
+
+.map-image{
+  position:absolute;
+  border:0;
+  width:256.5px;  /*don't know why this must be 256.5 instead of 256*/
+}

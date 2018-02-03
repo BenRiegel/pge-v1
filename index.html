@@ -1,124 +1,106 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>A People's Guide to Energy</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
-  <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/css/esri.css">
-  <link rel="stylesheet" href="webmap/styles/icons.css">
-  <link rel="stylesheet" href="webmap/styles/map.css">
-  <link rel="stylesheet" href="app/styles/normalize.css">
-  <link rel="stylesheet" href="app/styles/main.css">
-  <link rel="stylesheet" href="app/styles/menu.css">
-  <link rel="stylesheet" href="app/styles/zoom.css">
-  <link rel="stylesheet" href="app/styles/popup.css">
-</head>
+    <title>A People's Guide to Energy</title>
 
-<body>
-  <main>
-    <header>
-      <h1>A People's Guide to Energy</h1>
-      <p>A guide to sites of energy injustice around the world</p>
-    </header>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/css/esri.css">
+    <link rel="stylesheet" href="modules/web_map/stylesheets/layers/basemap.css">
+    <link rel="stylesheet" href="modules/web_map/stylesheets/layers/graphics.css">
+    <link rel="stylesheet" href="modules/web_map/stylesheets/widgets/popup.css">
+    <link rel="stylesheet" href="modules/web_map/stylesheets/widgets/zoom_controls.css">
+    <link rel="stylesheet" href="modules/web_map/stylesheets/widgets/helpers/icons.css">
+    <link rel="stylesheet" href="modules/select_menu/stylesheets/select_menu.css">
+    <!--these need to be ordered ?-->
+    <link rel="stylesheet" href="app/stylesheets/normalize.css">
+    <link rel="stylesheet" href="framework/stylesheets/utils.css">
+    <link rel="stylesheet" href="app/stylesheets/app.css">
+    <link rel="stylesheet" href="app/stylesheets/graphics.css">
+    <link rel="stylesheet" href="app/stylesheets/popup.css">
+    <link rel="stylesheet" href="app/stylesheets/select_menu.css">
 
-    <div class="clearfix">
+  </head>
 
-  <!--    <div id="menu" class="no-highlight"></div>  -->
+  <body>
+    <main>
+      <header>
+        <h1>A People's Guide to Energy</h1>
+        <p>A guide to sites of energy injustice around the world</p>
+      </header>
 
+      <div class="clearfix">
 
-      <div id="map">
-
-        <div id= "zoom-controls">
-          <div class="zoom-button-container">
-            <div id="zoom-home-button" class="zoom-button">
-              <span class="esri-icon-home"></span>
-            </div>
-          </div>
-          <div class="zoom-button-container">
-            <div id="zoom-in-button" class="zoom-button">
-              <span class="esri-icon-plus"></span>
-            </div>
-            <div id="zoom-out-button" class="zoom-button">
-              <span class="esri-icon-minus"></span>
-            </div>
-          </div>
+        <div id="map">
+          <div id="select-menu" class="no-highlight"></div>
         </div>
 
-        <div id="basemap-images-container">
-          <div id="basemap-images-frame-0" class="basemap-images-frame"></div>
-        </div>
-
-        <div id="point-graphics-container">
-          <div id="point-graphics-frame-0" class="point-graphics-frame"></div>
-        </div>
-
-        <div id="popup">
-
-          <div id="popup-content">
-            <div id="project-info">
-              <div id="project-title"></div>
-              <div id="project-author"></div>
-              <img id="project-image">
-              <div id="project-text"></div>
-            </div>
-          </div>
-
-          <div class="popup-menu no-highlight">
-            <div id="zoom-button" class="popup-menu-item">
-              <span class="icon esri-icon-zoom-in-magnifying-glass"></span>
-              Zoom To
-            </div>
-            <div id="read-more-button" class="popup-menu-item">
-              <span class="icon esri-icon-review"></span>
-              Read More
-            </div>
-            <div id="close-button" class="popup-menu-item">
-              <span class="icon esri-icon-close"></span>
-              Close
-            </div>
-          </div>
-        </div>
+        <aside>
+          <h1>Creators</h1>
+          <p>
+            <a href="http://sfsu.academia.edu/AutumnThoyre">Autumn Thoyre
+              (organizer)</a> & students at San Francisco State & Colgate Universities
+          </p>
+          <h1>Inspiration</h1>
+          <p>
+            “What would happen if we refocused our attention on those people
+            and places systematically left off the map?” – Pulido,  Barraclough & Cheng, in
+            <a href="http://www.ucpress.edu/book.php?isbn=9780520270817">
+              A People’s Guide to Los Angeles (2012)</a>
+          </p>
+        </aside>
 
       </div>
 
-      <aside>
-        <h1>Creators</h1>
-        <p>
-          <a href="http://sfsu.academia.edu/AutumnThoyre">Autumn Thoyre
-          (organizer)</a> & students at San Francisco State & Colgate Universities
-        </p>
+      <footer></footer>
+    </main>
 
-        <h1>Inspiration</h1>
-        <p>
-          “What would happen if we refocused our attention on those people
-          and places systematically left off the map?” – Pulido,  Barraclough & Cheng, in
-          <a href="http://www.ucpress.edu/book.php?isbn=9780520270817">
-          A People’s Guide to Los Angeles (2012)</a>
-        </p>
-      </aside>
-    </div>
+    <script src="framework/scripts/EventDispatcher.js"></script>
+    <script src="framework/scripts/HttpRequest.js"></script>
+    <script src="framework/scripts/Animation.js"></script>
+    <script src="framework/scripts/App.js"></script>
 
-    <footer></footer>
-  </main>
+    <script src="modules/select_menu/scripts/SelectMenu.js"></script>
 
 
-  <script src="webmap/scripts/utils/MapUtils.js"></script>
-  <script src="webmap/scripts/utils/ImageTracker.js"></script>
-  <script src="webmap/scripts/utils/Animation.js"></script>
-  <script src="webmap/scripts/utils/EventDispatcher.js"></script>
-  <script src="webmap/scripts/utils/ServiceDispatcher.js"></script>
 
-  <script src="webmap/scripts/mvc/Model.js"></script>
-  <script src="webmap/scripts/mvc/View.js"></script>
-  <script src="webmap/scripts/mvc/Controller.js"></script>
-  
-  <script src="webmap/scripts/Webmap.js"></script>
+    <script src="modules/web_map/scripts/controllers/models/ModelController.js"></script>
+    <script src="modules/web_map/scripts/controllers/views/layers/BasemapController.js"></script>
+    <script src="modules/web_map/scripts/controllers/views/layers/GraphicsController.js"></script>
+    <script src="modules/web_map/scripts/controllers/views/widgets/PopupController.js"></script>
+    <script src="modules/web_map/scripts/controllers/views/ViewController.js"></script>
+    <script src="modules/web_map/scripts/controllers/views/widgets/ZoomControlsController.js"></script>
+    <script src="modules/web_map/scripts/models/helpers/MapModel.js"></script>
+    <script src="modules/web_map/scripts/models/helpers/WebMercator.js"></script>
+    <script src="modules/web_map/scripts/models/Model.js"></script>
+    <script src="modules/web_map/scripts/views/helpers/Esri.js"></script>
+    <script src="modules/web_map/scripts/views/helpers/ImageTracker.js"></script>
+    <script src="modules/web_map/scripts/views/helpers/PanAnimator.js"></script>
+    <script src="modules/web_map/scripts/views/helpers/Utils.js"></script>
+    <script src="modules/web_map/scripts/views/helpers/ZoomAnimator.js"></script>
+    <script src="modules/web_map/scripts/views/layers/BasemapView.js"></script>
+    <script src="modules/web_map/scripts/views/layers/GraphicsView.js"></script>
+    <script src="modules/web_map/scripts/views/widgets/PopupView.js"></script>
+    <script src="modules/web_map/scripts/views/widgets/ZoomControlsView.js"></script>
+    <script src="modules/web_map/scripts/views/View.js"></script>
+    <script src="modules/web_map/WebMap.js"></script>
 
+    <script src="app/scripts/controllers/AppController.js"></script>
+    <script src="app/scripts/controllers/GraphicsController.js"></script>
+    <script src="app/scripts/controllers/PopupController.js"></script>
+    <script src="app/scripts/controllers/SelectMenuController.js"></script>
+    <script src="app/scripts/models/ProjectsModel.js"></script>
+    <script src="app/scripts/models/TagsModel.js"></script>
+    <script src="app/scripts/views/helpers/ModifyGraphicsView.js"></script>
+    <script src="app/scripts/views/helpers/ModifyPopupView.js"></script>
+    <script src="app/scripts/views/helpers/ModifySelectMenuView.js"></script>
+    <script src="app/scripts/views/WebMapView.js"></script>
+    <script src="app/scripts/views/SelectMenuView.js"></script>
+    <script src="app/app.js"></script>
 
-  <script src="app/scripts/App.js"></script>
-</body>
+  </body>
 </html>
