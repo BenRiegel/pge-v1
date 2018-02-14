@@ -1,4 +1,7 @@
-var NewSelectMenuController = function(){
+"use strict";
+
+
+var StartSelectMenuController = function(eventDispatcher, selectMenu, tagsView){
 
 
   //private, configurable constants --------------------------------------------
@@ -6,53 +9,19 @@ var NewSelectMenuController = function(){
   const initialSelectedOptionName = "All Sites";
 
 
-  //private functions ----------------------------------------------------------
+  //run code -------------------------------------------------------------------
 
-  var createTagCountHash = function(tagsList, projectsList){
-    var tagCountHash = {}
-    tagsList.forEach(function(tag){
-      tagCountHash[tag.name] = {type:tag.type, count:0}
-    });
-    projectsList.forEach( function(project){
-      project.tags.forEach ( function(tagName){
-        tagCountHash[tagName].count++;
-      });
-    });
-    return tagCountHash;
-  };
+  eventDispatcher.listen("menuOptionsHTMLReady", function(){
+    selectMenu.loadContent(tagsView.optionsHTMLStr);
+  });
 
-  var createOptionsHTML = function(tagCountHash){
-    var htmlStr = "";
-    var tagNameList = Object.keys(tagCountHash);
-    tagNameList.forEach(function(tagName){
-      var optionName = tagName;
-      var optionIndent = (tagCountHash[tagName].type == "secondary") ? "indent" : "";
-      var tagCount = tagCountHash[tagName].count;
-      htmlStr += `
-        <div class="menu-row no-highlight" data-name="${optionName}">
-          <div class="icon-container"></div>
-          <div class="tag-name ${optionIndent}">${optionName}</div>
-          <div class="tag-count">${tagCount}</div>
-        </div>`;
-    });
-    return htmlStr;
-  };
+  eventDispatcher.listen("pointGraphicsLoaded", function(){
+    selectMenu.selectOption(initialSelectedOptionName);
+    eventDispatcher.broadcast("initialMenuSelectionMade");
+  });
 
-
-  //public attributes and methods ----------------------------------------------
-
-  return {
-
-    run: function(){
-
-      this.eventDispatcher.listen("modelsReady && menuContainerReady", () => {
-        var tagCountHash = createTagCountHash(this.models.tags.list, this.models.projects.list);
-        var htmlStr = createOptionsHTML(tagCountHash);
-        this.views.selectMenu.selectMenu.loadContent(htmlStr);
-        this.views.selectMenu.selectMenu.selectOption(initialSelectedOptionName);
-      });
-    },
-
-  };
+  selectMenu.addEventListener("newMenuOptionSelected", function(newOptionName){
+    eventDispatcher.broadcast("newMenuOptionSelected", newOptionName);
+  });
 
 };

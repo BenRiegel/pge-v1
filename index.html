@@ -7,22 +7,22 @@
 
     <title>A People's Guide to Energy</title>
 
+    <!--these need to be ordered ?-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
     <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/css/esri.css">
-    <link rel="stylesheet" href="modules/web_map/stylesheets/layers/basemap.css">
-    <link rel="stylesheet" href="modules/web_map/stylesheets/layers/graphics.css">
-    <link rel="stylesheet" href="modules/web_map/stylesheets/widgets/popup.css">
-    <link rel="stylesheet" href="modules/web_map/stylesheets/widgets/zoom_controls.css">
-    <link rel="stylesheet" href="modules/web_map/stylesheets/widgets/helpers/icons.css">
-    <link rel="stylesheet" href="modules/select_menu/stylesheets/select_menu.css">
-    <!--these need to be ordered ?-->
+    <link rel="stylesheet" href="lib/stylesheets/utils.css">
+    <link rel="stylesheet" href="web_map/stylesheets/basemap.css">
+    <link rel="stylesheet" href="web_map/stylesheets/graphics.css">
+    <link rel="stylesheet" href="web_map/stylesheets/popup.css">
+    <link rel="stylesheet" href="web_map/stylesheets/zoom_controls.css">
+    <link rel="stylesheet" href="web_map/stylesheets/icons.css">
+    <link rel="stylesheet" href="select_menu/stylesheets/select_menu.css">
+    <link rel="stylesheet" href="app/stylesheets/select_menu_custom.css">
+    <link rel="stylesheet" href="app/stylesheets/graphics_custom.css">
+    <link rel="stylesheet" href="app/stylesheets/popup_custom.css">
     <link rel="stylesheet" href="app/stylesheets/normalize.css">
-    <link rel="stylesheet" href="framework/stylesheets/utils.css">
-    <link rel="stylesheet" href="app/stylesheets/app.css">
-    <link rel="stylesheet" href="app/stylesheets/graphics.css">
-    <link rel="stylesheet" href="app/stylesheets/popup.css">
-    <link rel="stylesheet" href="app/stylesheets/select_menu.css">
+    <link rel="stylesheet" href="app/stylesheets/index.css">
 
   </head>
 
@@ -56,51 +56,65 @@
 
       </div>
 
-      <footer></footer>
+      <footer>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=pgeproject.netlify.com" target="_blank">
+          Share on Facebook
+        </a>
+      </footer>
     </main>
 
-    <script src="framework/scripts/EventDispatcher.js"></script>
-    <script src="framework/scripts/HttpRequest.js"></script>
-    <script src="framework/scripts/Animation.js"></script>
-    <script src="framework/scripts/App.js"></script>
+    <script src="lib/scripts/EventDispatcher.js"></script>
+    <script src="lib/scripts/HttpRequest.js"></script>
+    <script src="lib/scripts/Animation.js"></script>
+  <!--  <script src="select_menu/scripts/SelectMenu.js"></script> -->
 
-    <script src="modules/select_menu/scripts/SelectMenu.js"></script>
+    <script src="web_map/scripts/controllers/AppController.js"></script>
+    <script src="web_map/scripts/controllers/ViewpointServiceController.js"></script>
+    <script src="web_map/scripts/controllers/PanAnimatorController.js"></script>
+    <script src="web_map/scripts/controllers/ZoomAnimatorController.js"></script>
+    <script src="web_map/scripts/controllers/LayerTogglerController.js"></script>
 
 
+    <script src="web_map/scripts/controllers/StatesController.js"></script>
+    <script src="web_map/scripts/controllers/BasemapController.js"></script>
+    <script src="web_map/scripts/controllers/LayersController.js"></script>
+    <script src="web_map/scripts/controllers/GraphicsController.js"></script>
+    <script src="web_map/scripts/controllers/PanEventsReceiverController.js"></script>
+    <script src="web_map/scripts/controllers/ZoomEventsReceiverController.js"></script>
+    <script src="web_map/scripts/controllers/PopupController.js"></script>
+    <script src="web_map/scripts/controllers/ZoomControlsController.js"></script>
+    <script src="web_map/scripts/helpers/MapModel.js"></script>
+    <script src="web_map/scripts/helpers/WebMercator.js"></script>
+    <script src="web_map/scripts/helpers/Utils.js"></script>
+    <script src="web_map/scripts/helpers/Esri.js"></script>
+    <script src="web_map/scripts/public/Graphic.js"></script>
+    <script src="web_map/scripts/public/GraphicsLayer.js"></script>
+    <script src="web_map/scripts/public/WebMap.js"></script>
+    <script src="web_map/scripts/services/Viewpoint.js"></script>
+    <script src="web_map/scripts/services/ImageTracker.js"></script>
+    <script src="web_map/scripts/services/PanAnimator.js"></script>
+    <script src="web_map/scripts/services/ZoomAnimator.js"></script>
+    <script src="web_map/scripts/services/LayerToggler.js"></script>
+    <script src="web_map/scripts/services/States.js"></script>
+    <script src="web_map/scripts/ui/events/PanEventsReceiver.js"></script>
+    <script src="web_map/scripts/ui/events/ZoomEventsReceiver.js"></script>
+    <script src="web_map/scripts/ui/display/BasemapDisplay.js"></script>
+    <script src="web_map/scripts/ui/display/GraphicsDisplay.js"></script>
+    <script src="web_map/scripts/ui/display/PopupDisplay.js"></script>
+    <script src="web_map/scripts/ui/display/ZoomControlsDisplay.js"></script>
 
-    <script src="modules/web_map/scripts/controllers/models/ModelController.js"></script>
-    <script src="modules/web_map/scripts/controllers/views/layers/BasemapController.js"></script>
-    <script src="modules/web_map/scripts/controllers/views/layers/GraphicsController.js"></script>
-    <script src="modules/web_map/scripts/controllers/views/widgets/PopupController.js"></script>
-    <script src="modules/web_map/scripts/controllers/views/ViewController.js"></script>
-    <script src="modules/web_map/scripts/controllers/views/widgets/ZoomControlsController.js"></script>
-    <script src="modules/web_map/scripts/models/helpers/MapModel.js"></script>
-    <script src="modules/web_map/scripts/models/helpers/WebMercator.js"></script>
-    <script src="modules/web_map/scripts/models/Model.js"></script>
-    <script src="modules/web_map/scripts/views/helpers/Esri.js"></script>
-    <script src="modules/web_map/scripts/views/helpers/ImageTracker.js"></script>
-    <script src="modules/web_map/scripts/views/helpers/PanAnimator.js"></script>
-    <script src="modules/web_map/scripts/views/helpers/Utils.js"></script>
-    <script src="modules/web_map/scripts/views/helpers/ZoomAnimator.js"></script>
-    <script src="modules/web_map/scripts/views/layers/BasemapView.js"></script>
-    <script src="modules/web_map/scripts/views/layers/GraphicsView.js"></script>
-    <script src="modules/web_map/scripts/views/widgets/PopupView.js"></script>
-    <script src="modules/web_map/scripts/views/widgets/ZoomControlsView.js"></script>
-    <script src="modules/web_map/scripts/views/View.js"></script>
-    <script src="modules/web_map/WebMap.js"></script>
-
-    <script src="app/scripts/controllers/AppController.js"></script>
-    <script src="app/scripts/controllers/GraphicsController.js"></script>
-    <script src="app/scripts/controllers/PopupController.js"></script>
+    <script src="app/scripts/modules/select_menu/SelectMenuCustom.js"></script>
+    <script src="app/scripts/controllers/TagsViewController.js"></script>
+    <script src="app/scripts/controllers/ProjectsModelController.js"></script>
+    <script src="app/scripts/controllers/LocationsViewController.js"></script>
     <script src="app/scripts/controllers/SelectMenuController.js"></script>
+    <script src="app/scripts/controllers/WebMapController.js"></script>
+    <script src="app/scripts/controllers/SummaryViewController.js"></script>
     <script src="app/scripts/models/ProjectsModel.js"></script>
-    <script src="app/scripts/models/TagsModel.js"></script>
-    <script src="app/scripts/views/helpers/ModifyGraphicsView.js"></script>
-    <script src="app/scripts/views/helpers/ModifyPopupView.js"></script>
-    <script src="app/scripts/views/helpers/ModifySelectMenuView.js"></script>
-    <script src="app/scripts/views/WebMapView.js"></script>
-    <script src="app/scripts/views/SelectMenuView.js"></script>
-    <script src="app/app.js"></script>
+    <script src="app/scripts/views/LocationsView.js"></script>
+    <script src="app/scripts/views/SummaryView.js"></script>
+    <script src="app/scripts/views/TagsView.js"></script>
+    <script src="app/scripts/App.js"></script>
 
   </body>
 </html>

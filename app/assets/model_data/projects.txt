@@ -9,7 +9,7 @@
     "geoCoords": {"lat": -29.974418, "lon": 30.964259},
     "tags": ["All Sites", "Oil", "Refining", "Fossil Fuels"],
     "introText": "South Durban, 25 miles south of the largest port in Africa, is home to the SAPREF and Engen oil refineries.  Negligence in refinery practices along with the nation’s oppressive apartheid past make South Durban a site of severe energy injustice brought about by practices of uneven development.",
-    "introImageUrl": "",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2016/04/086f73e1-844c-4ab4-9ab9-0b8514429251-2060x1236.jpg?w=768&h=461",
     "url": "https://pgeproject.wordpress.com/2016/04/25/south-durban-oil-refineries/"
   },
 
@@ -22,7 +22,7 @@
     "geoCoords": {"lat": 21.8305, "lon": 73.7485},
     "tags": ["All Sites", "Hydroelectricity", "Renewables", "Power Plants"],
     "introText": "The construction of the Sardar Sarovar Dam was approved on the Narmada in 1987, with 10 dams being constructed on the main river along with 20 more on its tributaries. The Sardar Sarovar Dam is a critical resource that provides water for irrigation as well as hydropower for the industrial sector in Western India. Since the 1980s, various political arguments have arisen regarding which sections of society have to pay the costs and enjoy the benefits of the dam construction. The construction of the dam was put off for several years due to this dilemma, and was finally approved in 1987.",
-    "introImageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Sardar_Sarovar_Dam_2006%2C_India.jpg",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2016/04/untitled-2.png?w=626&h=470",
     "url": "https://pgeproject.wordpress.com/2016/04/28/a-geographical-analysis-of-the-construction-of-the-sardar-sarovar-dam/"
   },
 
@@ -35,7 +35,7 @@
     "geoCoords": {"lat": 36.9035, "lon": -111.3908},
     "tags": ["All Sites", "Coal", "Fossil Fuels", "Power Plants"],
     "introText": "Located within the Navajo American reservations, the Navajo Generating Station (NGS) is the largest power plant in the western USA. As a key facility of Central Arizona Project (CAP), it generates power from coal to move the water from the Colorado River to other parts of the region. Though the station benefits the local economy and provides water and electricity to surrounding areas, the local residents not only lack the access to electricity but also have to bear the environmental degradation due to the air pollution from the NGS.",
-    "introImageUrl": "",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2016/04/ngs.jpg?w=768&h=576",
     "url": "https://pgeproject.wordpress.com/2016/04/29/the-dilemma-in-the-navajo-nation/"
   },
 
@@ -48,7 +48,7 @@
     "geoCoords": {"lat": 28.736628, "lon": -88.365997},
     "tags": ["All Sites", "Mining", "Oil", "Fossil Fuels"],
     "introText": "The Gulf of Mexico Oil Spill of 2010, also commonly called the BP Oil Spill, is the largest accidental oil spill in history, with over 4.9 million barrels of oil leaked into the Gulf of Mexico over a span of 87 days. The disaster took place on April 20th, about 41 miles off the coast of Louisiana, and resulted in 17 injuries, 11 deaths, and numerous environmental, economic, and social impacts on the region. This paper analyzes these impacts on the region, particularly those placed upon marginalized groups such as Southeast Asian and African American fishermen, and concludes that simple environmentally just practices such as communicating in proper languages were not performed to assist these groups in the aftermath of the spill.",
-    "introImageUrl": "",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2016/04/bp-oil-spill.png?w=300&h=210",
     "url": "https://pgeproject.wordpress.com/2016/04/29/the-bp-oil-spills-impact-on-already-marginalized-groups/"
   },
 
@@ -87,7 +87,7 @@
     "geoCoords": {"lat": -22.710492, "lon": -47.697930},
     "tags": ["All Sites", "Bioenergy", "Renewables"],
     "introText": "Piracicaba is a city, county and river in the state of Sao Paolo in Southeastern Brazil. Sugarcane plantations occupy 80% of the land area of the county and it has some of the largest and most productive sugarcane mills producing ethanol and sugar (Fig. 1). Piracicaba has the geography of a city center surrounded by agricultural lands and the two distinct spaces closely interact with each other economically, socially and ecologically.",
-    "introImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Piracicaba_10_2008_185_Costa_Pinta_Distillary.jpg/505px-Piracicaba_10_2008_185_Costa_Pinta_Distillary.jpg",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2016/04/piracicaba-refinery.png",
     "url": "https://pgeproject.wordpress.com/2017/06/21/sugarcane-ethanol-in-piracicaba-brazil/"
   },
 
@@ -100,7 +100,7 @@
     "geoCoords": {"lat": 34.0563, "lon": -118.3894},
     "tags": ["All Sites", "Mining", "Natural Gas", "Oil", "Fossil Fuels"],
     "introText": "Slated for oil and natural gas excavation, the Beverly Hills West Facility (BHWF) is a drilling site adjacent to Beverly Hills High School (BHHS) and located over the Beverly Hills Oil Field. Owned and operated by Venoco Inc. since 1995, the BHWF occupies just over half an acre of land within Beverly Hills. Geographically located here, the BHWF’s sole derrick stands 150 feet tall and serves as a landmark to many in the surrounding communities.",
-    "introImageUrl": "",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2014/11/1980608.jpg?w=189&h=300",
     "url": "https://pgeproject.wordpress.com/2017/06/21/beverly-hills-west-facility-oil-and-gas-drilling-ca/"
   },
 
@@ -230,7 +230,7 @@
     "geoCoords": {"lat": 20.8129, "lon": 105.3257},
     "tags": ["All Sites", "Hydroelectricity", "Renewables", "Power Plants"],
     "introText": "The Hoa Binh hydroelectric dam is the most significant resource project in Vietnam. Though it has transformed northern Vietnam’s electrical energy sector, the Hoa Binh hydroelectric project has also created the greatest combined social and environmental displacements in the country since the end of the Vietnam War. This dam and its impact on indigenous people exemplify a wider complication in Vietnam, in which developmental and environmental objectives contradict one another, as well as national and local interests.",
-    "introImageUrl": "",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2016/04/hoa-binh-dam.jpg?w=768&h=576",
     "url": "https://pgeproject.wordpress.com/2017/06/21/hoa-binh-dam-vietnam/"
   },
 
@@ -243,7 +243,7 @@
     "geoCoords": {"lat": 37.37, "lon": -81.65},
     "tags": ["All Sites", "Coal", "Fossil Fuels", "Mining"],
     "introText": "West Virginia is the country’s second largest producer of coal. The relationship between energy and energy production is one that individuals seldom think about. The process and production is rarely understood by those who don’t go out looking for the information. So often the situation becomes one in which, unless the energy production is “in my backyard,” we tend to not worry about the externalities associated with the production of energy. This is especially true for the production of electricity via coal.",
-    "introImageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/MTR1.jpg",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2014/12/pge-image-1.jpg?w=300&h=225",
     "url": "https://pgeproject.wordpress.com/2017/06/21/coal-mountaintop-removal-mining-in-mcdowell-county-wv/"
   },
 
@@ -282,7 +282,7 @@
     "geoCoords": {"lat": 29.862259, "lon": -93.965231},
     "tags": ["All Sites", "Oil", "Fossil Fuels", "Refining"],
     "introText": "Taking the words of Michael Ross, “petroleum wealth shapes the development of nations.” This reliance on oil refineries and large energy companies to provide not just energy but also in developing the nation’s economy bestows them with a level of influence that is able to effect the dynamic of state politics. This reliance manifests itself into a drive for profit at all costs within these corporations. Thus this treadmill of production, the capitalist economic model that creates ecological and social due to the inherent drive to make a profit, becomes apparent. Such a relationship can be observed in the interactions between local organizations and populations and these corporations within petropolises. These petropolises become the unity between satellite towns and the regional economy that are composed of oil refineries and petrochemical plants such as Port Arthur, Texas.",
-    "introImageUrl": "",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2016/04/valero-refinery.jpg?w=768&h=512",
     "url": "https://pgeproject.wordpress.com/2017/06/21/oil-refining-in-port-arthur-tx/"
   },
 
@@ -295,7 +295,7 @@
     "geoCoords": {"lat": 42.683307, "lon": -96.683214},
     "tags": ["All Sites", "Oil", "Fossil Fuels", "Refining"],
     "introText": "In November of 2006, a local newspaper in South Dakota made the first report that “an unidentified company [is] interested in locating ‘a large manufacturing facility in Southern Union County.’” Over the next few months, the community learned that said company was Texas-based Hyperion Energy, which was looking to build the first new oil refinery in the US since 1976, and the sixth largest in the nation, meant to refine bitumen from tar sands in Alberta, Canada.",
-    "introImageUrl": "",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2014/10/screen-shot-2016-03-28-at-3-30-49-pm.png?w=300&h=227",
     "url": "https://pgeproject.wordpress.com/2017/06/21/proposed-hyperion-oil-refinery-elk-point-sd/"
   },
 
@@ -321,7 +321,7 @@
     "geoCoords": {"lat": 62.822778, "lon": -148.548611},
     "tags": ["All Sites", "Hydroelectricity", "Renewables", "Power Plants"],
     "introText": "U.S. government officials have proposed to build a mega dam on the upper part of the Susitna River. If built electricity generated from this dam will supply electricity to all of the Alaskan Railbelt.",
-    "introImageUrl": "https://www.flickr.com/photos/alphageek/806224397/",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2016/04/untitled-1.png?w=768",
     "url": "https://pgeproject.wordpress.com/2017/06/21/proposed-susitna-dam-ak/"
   },
 
@@ -334,7 +334,7 @@
     "geoCoords": {"lat": -12.513056, "lon": 27.854167},
     "tags": ["All Sites", "Consumption", "Mining"],
     "introText": "Zambia is Africa’s largest producer of copper and is the 8th largest copper producer worldwide. The Nchanga Copper Mine, is located in the copperbelt region of Zambia near the town of Chingola. The rural residents of Chingola have experienced a disproportionate level of costs from the Nchanga Copper mine with little access to the wealth created by the mine. Marginalized as citizens of Zambia, as well as by being poor and rural, those living near the Nchanga Copper Mine are victims of environmental injustice.",
-    "introImageUrl": "",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2017/06/25.png",
     "url": "https://pgeproject.wordpress.com/2017/06/21/nchanga-copper-mine-zambia/"
   },
 
@@ -361,7 +361,7 @@
     "geoCoords": {"lat": 36.85166326, "lon": -116.422664976},
     "tags": ["All Sites", "Nuclear Energy"],
     "introText": "Yucca Mountain is the proposed site for the Department of Energy’s repository for spent nuclear fuel and high-level radioactive waste (EPW majority staff 2006). The facility is located on federally owned land on the western edge of the famous Nevada Test Site, approximately 90 miles northwest of Las Vegas (EPW majority staff 2006). The public at large remains concerned with a variety of potential technical issues, such as ground water movement, radiation leaks, and exposure to hazardous materials during transportation (EPW majority staff 2006).",
-    "introImageUrl": "http://images.iop.org/objects/phw/news/18/11/14/PW-2014-11-17-Gwynne-yucca.jpg",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2014/10/screen-shot-2016-03-28-at-3-58-30-pm.png?w=300&h=205",
     "url": "https://pgeproject.wordpress.com/2017/06/21/proposed-nuclear-waste-storage-in-yucca-mountain-nevada-u-s/"
   },
 
@@ -374,7 +374,7 @@
     "geoCoords": {"lat": 22.110487, "lon": 84.926909},
     "tags": ["All Sites", "Coal", "Fossil Fuels", "Mining"],
     "introText": "In Kusum Tola, India the local indigenous population known as the Adivasi may be forced to migrate from the region as a result of the expansion of open pit coal mining in the region.  Other villages have already been forced to leave due to the growing mine fields of the Central Coalfields Limited (CCL) energy corporation.  Greater energy demands in India have led the CCL to exploit the Adivasi, violating their human rights.  This page explains how the Adivasi’s forced evacuation from Kusum Tola and related environmental injustices are a result of India’s increased reliance on coal due to globalization and industrialization.",
-    "introImageUrl": "",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2016/04/screen-shot-2016-04-28-at-4-33-35-pm.png?w=300&h=225",
     "url": "https://pgeproject.wordpress.com/2017/06/21/coal-mining-in-kusum-tola-india/"
   },
 
@@ -387,7 +387,7 @@
     "geoCoords": {"lat": 32.793455, "lon": 35.052369},
     "tags": ["All Sites", "Oil", "Fossil Fuels", "Refining"],
     "introText": "Home to more than 272,000 people, Haifa is the third most populated city in Israel, and stretches across almost 9% of Israel’s shoreline. Haifa is considered a key industrial center in Israel, and is home to an energy group called the ORL (Oil Refineries Ltd.) which operates Israel’s largest oil refining complex.",
-    "introImageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/בתי_זיקוק_חיפה_02.jpg",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2014/10/11.jpg?w=768",
     "url": "https://pgeproject.wordpress.com/2017/06/21/haifa-bay-oil-refineries-israel/"
   },
 
@@ -413,7 +413,7 @@
     "geoCoords": {"lat":41.7406, "lon":-75.9231},
     "tags": ["All Sites", "Mining", "Natural Gas", "Fossil Fuels"],
     "introText": "Recently, natural gas has been hailed as the new, “clean” fossil fuel and hydraulic fracturing (fracking) as the 21st century technology making it possible. This project considers Dimock, Pennsylvania, where 130 violations were filed against Cabot Oil and Gas, which leased land from locals to extract shale gas.",
-    "introImageUrl": "http://www.frackcheckwv.net/wp-content/uploads/2013/02/Marcellus-shale-EIA.jpg",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2014/12/463px-marcellus_shale_gas_play.png?w=232&h=300",
     "url": "https://pgeproject.wordpress.com/2017/06/21/fracking-in-dimock-pa/"
   },
 
@@ -764,7 +764,7 @@
     "geoCoords": {"lat": 25.435330, "lon": -80.331259},
     "tags": ["All Sites", "New 2017 Sites", "Nuclear Energy"],
     "introText": "Turkey Point, a nuclear generating station located in Homestead, Florida. It was developed in 1973 and is positioned between the Biscayne National Park and the Everglades National Park, and under a half mile directly across is a wildlife refuge for crocodiles and State Botanical sites. TPNGS is one of the only nuclear generating stations left that uses cooling canals as their heat rejection source and these canals are the reason for their pollution, as they are prone to leakage. This bay is home to lots of aquatic life, all of which are being threatened not only ecologically but also commercially. Within a 10-mile radius there is a population of about 200,000 people with the majority of the population being Hispanic and of low income. These people have been enduring the harmful effects that have come from TPNGS for more than 4 decades now and have yet to see any change. The only progress the people of Homestead have seen was when TPNGS tried to expand their station a few years back, but luckily these plans of expansion were stopped through criticism of the city and other issues. Since the development of this site, the Biscayne Bay has been accumulating lots of harmful chemicals, which are now reaching the Biscayne Aquifer and threatening to contaminate Florida’s main source of drinking water. In this analysis I will further explain the energy injustice that has arose in Turkey Point nuclear generating station, where it is clear that the community of Homestead, Florida are facing an act of Environmental Racism.",
-    "introImageUrl": "https://thecaliforniadrought2015.files.wordpress.com/2017/10/turkey_point_fl1.jpg?w=840",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/58.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/20/turkey-point-nuclear-generating-station/"
   },
 

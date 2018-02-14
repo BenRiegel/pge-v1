@@ -1,4 +1,7 @@
-var NewProjectsModel = function() {
+"use strict";
+
+
+var NewProjectsModel = function(eventDispatcher) {
 
 
   //public attributes and methods ----------------------------------------------
@@ -9,7 +12,7 @@ var NewProjectsModel = function() {
 
     load: function(dataArray){
       this.list = dataArray;
-      this.eventDispatcher.broadcast("projectsModelLoaded");
+      eventDispatcher.broadcast("projectsModelLoaded");
     },
   };
 

@@ -1,0 +1,22 @@
+#popup-container{
+  position: absolute;
+  z-index:50;            /*need to modify this*/
+  border-radius:10px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.25);
+  background-color:white;
+  opacity: 0;
+  display: none;    /*or display: none?*/
+}
+
+#popup-container.visible {
+  display:block;
+}
+
+#popup-container::after{
+  content:"";
+  border:10px solid transparent;
+  border-top:15px solid white;
+  position:absolute;
+  left:50%;
+  transform: translate(-50%, 0);
+}
