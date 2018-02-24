@@ -50,7 +50,7 @@ var NewTagsView = function(eventDispatcher){
       var optionIndent = (tagCountHash[tagName].type == "secondary") ? "indent" : "";
       var tagCount = tagCountHash[tagName].count;
       htmlStr += `
-        <div class="menu-row no-highlight" data-name="${optionName}">
+        <div class="option no-highlight" data-name="${optionName}">
           <div class="icon-container"></div>
           <div class="tag-name ${optionIndent}">${optionName}</div>
           <div class="tag-count">${tagCount}</div>

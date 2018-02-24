@@ -3,11 +3,8 @@
 
 var StartLocationsViewController = function(eventDispatcher, webMap, projectsModel, locationsView){
 
-
-  //run code -------------------------------------------------------------------
-
   eventDispatcher.listen("graphicsReady", function(){
-    var graphicsLayer = webMap.graphicsView.createGraphicsLayer("sites-graphics-layer");
+    var graphicsLayer = webMap.graphicsDisplay.createGraphicsLayer("sites-graphics-layer");
     locationsView.initSitesGraphicsLayer(graphicsLayer);
   });
 
@@ -15,8 +12,9 @@ var StartLocationsViewController = function(eventDispatcher, webMap, projectsMod
     locationsView.loadProjectsGraphics(projectsModel.list);
   });
 
-  eventDispatcher.listen("initialMenuSelectionMade && newMenuOptionSelected", function(){
+  eventDispatcher.listen("initialMenuOptionSelected", function(newOptionName){
     locationsView.sitesGraphicsLayer.show();
+    locationsView.sitesGraphicsLayer.filter(newOptionName);
   }, true);
 
   eventDispatcher.listen("newMenuOptionSelected", function(newOptionName){

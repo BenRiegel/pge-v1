@@ -6,8 +6,11 @@ var Esri = (function(){
 
   //public attributes and methods ----------------------------------------------
 
+  // note: there is no single max zoom level; for some areas, there is imagery
+  // up to level 19; in other places, it's only 10
+
   return {
-    maxZoomLevel: 15,
+    maxScaleLevel: 15,
     basemapTileSizePx: 256,
     basemapURLString: "https://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/tile/",
   };

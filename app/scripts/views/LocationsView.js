@@ -13,7 +13,14 @@ var NewLocationsView = function(eventDispatcher){
   //private functions ----------------------------------------------------------
 
   var eventHandler = function(evt){
-    eventDispatcher.broadcast("sitesGraphicsLayerClicked", evt.target.dataset.id);  //this needs to be changed
+    var graphicId = evt.target.dataset.id;
+    var graphic = this.sitesGraphicsLayer.graphics[graphicId];
+    if (graphic.type == "point"){
+      this.currentSelectedSiteId = graphicId;
+      eventDispatcher.broadcast("siteClicked", graphic);
+    } else {
+      eventDispatcher.broadcast("clusterClicked", graphic);
+    }
   }
 
   var filter = function(newOptionName){
@@ -28,7 +35,7 @@ var NewLocationsView = function(eventDispatcher){
     return Math.sqrt( (c2.x - c1.x) * (c2.x - c1.x) + (c2.y - c1.y) * (c2.y - c1.y) );
   }
 
-  var sitesPosition = function(mapProperties, leftMapCoord, topMapCoord){
+  var sitesPosition = function(pixelProperties, leftMapCoord, topMapCoord){
 
     this.graphics.forEach(function(graphic){
       graphic.numPoints = 1;
@@ -37,10 +44,11 @@ var NewLocationsView = function(eventDispatcher){
       graphic.coordSet = [graphic.mapCoords];
       graphic.hidden = graphic.filtered;
       graphic.clustered = false;
-      graphic.mapCoords.x = graphic.worldCoords.x / mapProperties.pixelSize;
-      graphic.mapCoords.y = graphic.worldCoords.y / mapProperties.pixelSize;
+      graphic.newWorldCoords = null;
+      graphic.mapCoords.x = graphic.worldCoords.x / pixelProperties.size;
+      graphic.mapCoords.y = graphic.worldCoords.y / pixelProperties.size;
       var screenCoordX = graphic.mapCoords.x - leftMapCoord;
-      screenCoordX = (screenCoordX < 0) ? screenCoordX + mapProperties.numPixels : screenCoordX;
+      screenCoordX = (screenCoordX < 0) ? screenCoordX + pixelProperties.num : screenCoordX;
       var screenCoordY = graphic.mapCoords.y - topMapCoord;
       graphic.screenCoords.x = screenCoordX;
       graphic.screenCoords.y = screenCoordY;
@@ -76,6 +84,11 @@ var NewLocationsView = function(eventDispatcher){
               y: (compareGraphic.mapCoords.y * compareGraphic.numPoints + graphic.mapCoords.y * graphic.numPoints)/newNumPoints
             }
 
+            var newWorldCoords = {
+              x: (compareGraphic.worldCoords.x * compareGraphic.numPoints + graphic.worldCoords.x * graphic.numPoints)/newNumPoints,
+              y: (compareGraphic.worldCoords.y * compareGraphic.numPoints + graphic.worldCoords.y * graphic.numPoints)/newNumPoints
+            }
+
             var maxDist = 0;
             combinedCoordSet.forEach(function(coords){
               var dist = getDistance(clusterCoords, coords);
@@ -89,6 +102,7 @@ var NewLocationsView = function(eventDispatcher){
 
             graphic.type = "cluster";
             graphic.mapCoords = clusterCoords;
+            graphic.newWorldCoords = newWorldCoords;
             graphic.numPoints = newNumPoints;
             graphic.coordSet = combinedCoordSet;
             graphic.radius = newRadius;
@@ -115,7 +129,7 @@ var NewLocationsView = function(eventDispatcher){
 
       if (graphic.type == "cluster"){
         var screenCoordX = graphic.mapCoords.x - leftMapCoord;
-        screenCoordX = (screenCoordX < 0) ? screenCoordX + mapProperties.numPixels : screenCoordX;
+        screenCoordX = (screenCoordX < 0) ? screenCoordX + pixelProperties.num : screenCoordX;
         var screenCoordY = graphic.mapCoords.y - topMapCoord;
         graphic.screenCoords.x = screenCoordX;
         graphic.screenCoords.y = screenCoordY;
@@ -136,10 +150,16 @@ var NewLocationsView = function(eventDispatcher){
 
     sitesGraphicsLayer: null,
 
+    currentSelectedSiteId: null,
+
+    getSitesGraphic: function(graphicId){
+      return this.sitesGraphicsLayer.graphics[graphicId];
+    },
+
     initSitesGraphicsLayer: function(graphicsLayer){
       this.sitesGraphicsLayer = graphicsLayer;
       this.sitesGraphicsLayer.hide();
-      this.sitesGraphicsLayer.addEventListener("click", eventHandler);
+      this.sitesGraphicsLayer.addEventListener("click", eventHandler.bind(this));
       this.sitesGraphicsLayer.filter = filter.bind(this.sitesGraphicsLayer);
       this.sitesGraphicsLayer.position = sitesPosition.bind(this.sitesGraphicsLayer);
       eventDispatcher.broadcast("graphicsLayerInitialized");
@@ -156,6 +176,7 @@ var NewLocationsView = function(eventDispatcher){
         graphic.numPoints = 1;
         graphic.radius = sitesRadius;
         graphic.type = "point";
+        graphic.newWorldCoords = null;
         graphic.coordSet = [graphic.mapCoords];
         graphicsList.push(graphic);
       });

@@ -100,7 +100,7 @@
     "geoCoords": {"lat": 34.0563, "lon": -118.3894},
     "tags": ["All Sites", "Mining", "Natural Gas", "Oil", "Fossil Fuels"],
     "introText": "Slated for oil and natural gas excavation, the Beverly Hills West Facility (BHWF) is a drilling site adjacent to Beverly Hills High School (BHHS) and located over the Beverly Hills Oil Field. Owned and operated by Venoco Inc. since 1995, the BHWF occupies just over half an acre of land within Beverly Hills. Geographically located here, the BHWF’s sole derrick stands 150 feet tall and serves as a landmark to many in the surrounding communities.",
-    "introImageUrl": "https://pgeproject.files.wordpress.com/2014/11/1980608.jpg?w=189&h=300",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2017/06/screen-shot-2018-02-16-at-10-17-57-am.png",
     "url": "https://pgeproject.wordpress.com/2017/06/21/beverly-hills-west-facility-oil-and-gas-drilling-ca/"
   },
 
@@ -387,7 +387,7 @@
     "geoCoords": {"lat": 32.793455, "lon": 35.052369},
     "tags": ["All Sites", "Oil", "Fossil Fuels", "Refining"],
     "introText": "Home to more than 272,000 people, Haifa is the third most populated city in Israel, and stretches across almost 9% of Israel’s shoreline. Haifa is considered a key industrial center in Israel, and is home to an energy group called the ORL (Oil Refineries Ltd.) which operates Israel’s largest oil refining complex.",
-    "introImageUrl": "https://pgeproject.files.wordpress.com/2014/10/11.jpg?w=768",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2017/06/screen-shot-2018-02-16-at-10-10-37-am.png",
     "url": "https://pgeproject.wordpress.com/2017/06/21/haifa-bay-oil-refineries-israel/"
   },
 
@@ -425,20 +425,20 @@
     "year": 2017,
     "geoCoords": {"lat": 22.8156072, "lon": 69.5281453},
     "tags": ["All Sites", "New 2017 Sites", "Coal", "Fossil Fuels", "Power Plants"],
-    "introText": "",
+    "introText": "About 1/3 of India’s population lives without electricity. In 2005-06, the Indian Ministry of Power proposed developing coal-powered Ultra Mega Power Projects (UMPP) to generate large amounts of low cost electricity. The first UMPP to be commissioned was the Mundra UMPP on the Gulf of Kutch in Mundra in the state of Gujarat. The Mundra UMPP was built on the coast for two reasons: to utilize seawater for cooling, and for better access to cheap coal from Indonesia. Since the beginning of its construction in 2007, the Mundra UMPP has damaged the Kutch coast. I will show that there are energy injustices at Mundra that arose through intentional neglect caused by discrimination.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/6760005433_a56b6fdbf1_b.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/17/mundra-ultra-mega-power-project-india/"
   },
 
   {
     "id": 33,
-    "projectName": "Kaltim Prima Coal Mine, Indonesia",
-    "author": "",
+    "projectName": "Kaltim Prima Coal Mine, East Kalimantan Province, Indonesia",
+    "author": "Angelique Wilcox",
     "university": "San Francisco State",
     "year": 2017,
     "geoCoords": {"lat": -0.478764, "lon": 117.153},
     "tags": ["All Sites", "New 2017 Sites", "Coal", "Fossil Fuels", "Mining"],
-    "introText": "",
+    "introText": "Kaltim Prima Coal mine is located in Indonesia, in the province of East Kalimantan. Some of the impacts it has had on the region are: degradation of the natural landscape, uprooting of indigenous people, contamination of water sources, deforestation of the East Kutai National Park, and harming of nearby women and youth. These energy injustices were caused through exploitation colonialism and the resource curse.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/15165646163_7edbe64dbe_o-copy.jpg?w=563&h=375",
     "url": "https://pgeproject.wordpress.com/2017/10/17/kaltim-prima-coal-mine-indonesia/"
   },
@@ -451,7 +451,7 @@
     "year": 2017,
     "geoCoords": {"lat": 41.872808, "lon": -88.206647},
     "tags": ["All Sites", "New 2017 Sites", "Nuclear Energy"],
-    "introText": "",
+    "introText": "The Rare Earths Facility located in Chicago, Illinois resides in the area that is now DuPage County.  For around forty years the facility produced various metals and chemicals like radium, ores, thorium, uranium, hydrofluoric acid, and for a period of time even gaslight mantels. I will show you the energy injustices at this site that arose because of high demand of various metals and chemicals, morphing DuPage County into a sacrifice zone.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/rare_earths_facility_west_chicago_-_01.jpg?w=532&h=399",
     "url": "https://pgeproject.wordpress.com/2017/10/17/rare-earths-facilitys-unforeseen-effects/"
   },
@@ -464,7 +464,7 @@
     "year": 2017,
     "geoCoords": {"lat": 49.269005, "lon": -122.931905},
     "tags": ["All Sites", "New 2017 Sites", "Oil", "Fossil Fuels"],
-    "introText": "",
+    "introText": "The Burnaby terminal is a storage and distribution facility that houses over 1.5 million barrels of oil. In 2013, a plan to double the storage capacity of the terminal was proposed. In the last ten years alone, two spills have occurred at Burnaby, and the proposed expansion project would only increase the likelihood and severity of any future accidents. The area surrounding the terminal is currently home to nearly 3,300 indigenous people, and a spill of great magnitude would threaten key environmental features, like the Burrard Inlet, that have supported their communities for generations. In this piece, I intend to show that the energy injustices at Burnaby have arisen because the area has been sacrificed for the greater economic benefit of Canada.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/8137582737_31611e9020_o.jpg?w=625&h=418",
     "url": "https://pgeproject.wordpress.com/2017/10/18/trans-mountain-oil-pipeline-expansion-project-burnaby-terminal-in-bc-canada/"
   },
@@ -477,20 +477,20 @@
     "year": 2017,
     "geoCoords": {"lat": 37.421389, "lon": 141.032500},
     "tags": ["All Sites", "New 2017 Sites", "Nuclear Energy", "Power Plants"],
-    "introText": "",
+    "introText": "On March 11, 2011 a magnitude 9 earthquake right off the coast of japan caused the fission reactors of the nuclear power plant to shut down which wouldn’t have been a problem if the following tsunami didn’t shut off the backup generators the power plant had. This lead to 3 nuclear meltdowns resulting in the biggest nuclear disaster sense Chernobyl. Hopefully this article will show that due to negligence of the Tokyo Electric Power Company or Tepco has become a resource curse for the people of the Fukushima prefecture.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/fukushima-daiichi-nuclear-plant.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/18/fukushima-daiichi-disaster/"
   },
 
   {
     "id": 37,
-    "projectName": "Uranium Mining in The Navajo Nation",
+    "projectName": "Abandoned Uranium Mines in the Cameron area of the Navajo Nation",
     "author": "",
     "university": "San Francisco State",
     "year": 2017,
     "geoCoords": {"lat": 35.876897, "lon": -111.393001},
     "tags": ["All Sites", "New 2017 Sites", "Nuclear Energy", "Mining"],
-    "introText": "",
+    "introText": "Uranium mining in the Navajo Nation lasted from 1944 to 1986. Under leases through the Bureau of Indian Affairs, almost 30 million tons of uranium were extracted from over 500 mining locations. Although the mining ended decades ago, the deadly effects of uranium contamination linger to this day because most of the mines were never properly sealed, or cleaned up at the end of production. Cameron, Arizona is one of the many areas in the Navajo Nation where the indigenous people have suffered from uranium contamination to the environment. The injustices arose through the process of nuclear colonialism, and the area was cast aside as a sacrifice zone.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/aum-map.jpg?w=565&h=521",
     "url": "https://pgeproject.wordpress.com/2017/10/18/uranium-mining-in-the-navajo-nation/"
   },
@@ -503,8 +503,8 @@
     "year": 2017,
     "geoCoords": {"lat": 42.383399, "lon": -87.814409},
     "tags": ["All Sites", "New 2017 Sites", "Coal", "Fossil Fuels"],
-    "introText": "",
-    "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/power-plant.jpg?w=840",
+    "introText": "The Waukegan Generating Station located in Lake County Illinois has been harming its surroundings for generations. The environment and community both suffer due to the waste and emissions from the coal burning power plant. This article will examine these issues, and their root cause; environmental racism.",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/11824544743_a74f93b4be_b.jpg?w=840",
     "url": "https://pgeproject.wordpress.com/2017/10/18/waukegan-generating-station/"
   },
 
@@ -516,7 +516,7 @@
     "year": 2017,
     "geoCoords": {"lat": 35.883333, "lon": -112.095556},
     "tags": ["All Sites", "New 2017 Sites", "Nuclear Energy", "Mining"],
-    "introText": "",
+    "introText": "Canyon Mine located in the Grand Canyon, which lies within Arizona is a possible uranium site that was proposed and is in the process of trying to get built. The injustice stems from the fact that this site is located nearby a local tribe, the Havasupai tribe, which is affected negatively by the mine and will even be more so negatively affected if the mine gets renovated into a uranium mine. Currently the mine still has effects on the people because it still has leakages of natural into the water supply. The Havasupai tribe which consists of about 775 Native Americans, are fighting day and night to prevent more injustice rising from this site. Due to their socioeconomic status and positions, it is hard for them to get anywhere politically.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/village_of_supai_-_part_of_the_grand_canyon_national_park_-_nara_-_544358.jpg?w=510&h=344",
     "url": "https://pgeproject.wordpress.com/2017/10/18/reopening-of-a-uranium-mine-in-the-grand-canyon/"
   },
@@ -529,7 +529,7 @@
     "year": 2017,
     "geoCoords": {"lat": 45.523344, "lon": -106.649596},
     "tags": ["All Sites", "New 2017 Sites", "Coal", "Fossil Fuels", "Mining"],
-    "introText": "",
+    "introText": "The Otter Creek Mine and Tongue River Railroad is a proposed coal mine in Montana on the Northern Cheyenne Reservation. The reservation is currently in an ongoing battle with the government to stop the mine from opening. I will show that the energy injustices at this site arose because coal is often a cheaper way to produce electricity. Native American reservations typically have natural resources underground.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/northern-cheyenne-reservation.jpg?w=557&h=348",
     "url": "https://pgeproject.wordpress.com/2017/10/18/proposed-coal-mine-on-northern-cheyenne-reservation/"
   },
@@ -542,7 +542,7 @@
     "year": 2017,
     "geoCoords": {"lat": 37.943260, "lon": -122.374959},
     "tags": ["All Sites", "New 2017 Sites", "Oil", "Fossil Fuels", "Refining"],
-    "introText": "",
+    "introText": "The Chevron Oil Refinery, located in Richmond California is an energy injustice site because it is polluting a marginalized community, with 82% of the inhabitants in Richmond being people of color. This plant happens to be one of the largest in the United States, pumping out over 240,000 barrels of oil per day. This refinery isn’t limited to just oil however, but in fact processes gasoline, jet fuel, chemical products, and diesel. Currently, there are over 3500 residents in North Richmond that are facing the immediate environmental and negative health effects of being located right next to the refinery; 97% of those residents being African American, Latino, or Asian. I will show that the energy injustices at this site occur because of environmental racism and the location being deemed a sacrifice zone.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/chevron.jpg?w=840",
     "url": "https://pgeproject.wordpress.com/2017/10/18/chevron-oil-refinery/"
   },
@@ -555,20 +555,20 @@
     "year": 2017,
     "geoCoords": {"lat": 47.941667, "lon": -118.093056},
     "tags": ["All Sites", "New 2017 Sites", "Nuclear Energy", "Mining"],
-    "introText": "",
+    "introText": "Midnite Mine is a Superfund site, formerly a uranium mine, located near Wellpinit, WA on the Spokane Reservation. The Spokane knew nothing about the detrimental effects uranium mining has on the environment and human health. The energy injustices at Midnite Mine arose because of the Spokane’s lack of knowledge, the lack of evidence showing causality between their health problems and the mining, and the lack of accountability from Newmont Mining Corporation.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/1493684547_05ab2dfc6a_m.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/18/midnite-mine-spokane-reservation-wa/"
   },
 
   {
     "id": 43,
-    "projectName": "Fracking in Santa Ursula, Oaxaca MX",
+    "projectName": "Fracking in Santa Ursula, Oaxaca MX: Sacrificing Rural Communities for National Interests",
     "author": "LisaMarie Betancourt",
     "university": "San Francisco State",
     "year": 2017,
     "geoCoords": {"lat": 18.006944, "lon": -96.234722},
     "tags": ["All Sites", "New 2017 Sites", "Natural Gas", "Fossil Fuels"],
-    "introText": "",
+    "introText": "Natural gas exploration is rising in Mexico, recognized as the 6th most abundant country with extractable shales. A lot of this expansion is happening under the radar of the rural communities that live along some of these sites. In Tuxtepec, Oaxaca a coalition of municipalities backed by the government’s PEMEX began Papaloapan B, a hydrocarbons development project meant to propel the governments expansion of fracking and maintain interests in fossil fuel energy.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/fracking-mexico.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/18/fracking-in-santa-ursula-oaxaca-mx/"
   },
@@ -581,7 +581,7 @@
     "year": 2017,
     "geoCoords": {"lat": 37.7883, "lon": -81.9535},
     "tags": ["All Sites", "New 2017 Sites", "Coal", "Fossil Fuels", "Mining"],
-    "introText": "",
+    "introText": "About 45 years ago, at the U.S.’ coal mining peak, the country had one of its worst mining-related disasters at Buffalo Creek, Logan County, West Virginia. A wave from the waste dam flooded and destroyed the Buffalo Creek community. I will discuss how the energy injustices at this site arose through the resource curse theory.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/buffalocreekarea-22.png",
     "url": "https://pgeproject.wordpress.com/2017/10/18/buffalo-creek-coal-mine-logan-county-wv/"
   },
@@ -594,7 +594,7 @@
     "year": 2017,
     "geoCoords": {"lat": 42.272159, "lon": -83.113060},
     "tags": ["All Sites", "New 2017 Sites", "Power Plants"],
-    "introText": "",
+    "introText": "River Rouge power plant located in Detroit, Michigan site on the banks of the Detroit river. A channel of water connecting lake St. Clair to Lake Erie. The purpose of this article is to examine the environmental racism that affects the estimated 1.78 million living within a 3-mile radius of the plant, 76.3% being people of color. And how resources curse plays a part in this community.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/river_rouge_plant_of_the_ford_motor_company_covers_1200_acres_of_land_in_dearborn_-_nara_-_549725.jpg?w=840",
     "url": "https://pgeproject.wordpress.com/2017/10/18/river-rouge-power-plant/"
   },
@@ -602,12 +602,12 @@
   {
     "id": 46,
     "projectName": "BP Oil Refinery Explosion: Texas City, Texas",
-    "author": "",
+    "author": "Erin Soden",
     "university": "San Francisco State",
     "year": 2017,
     "geoCoords": {"lat": 29.3, "lon": -94.9},
     "tags": ["All Sites", "New 2017 Sites", "Oil", "Fossil Fuels", "Refining"],
-    "introText": "",
+    "introText": "March 23rd, 2005 marked yet another environmental injustice for Texas City, Texas: an oil spill which ended with 15 deaths and 170 injured. As the third largest refinery in the U.S, this explosion was particularly damaging due to most of the 15 deaths being nonessential personnel that were in the wrong place at the wrong time. Government and media investigations followed, along with many legal proceedings to compensate for the lives lost. I will show how the energy injustices of this site arose through the fossil fuel companies that generate environmental racism and sacrifice zones.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/bp_plant_explosion-1_lowres2.jpg?w=375&h=248",
     "url": "https://pgeproject.wordpress.com/2017/10/18/bp-oil-refinery-explosion-texas-city-texas/"
   },
@@ -620,7 +620,7 @@
     "year": 2017,
     "geoCoords": {"lat": 18.7390, "lon": 7.3895},
     "tags": ["All Sites", "New 2017 Sites", "Nuclear Energy", "Mining"],
-    "introText": "",
+    "introText": "The Somaïr mine extracts uranium in Arlit, Niger, from open pits over two hundred feet deep. The mine is owned in part by the government of Niger, and the French based company AREVA. This mine has become increasingly important to both parties, providing thirty-two percent of Niger’s total exports, and thirty percent of the total uranium France consumes. The economic importance of uranium is taking priority over the people mining it, as well as France having large influence over how much uranium is produced through energy colonialism.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/somair-mine.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/18/somair-uranium-mine/"
   },
@@ -633,8 +633,8 @@
     "year": 2017,
     "geoCoords": {"lat": 39.808382, "lon": -104.964278},
     "tags": ["All Sites", "New 2017 Sites"],
-    "introText": "",
-    "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/pic-2.jpg",
+    "introText": "Cherokee station is a coal power plant located in Denver, Colorado. Within its 3 mile radius, it’s affecting the nearby residential areas and polluting tons of carbon at a time. I will show that the energy injustices at this site arose because of environmental racism and show what they did to change their way of living.",
+    "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/plant1.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/18/cherokee-station-coal-power-plant/"
   },
 
@@ -659,7 +659,7 @@
     "year": 2017,
     "geoCoords": {"lat": 38.371938, "lon": -87.767215},
     "tags": ["All Sites", "New 2017 Sites", "Coal", "Fossil Fuels", "Power Plants"],
-    "introText": "The United States is a powerhouse when it comes to coal generated power. About 65% of the power we generate comes from fossil fuels. The Gibson Generating Station located in Indiana is just one of the many coal based power generating sites that contribute to these statistics. Built as a two unit coal fired power plant in 1972, it continued to grow into the 90’s when it finally became a five unit site. In this article I will illustrate the energy injustice happening in the area surrounding the Gibson Generating Station and the connection to the resource curse theory.",
+    "introText": "The United States is a powerhouse when it comes to coal generated power. About 65% of the power we generate comes from fossil fuels. The Gibson Generating Station located in Indiana is just one of the many coal based power generating sites that contribute to these statistics. Built as a two unit coal fired power plant in 1972, it continued to grow into the 90’s when it finally became a five unit site.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/4587280506_3375fddae2_m.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/18/gibson-generating-station-in/"
   },
@@ -672,7 +672,7 @@
     "year": 2017,
     "geoCoords": {"lat": 29.508674, "lon": -89.765454},
     "tags": ["All Sites", "New 2017 Sites", "Oil", "Fossil Fuels"],
-    "introText": "Indigenous communities, like the Atakapa-Ishak tribe, living in the Grand Bayou have been forced off their native land because of man-made environmental destruction over the last 50 years. The tipping point came in 2010 when the Deepwater Horizon oil spill  turned the Grand Bayou into a sacrifice zone.",
+    "introText": "Indigenous communities, like the Atakapa-Ishak tribe, living in the Grand Bayou have been forced off their native land because of man-made environmental destruction over the last 50 years. The tipping point came in 2010 when the Deepwater Horizon oil spill turned the Grand Bayou into a sacrifice zone.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/deepwater_horizon_offshore_drilling_unit_on_fire_2010.jpg?w=384&h=288",
     "url": "https://pgeproject.wordpress.com/2017/10/18/deepwater-horizon-oil-spill-effects-indigenous-tribes-in-grand-bayou-la/"
   },
@@ -685,7 +685,7 @@
     "year": 2017,
     "geoCoords": {"lat": 35.536250, "lon": -108.642222},
     "tags": ["All Sites", "New 2017 Sites", "Nuclear Energy", "Mining"],
-    "introText": "From 1967 to 1982, the North East Church Rock Mine was in operation by the United Nuclear Corporation (UNC) and is located within the Navajo Nation which is encompassed by Nevada, Colorado, Arizona and New Mexico. The Uranium mine was created to extract radioactive Uranium to generate nuclear energy and was attractive to indigenous Navajo people during the late 1960’s and through the 1980’s as it provided them with a secure job, and a steady income. Consequently, Navajo workers were exposed to the radioactive material during their labor and suffered unnerving health consequences as a result. Indigenous and environmental activists lobbied the Environmental Protection Agency to investigate the now categorized Superfund Site, in which the EPA had found contamination of radioactive material both downwind and downstream from the North East Church Rock Uranium Mine. The confirmation of the presence of these toxic substances by the EPA and the racist, colonial motives to build a Uranium mine on Navajo land is what I will be discussing further in my research on the NorthEast Church Rock Uranium Mine.",
+    "introText": "From 1967 to 1982, the North East Church Rock Mine was in operation by the United Nuclear Corporation (UNC) and is located within the Navajo Nation which is encompassed by Nevada, Colorado, Arizona and New Mexico. The Uranium mine was created to extract radioactive Uranium to generate nuclear energy and was attractive to indigenous Navajo people during the late 1960’s and through the 1980’s as it provided them with a secure job, and a steady income. Consequently, Navajo workers were exposed to the radioactive material during their labor and suffered unnerving health consequences as a result.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/united_nuclear_corporation_church_rock_uranium_mill.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/18/northeast-church-rock-uranium-mine/"
   },
@@ -763,7 +763,7 @@
     "year": 2017,
     "geoCoords": {"lat": 25.435330, "lon": -80.331259},
     "tags": ["All Sites", "New 2017 Sites", "Nuclear Energy"],
-    "introText": "Turkey Point, a nuclear generating station located in Homestead, Florida. It was developed in 1973 and is positioned between the Biscayne National Park and the Everglades National Park, and under a half mile directly across is a wildlife refuge for crocodiles and State Botanical sites. TPNGS is one of the only nuclear generating stations left that uses cooling canals as their heat rejection source and these canals are the reason for their pollution, as they are prone to leakage. This bay is home to lots of aquatic life, all of which are being threatened not only ecologically but also commercially. Within a 10-mile radius there is a population of about 200,000 people with the majority of the population being Hispanic and of low income. These people have been enduring the harmful effects that have come from TPNGS for more than 4 decades now and have yet to see any change. The only progress the people of Homestead have seen was when TPNGS tried to expand their station a few years back, but luckily these plans of expansion were stopped through criticism of the city and other issues. Since the development of this site, the Biscayne Bay has been accumulating lots of harmful chemicals, which are now reaching the Biscayne Aquifer and threatening to contaminate Florida’s main source of drinking water. In this analysis I will further explain the energy injustice that has arose in Turkey Point nuclear generating station, where it is clear that the community of Homestead, Florida are facing an act of Environmental Racism.",
+    "introText": "Turkey Point, a nuclear generating station located in Homestead, Florida. It was developed in 1973 and is positioned between the Biscayne National Park and the Everglades National Park, and under a half mile directly across is a wildlife refuge for crocodiles and State Botanical sites. TPNGS is one of the only nuclear generating stations left that uses cooling canals as their heat rejection source and these canals are the reason for their pollution, as they are prone to leakage. This bay is home to lots of aquatic life, all of which are being threatened not only ecologically but also commercially. Within a 10-mile radius there is a population of about 200,000 people with the majority of the population being Hispanic and of low income. These people have been enduring the harmful effects that have come from TPNGS for more than 4 decades now and have yet to see any change.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/10/58.jpg",
     "url": "https://pgeproject.wordpress.com/2017/10/20/turkey-point-nuclear-generating-station/"
   },
@@ -802,7 +802,7 @@
     "year": 2017,
     "geoCoords": {"lat": 30.081987, "lon": -94.118637},
     "tags": ["All Sites", "New 2017 Sites", "Fossil Fuels", "Oil"],
-    "introText": "The Charlton-Pollard area of Beaumont, Texas is home an Exxon Mobil refinery. The refinery opened in the early 1900s after a salt dome oil field, the Lucas gusher at Spindletop, was discovered in the area. The discovery of oil at this location assisted in leading the United States into the oil age, where we still reside today. At the time of its initial striking, this area was said to produce more oil in one day than the rest of the oil fields in the United States combined. According to the Texas State Historical Association, \"three major oil companies—the Texas Company (later Texaco), Gulf Oil Corporation, and Humble (later Exxon)—were formed in Beaumont during the first year of the boom.\" Exxon Mobil, formerly known as The Magnolia Refinery, \"became the city’s largest employer; by 1980 it was Mobil’s largest manufacturing plant.\" Today it continues to be the largest employer for those that live in the area, but now struggles to maintain a positive image amongst the community.",
+    "introText": "The Charlton-Pollard area of Beaumont, Texas is home an Exxon Mobil refinery. The refinery opened in the early 1900s after a salt dome oil field, the Lucas gusher at Spindletop, was discovered in the area. The discovery of oil at this location assisted in leading the United States into the oil age, where we still reside today. At the time of its initial striking, this area was said to produce more oil in one day than the rest of the oil fields in the United States combined.",
     "introImageUrl": "https://pgeproject.files.wordpress.com/2017/11/charlton-pollard-corrected-759x475.jpg",
     "url": "https://pgeproject.wordpress.com/2017/11/13/exxon-mobil-beaumont-refinery/"
   },

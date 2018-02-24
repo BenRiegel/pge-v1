@@ -2,13 +2,18 @@
   position: absolute;
   height: 100%;
   width: 100%;
+  background-color: white;
+  z-index: 1;
 }
 
 #frame-0{
+  position: absolute;
+  z-index: 1;
 }
 
 #frame-1{
-  display:none;
+  position: absolute;
+  z-index: 2;
 }
 
 .map-image{

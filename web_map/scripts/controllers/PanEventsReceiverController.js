@@ -2,7 +2,15 @@
 
 var StartPanEventsReceiverController = function(eventDispatcher, panEventsReceiver){
 
-  eventDispatcher.listen("basemapReady", function(){
+  eventDispatcher.listen("initBasemapDrawingComplete", function(){
+    panEventsReceiver.enable();
+  });
+
+  eventDispatcher.listen("animationMoveStarted", function(){
+    panEventsReceiver.disable();
+  });
+
+  eventDispatcher.listen("animationMoveEnded", function(){
     panEventsReceiver.enable();
   });
 

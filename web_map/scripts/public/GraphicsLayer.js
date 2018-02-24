@@ -63,21 +63,21 @@ var NewGraphicsLayer = function(eventDispatcher, layerName){
       });
     },
 
-    position: function(mapProperties, leftMapCoord, topMapCoord){
+    position: function(pixelProperties, leftMapCoord, topMapCoord){
       this.graphics.forEach(function(graphic){
-        var screenCoordX = graphic.worldCoords.x / mapProperties.pixelSize - leftMapCoord;
-        screenCoordX = (screenCoordX < 0) ? screenCoordX + mapProperties.numPixels : screenCoordX;
-        var screenCoordY = graphic.worldCoords.y / mapProperties.pixelSize - topMapCoord;
+        var screenCoordX = graphic.worldCoords.x / pixelProperties.size - leftMapCoord;
+        screenCoordX = (screenCoordX < 0) ? screenCoordX + pixelProperties.num : screenCoordX;
+        var screenCoordY = graphic.worldCoords.y / pixelProperties.size - topMapCoord;
         graphic.screenCoords.x = screenCoordX;
         graphic.screenCoords.y = screenCoordY;
       });
     },
 
-    positionPan: function(mapProperties, deltaPx){
+    positionPan: function(pixelProperties, deltaPx){
       this.graphics.forEach(function(graphic){
         var screenCoordX = graphic.screenCoords.x - deltaPx.x;
-        screenCoordX = screenCoordX % mapProperties.numPixels;
-        screenCoordX = (screenCoordX < 0) ? screenCoordX + mapProperties.numPixels : screenCoordX;
+        screenCoordX = screenCoordX % pixelProperties.num;
+        screenCoordX = (screenCoordX < 0) ? screenCoordX + pixelProperties.num : screenCoordX;
         graphic.screenCoords.x = screenCoordX;
         graphic.screenCoords.y -= deltaPx.y;
       });

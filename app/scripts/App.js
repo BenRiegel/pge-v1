@@ -7,7 +7,7 @@ window.addEventListener("load", function(){
   //configuration constants ----------------------------------------------------
   const webMapConfigProperties = {
     rootNodeId: "map",
-    initViewportCenterLatLon: {lon:-5, lat:28},
+    initViewpointLatLon: {lon:-5, lat:28},
     initScaleLevel: 2,
   }
 
@@ -28,13 +28,13 @@ window.addEventListener("load", function(){
   //views ----------------------------------------------------------------------
   var tagsView = NewTagsView(eventDispatcher);
   var locationsView = NewLocationsView(eventDispatcher);
-  var summaryView = NewSummaryView(eventDispatcher);
+  var summaryView = NewSummaryView(eventDispatcher, webMap);
 
   //controllers ----------------------------------------------------------------
   StartProjectsModelController(eventDispatcher, projectsModel);
   StartTagsViewController(eventDispatcher, projectsModel, tagsView);
   StartLocationsViewController(eventDispatcher, webMap, projectsModel, locationsView);
-  StartSummaryViewController(eventDispatcher, projectsModel, summaryView);
+  StartSummaryViewController(eventDispatcher, projectsModel, summaryView, locationsView);
   StartSelectMenuController(eventDispatcher, selectMenu, tagsView);
   StartWebMapController(eventDispatcher, webMap, locationsView, summaryView);
 

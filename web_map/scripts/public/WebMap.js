@@ -6,93 +6,74 @@ var NewWebMap = function(configProperties){
 
   //private variables ----------------------------------------------------------
 
-  var rootNode;
-  var webMapDimensionsPx;
-  var minZoomLevel;
   var eventDispatcher;
-  var viewpointModel;
-  var graphicsView
-  var basemapView;
-  var popupView;
-  var zoomControlsView;
-
-
-  //private functions ----------------------------------------------------------
-
-  /*var calculateNodeDimensions = function(node){
-    const rect = node.getBoundingClientRect();
-    return {width:rect.width, height:rect.height};
-  };
-
-
-  var calculateMinZoomLevel = function(dimensionsPx){
-    var minZoomLevelX = Math.log2(dimensionsPx.width / Esri.basemapTileSizePx);
-    minZoomLevelX = Math.ceil(minZoomLevelX);
-    var minZoomLevelY = Math.log2(dimensionsPx.height / Esri.basemapTileSizePx);
-    minZoomLevelY = Math.ceil(minZoomLevelY);
-    return Math.max(minZoomLevelX, minZoomLevelY);
-  };*/
+  var container;
+  var viewpoint;
+  var scale;
+  var pixel;
+  var viewport;
+  var drawingEventService;
+  var basemapDisplay;
+  var graphicsDisplay;
+  var popupDisplay;
+  var zoomControlsDisplay;
+  var panEventsReceiver;
+  var zoomEventsReceiver;
 
 
   //init code ------------------------------------------------------------------
 
-//  rootNode = document.getElementById(configProperties.rootNodeId);
-//  webMapDimensionsPx = calculateNodeDimensions(rootNode);
-//  minZoomLevel = calculateMinZoomLevel(webMapDimensionsPx);
+  eventDispatcher = {
+    private: NewEventDispatcher(),
+    public: NewEventDispatcher(),
+  }
 
-//  const initViewpoint = WebMercator.latLonToWebMercator(configProperties.initViewportCenterLatLon);
-//  var scaleService = NewScaleService(privateEventDispatcher, configProperties.initScaleLevel, minZoomLevel, Esri.maxZoomLevel);
+  container = NewContainerService(eventDispatcher.private, configProperties.rootNodeId);
+  viewpoint = NewViewpointService(eventDispatcher.private, configProperties.initViewpointLatLon);
+  scale = NewScaleService(eventDispatcher.private, configProperties.initScaleLevel, container.dimensionsPx);
+  pixel = NewPixelService();
+  viewport = NewViewportService(container.dimensionsPx);
+  drawingEventService = NewDrawingEventService(eventDispatcher.private, viewpoint, scale, pixel, viewport);
+  basemapDisplay = NewBasemapDisplay(eventDispatcher.private, container.node, container.dimensionsPx);
+  graphicsDisplay = NewGraphicsDisplay(eventDispatcher.private, container.node, viewpoint, scale, pixel, viewport);
+  popupDisplay = NewPopupDisplay(eventDispatcher.private, container.node, container.dimensionsPx);
+  zoomControlsDisplay = NewZoomControlsDisplay(eventDispatcher.private, container.node);
+  panEventsReceiver = NewPanEventsReceiver(eventDispatcher.private, basemapDisplay);
+  zoomEventsReceiver = NewZoomEventsReceiver(eventDispatcher.private, zoomControlsDisplay);
 
-
-  var privateEventDispatcher = NewEventDispatcher();
-  var publicEventDispatcher = NewEventDispatcher();
-
-  var webMapStates = NewStatesService(privateEventDispatcher, configProperties);
-  var viewpointService = NewViewpointService(privateEventDispatcher, webMapStates);
-  var panAnimator = NewPanAnimator(privateEventDispatcher, webMapStates, viewpointService);
-  var zoomAnimator = NewZoomAnimator(privateEventDispatcher, webMapStates, viewpointService);
-
-  var basemapDisplay = NewBasemapDisplay(privateEventDispatcher, webMapStates);
-  var graphicsDisplay = NewGraphicsDisplay(privateEventDispatcher, webMapStates);
-  var popupDisplay = NewPopupDisplay(privateEventDispatcher, webMapStates);
-  var zoomControlsDisplay = NewZoomControlsDisplay(privateEventDispatcher, webMapStates);
-
-  var layerToggler = NewLayerToggler(privateEventDispatcher, basemapDisplay, graphicsDisplay, panAnimator, zoomAnimator)
-  var panEventsReceiver = NewPanEventsReceiver(privateEventDispatcher, basemapDisplay);
-  var zoomEventsReceiver = NewZoomEventsReceiver(privateEventDispatcher, zoomControlsDisplay);
-
-  StartAppController(privateEventDispatcher, publicEventDispatcher);
-  //this needs to go up high
-  StartStatesController(privateEventDispatcher, webMapStates);
-  StartViewpointServiceController(privateEventDispatcher, viewpointService);
-//  StartScaleServiceController(privateEventDispatcher, scaleService);
-  StartPanAnimatorController(privateEventDispatcher, panAnimator);
-  StartZoomAnimatorController(privateEventDispatcher, zoomAnimator);
-  StartLayerTogglerController(privateEventDispatcher, layerToggler);
-  StartBasemapController(privateEventDispatcher, basemapDisplay);
-  StartGraphicsController(privateEventDispatcher, graphicsDisplay);
-  StartPopupController(privateEventDispatcher, popupDisplay);
-  StartZoomControlsController(privateEventDispatcher, zoomControlsDisplay);
-  StartPanEventsReceiverController(privateEventDispatcher, panEventsReceiver);
-  StartZoomEventsReceiverController(privateEventDispatcher, zoomEventsReceiver);
-  StartLayersController(privateEventDispatcher, basemapDisplay, graphicsDisplay);
-
-
-
+  //change this one
+  StartAppController(eventDispatcher.private, eventDispatcher.public);
+  StartDrawingEventServiceController(eventDispatcher.private, drawingEventService);
+  StartBasemapDisplayController(eventDispatcher.private, basemapDisplay);
+  StartGraphicsDisplayController(eventDispatcher.private, graphicsDisplay);
+  StartPopupDisplayController(eventDispatcher.private, popupDisplay);
+  StartZoomControlsDisplayController(eventDispatcher.private, zoomControlsDisplay);
+  StartPanEventsReceiverController(eventDispatcher.private, panEventsReceiver);
+  StartZoomEventsReceiverController(eventDispatcher.private, zoomEventsReceiver);
 
 
   //public attributes and methods ----------------------------------------------
 
   return {
 
-    //not happy about this
-    graphicsView: graphicsDisplay,
+    //not happy about these
+    graphicsDisplay: graphicsDisplay,
 
-    popupView: popupDisplay,
+    popupDisplay: popupDisplay,
+
+    container: container,
 
     addEventListener: function(eventName, listener){
-      publicEventDispatcher.listen(eventName, listener);
+      eventDispatcher.public.listen(eventName, listener);
     },
+
+    panTo: function(location){
+      eventDispatcher.private.broadcast("animationMoveRequest", {type:"pan-to", location:location});
+    },
+
+    zoomTo: function(location){
+      eventDispatcher.private.broadcast("animationMoveRequest", {type:"zoom-to", location:location});
+    }
 
   };
 

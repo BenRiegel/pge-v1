@@ -1,16 +1,25 @@
 "use strict";
 
+
 var StartZoomEventsReceiverController = function(eventDispatcher, zoomEventsReceiver){
 
-  eventDispatcher.listen("zoomControlsLoaded", function(){
+  eventDispatcher.listen("initBasemapDrawingComplete", function(){
     zoomEventsReceiver.enable();
   });
 
-  eventDispatcher.listen("zoomAnimationStarted", function(){
+  eventDispatcher.listen("animationMoveStarted", function(){
     zoomEventsReceiver.disable();
   });
 
-  eventDispatcher.listen("zoomAnimationEnded", function(){
+  eventDispatcher.listen("animationMoveEnded", function(){
+    zoomEventsReceiver.enable();
+  });
+
+  eventDispatcher.listen("userPanStarted", function(){
+    zoomEventsReceiver.disable();
+  });
+
+  eventDispatcher.listen("userPanEnded", function(){
     zoomEventsReceiver.enable();
   });
 

@@ -4,47 +4,53 @@
   left: 15px;
   background-color: white;
   border-radius: 12.5px;
-  z-index: 20;
   box-shadow: 0px 0px 3px rgba(0,0,0,0.25);
   color: #333333;
   min-height: 25px;
   width: 200px;
+  z-index: 4;
 }
 
 #select-menu.open{
   border-radius: 5px;
 }
 
-.menu-row{
+.option{
+  display:none;
   height: 0px;
   line-height: 0px;
+  opacity: 0;
   font-family: 'Lora', serif;
   font-size: 14px;
-  opacity: 0;
 }
 
-.menu-row:hover{
+#select-menu.open .option{
+  display:block;
+}
+
+.option:hover{
   box-shadow: inset 0px 0px 4px rgb(173,102,102);
 }
 
-#select-menu.open-complete .menu-row,
-.menu-row.selected{
+#select-menu.open-complete .option,
+.option.selected{
+  display:block;
   height: 25px;
   line-height: 25px;
   border-radius: 12.5px;
   opacity: 1;
 }
 
-#select-menu.open .menu-row{
+#select-menu.open .option{
   border-radius: 0px;
 }
 
-#select-menu.open .menu-row:first-child{
+#select-menu.open .option:first-child{
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-#select-menu.open .menu-row:last-child{
+#select-menu.open .option:last-child{
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }

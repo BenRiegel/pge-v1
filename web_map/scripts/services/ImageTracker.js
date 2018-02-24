@@ -38,8 +38,10 @@ var NewImageTracker = function(numImages, callback){
     },
 
     report: function(i){
-      list[i] = true;
-      checkAllFired();
+      if (list[i] == false){
+        list[i] = true;
+        checkAllFired();
+      }
     },
 
   };
