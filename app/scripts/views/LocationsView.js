@@ -152,6 +152,8 @@ var NewLocationsView = function(eventDispatcher){
 
     currentSelectedSiteId: null,
 
+    zoomingTo: false,
+
     getSitesGraphic: function(graphicId){
       return this.sitesGraphicsLayer.graphics[graphicId];
     },

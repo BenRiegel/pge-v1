@@ -22,6 +22,7 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
   };
 
   var listen = function(){
+    //console.log("listening")
     currentDrawingEvent.toggleFrames();
     currentDrawingEvent.updateStatus();
     currentDrawingEvent.newAnimationFrame();
@@ -102,7 +103,7 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
           eventDispatcher.broadcast("basemapToggleFramesRequest");
           eventDispatcher.broadcast("graphicsToggleFramesRequest");
           numFramesCompleted++;
-    //      console.log("toggling frame " + numFramesCompleted);
+      //      console.log("toggling frame " + numFramesCompleted);
         }
       },
 
@@ -115,15 +116,21 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
       },
 
       newAnimationFrame: function(){
+        if (currentFrameStatus == "drawing"){
+          return;
+        }
         currentFrameNum += 1;
         if (currentFrameNum > numFramesDuration){
           return;
         }
+        currentFrameStatus = "drawing";
+    //      console.log("new animation frame " + currentFrameNum)
         var totalProgress = currentFrameNum / numFramesDuration;
         if (animationType == "zoom"){
           var newTileSize = Esri.basemapTileSizePx + tileSizeDiffPerFrame * currentFrameNum;
           var resizeFactor = newTileSize / Esri.basemapTileSizePx;
           var newScaleLevel = initScaleLevel + Math.log2(resizeFactor);
+    //        console.log("new scale level = " + newScaleLevel);
           var newPixelProperties = pixel.getCurrentProperties(newScaleLevel);
           var targetDeltaXPx = deltaXPx * (1 - totalProgress);
           var targetDeltaYPx = deltaYPx * (1 - totalProgress);
@@ -147,11 +154,10 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
           eventDispatcher.broadcast("startBasemapDrawingPan", currentDrawingProperties);
           eventDispatcher.broadcast("startGraphicsDrawingPan", currentDrawingProperties);
         }
-        currentFrameStatus == "drawing";
-    //      console.log("drawing frame " + currentFrameNum);
       },
 
       notifyLayersDrawingComplete: function(){
+    //    console.log("status changed to drawn");
         currentFrameStatus = "drawn";
       },
 
@@ -166,7 +172,6 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
       },
 
       notifyBasemapFrameTogglingComplete: function(){
-      //  eventDispatcher.broadcast("drawingEventComplete");
         if (completed){
           eventDispatcher.broadcast("animationMoveEnded");
           currentDrawingEvent = null;
@@ -192,6 +197,7 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
 
     const numStopFramesDuration = 30;
     const panResetThresholdTime = 1000/60;
+    const panResetThresholdTimeEnd = 100;
     const maxVelocity = 50;
 
     //private variables --------------------------------------------------------
@@ -212,6 +218,7 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
         return false;
       }
       else {
+        currentFrameStatus = "drawing";
         var pixelProperties = pixel.getCurrentProperties(scale.currentLevel);
         var deltaX = deltaXPx * pixelProperties.size;
         var deltaY = deltaYPx * pixelProperties.size;
@@ -243,6 +250,25 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
       return sums;
     };
 
+    var getPanSumsEnd = function(startTime, endTime){
+      var sums = {x:0, y:0};
+      for (var i = 0; i < panArray.length; i++){
+        var currentPan = panArray[i];
+        if (currentPan.timeStamp > endTime){
+            sums.x += currentPan.x;
+            sums.y += currentPan.y;
+        } else {
+          break;
+        }
+      }
+      sums.x = sums.x * (1000/60) / panResetThresholdTimeEnd;
+      sums.y = sums.y * (1000/60) / panResetThresholdTimeEnd;
+      sums.x = Math.min(Math.max(sums.x, -maxVelocity), maxVelocity);
+      sums.y = Math.min(Math.max(sums.y, -maxVelocity), maxVelocity);
+      return sums;
+    };
+
+
 
 
     //public attributes and methods --------------------------------------------
@@ -262,11 +288,15 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
       },
 
       endRequest: function(){
+    //    console.log("end request")
         userEngaged = false;
         currentStopFrameNum = 0;
         numStopFramesCompleted = 0;
         var stopTime = new Date().getTime();
-        endVelocity = getPanSums(stopTime, stopTime - panResetThresholdTime);
+    //    console.log(stopTime);
+        endVelocity = getPanSumsEnd(stopTime, stopTime - panResetThresholdTimeEnd);
+      //  console.log(panArray);
+    //    console.log(endVelocity);
       },
 
       toggleFrames: function(){
@@ -287,6 +317,7 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
         } else {
           if (endVelocity.x == 0 && endVelocity.y == 0){
             this.animationStatus = "done";
+  //          console.log("end velocity 0 and done");
           } else {
             if (numStopFramesCompleted == numStopFramesDuration && currentFrameStatus == "toggled"){
               this.animationStatus = "done";
@@ -298,7 +329,7 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
       },
 
       newAnimationFrame: function(){
-        if (this.animationStatus == "done" || currentFrameStatus == "drawn"){
+        if (this.animationStatus == "done" || currentFrameStatus == "drawn" || currentFrameStatus == "drawing"){
           return;
         }
         if (this.animationStatus == "userPanning"){
@@ -309,14 +340,14 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
         } else {
           currentStopFrameNum++;
           if (currentStopFrameNum < numStopFramesDuration){
-    //          console.log("drawing frame " + currentStopFrameNum);
+  //            console.log("drawing frame " + currentStopFrameNum);
             var newVelocityX = endVelocity.x * (1 - currentStopFrameNum / numStopFramesDuration);
             var newVelocityY = endVelocity.y * (1 - currentStopFrameNum / numStopFramesDuration);
             var newFrameDrawn = panFunction(newVelocityX, newVelocityY);
           }
           if (currentStopFrameNum == numStopFramesDuration){
             var currentDrawingProperties = getCurrentDrawingProperties();
-    //            console.log("drawing frame 30");
+        //        console.log("drawing frame 30");
             eventDispatcher.broadcast("startBasemapDrawingFinal", currentDrawingProperties);
           }
         }
@@ -337,7 +368,7 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
         //        console.log("setting to null");
         currentDrawingEvent = null;
         eventDispatcher.broadcast("userPanEnded");
-              //  console.log("all done");
+          //      console.log("all done");
       },
     };
   };
@@ -347,7 +378,9 @@ var NewDrawingEventService = function(eventDispatcher, viewpoint, scale, pixel, 
   return {
 
     handleBasemapDrawingComplete: function(){
-      currentDrawingEvent.notifyBasemapDrawingComplete();
+      if (currentDrawingEvent){
+        currentDrawingEvent.notifyBasemapDrawingComplete();
+      }
     },
 
     handleBasemapFrameTogglingComplete: function(){

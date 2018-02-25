@@ -73,7 +73,23 @@ var NewWebMap = function(configProperties){
 
     zoomTo: function(location){
       eventDispatcher.private.broadcast("animationMoveRequest", {type:"zoom-to", location:location});
-    }
+    },
+
+    enablePanning: function(){
+      panEventsReceiver.enable();
+    },
+
+    disablePanning: function(){
+      panEventsReceiver.disable();
+    },
+
+    enableZooming: function(){
+      zoomEventsReceiver.enable();
+    },
+
+    disableZooming: function(){
+      zoomEventsReceiver.disable();
+    },
 
   };
 

@@ -12,9 +12,16 @@ var StartPopupDisplayController = function(eventDispatcher, popupDisplay){
     popupDisplay.load(htmlStr);
   });
 
-  /*eventDispatcher.listen("animationMoveStarted", function(){
-    popupDisplay.close();
-  });*/
+  eventDispatcher.listen("animationMoveRequest && animationMoveStarted", function(eventData){
+    var moveType = eventData["animationMoveRequest"].type;
+    if (moveType != "pan-to"){
+      popupDisplay.hide();
+    } else {
+      if (popupDisplay.isOpen){
+        popupDisplay.hide();
+      }
+    }
+  }, true);
 
   eventDispatcher.listen("userPanStarted", function(){
     popupDisplay.close();

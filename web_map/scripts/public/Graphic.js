@@ -14,9 +14,11 @@ var NewGraphic = function(geoCoords, id, className){
   nodes[0] = document.createElement("div");
   nodes[0].dataset.id = id;
   nodes[0].classList.add(className);
+  nodes[0].classList.add("no-highlight");
   nodes[1] = document.createElement("div");
   nodes[1].dataset.id = id;
   nodes[1].classList.add(className);
+  nodes[1].classList.add("no-highlight");
 
 
   //public attributes and methods ----------------------------------------------

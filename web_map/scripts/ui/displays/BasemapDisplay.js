@@ -1,6 +1,32 @@
 "use strict";
 
 
+var NewBasemapTile = function(){
+
+  var NewFrameInfo = function(){
+    return{
+      hidden: false,
+      xTileIndex: null,
+      yTileIndex: null,
+      yIndexValid: false,
+      leftScreenCoord: null,
+      topScreenCoord: null,
+      scaleFactor: 1,
+      size: Esri.basemapTileSizePx,
+    }
+  };
+
+  return {
+    framePositions: NewFrameInfo,
+  };
+
+};
+
+
+
+
+
+
 var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensionsPx){
 
 
@@ -8,19 +34,35 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
 
   var tiles;
   var numTiles;
-  var frameNodes;
-  var frameImageTrackers;
+  var frameImageTracker;
   var displayIndex,
       writeIndex;
-  var baselineZoomLevel;
+  var baselineZoomLevel;    //shouldn't need this one
   var buffer;
+  var frames;
+
 
 
   //private functions ----------------------------------------------------------
 
+  var NewFrame = function(){
+    return {
+      node: null,
+      images: [],
+    }
+  };
+
+  var NewImageNode = function(){
+    var newImage = new Image();
+    newImage.draggable = false;
+    newImage.classList.add("map-image");
+    newImage.classList.add("no-highlight");
+    return newImage;
+  };
+
   var newImageOnLoadFunction = function(i){
     return function(){
-      frameImageTrackers[writeIndex].report(i);
+      frameImageTracker.report(i);
     }
   }
 
@@ -34,7 +76,7 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
     return (remainder > 1) ? baseTilesNeeded + 2 : baseTilesNeeded + 1;
   };
 
-  var createImageTiles = function(frameNodes, numTiles){
+  var createImageTiles = function(frames, numTiles){
     for (let i = 0; i < numTiles; i++){
       var newTile = {
         xIndex: null,
@@ -42,30 +84,24 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
         yIndexValid: false,
         leftScreenCoord: null,
         topScreenCoord: null,
-        resizeFactor: 1,
+        scaleFactor: 1,
         size: Esri.basemapTileSizePx,
-        nodes: [],
       }
-      var newImage = new Image();
-      newImage.classList.add("map-image");
-      newImage.classList.add("no-highlight");
+      var newImage = NewImageNode();
       newImage.addEventListener("load", newImageOnLoadFunction(i));
-      newTile.nodes[0] = newImage;
-      frameNodes[0].appendChild(newImage);
-      var newImage = new Image();
-      newImage.classList.add("map-image");
-      newImage.classList.add("no-highlight");
+      frames[0].node.appendChild(newImage);
+      frames[0].images.push(newImage);
+      var newImage = NewImageNode();
       newImage.addEventListener("load", newImageOnLoadFunction(i));
-      newTile.nodes[1] = newImage;
-      frameNodes[1].appendChild(newImage);
+      frames[1].node.appendChild(newImage);
+      frames[1].images.push(newImage);
       tiles.push(newTile);
     }
   };
 
   var drawTiles = function(){
 
-    var writeImageTracker = frameImageTrackers[writeIndex];
-    writeImageTracker.clear();
+    frameImageTracker.clear();
 
     for (var j = 0; j < numTiles.height; j++){
       for (var i = 0; i < numTiles.width; i++){
@@ -73,32 +109,32 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
         var tile = tiles[tileIndex];
 
         if (tile.yIndexValid == false){
-          tile.nodes[writeIndex].style.display = "none";
-          writeImageTracker.report(tileIndex);
+          frames[writeIndex].images[tileIndex].style.display = "none";
+          frameImageTracker.report(tileIndex);
           continue;
         }
 
         if (tile.leftScreenCoord < -tile.size || tile.leftScreenCoord > webMapDimensionsPx.width){
-          writeImageTracker.report(tileIndex);
+          frameImageTracker.report(tileIndex);
         }
 
         if (tile.topScreenCoord < -tile.size || tile.topScreenCoord > webMapDimensionsPx.height){
-          writeImageTracker.report(tileIndex);
+          frameImageTracker.report(tileIndex);
         }
 
         var newSrc = `${Esri.basemapURLString}${baselineZoomLevel}/${tile.yIndex}/${tile.xIndex}`;
-        if (tile.nodes[writeIndex].src == newSrc){
-          writeImageTracker.report(tileIndex);
+        if (frames[writeIndex].images[tileIndex].src  == newSrc){
+          frameImageTracker.report(tileIndex);
         } else {
-          tile.nodes[writeIndex].src = newSrc;
+          frames[writeIndex].images[tileIndex].src = newSrc;
         }
 
         var newX = Math.round(tile.leftScreenCoord);
         var newY = Math.round(tile.topScreenCoord);
-        tile.nodes[writeIndex].style.transform = `translate(${newX}px, ${newY}px) scale(${tile.resizeFactor, tile.resizeFactor}`;
+        frames[writeIndex].images[tileIndex].style.transform = `translate(${newX}px, ${newY}px) scale(${tile.scaleFactor, tile.scaleFactor}`;
 
-        if (tile.nodes[writeIndex].style.display == "none"){
-          tile.nodes[writeIndex].style.display = "inline";
+        if (frames[writeIndex].images[tileIndex].style.display == "none"){
+          frames[writeIndex].images[tileIndex].style.display = "inline";
         }
       }
     }
@@ -135,7 +171,7 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
         tile.xIndex = (tile.xIndex < 0) ? tile.xIndex + numBasemapTiles : tile.xIndex;
         tile.leftScreenCoord = (bufferedLeftTileCoord + i) * tileSize - leftScreenOffset + (tileSize - Esri.basemapTileSizePx) / 2;
         tile.topScreenCoord = (bufferedTopTileCoord + j) * tileSize - topScreenOffset + (tileSize - Esri.basemapTileSizePx) / 2;
-        tile.resizeFactor = 1;
+        tile.scaleFactor = 1;
         tile.size = tileSize;
       }
     }
@@ -143,9 +179,9 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
 
   var positionZoomTiles = function(drawProperties){
 
-    var viewpoint = drawProperties.viewpoint;
     var scaleLevel = drawProperties.scaleLevel;
     var pixelProperties = drawProperties.pixelProperties;
+    var viewportProperties = drawProperties.viewportProperties;
 
     var diff = scaleLevel - baselineZoomLevel;
     if (diff < -1){
@@ -156,18 +192,14 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
       baselineZoomLevel += 1;
       diff -= 1;
     }
-    var tileSize = (Esri.basemapTileSizePx * Math.pow(2, diff));
-    var resizeFactor = Math.pow(2, scaleLevel - baselineZoomLevel);
-    var numBasemapTiles = Math.round(pixelProperties.num / tileSize);
+    var tileSize = (Esri.basemapTileSizePx * Math.pow(2, diff));   //redundant
+    var scaleFactor = Math.pow(2, scaleLevel - baselineZoomLevel);  //redundant
+    var numBasemapTiles = Math.round(pixelProperties.num / tileSize);  //redundant
 
-    var centerMapX = viewpoint.x / pixelProperties.size;
-    var centerMapY = viewpoint.y / pixelProperties.size;
-    var leftMapCoord = (centerMapX - webMapDimensionsPx.width * 0.5);
-    var topMapCoord = (centerMapY - webMapDimensionsPx.height * 0.5);
-    var leftTileCoord = Math.floor(leftMapCoord / tileSize);
-    var topTileCoord = Math.floor(topMapCoord / tileSize);
-    var leftMapOffset = leftMapCoord % tileSize;
-    var topMapOffset = topMapCoord % tileSize;
+    var leftTileCoord = Math.floor(viewportProperties.leftMapCoord / tileSize);
+    var topTileCoord = Math.floor(viewportProperties.topMapCoord / tileSize);
+    var leftMapOffset = viewportProperties.leftMapCoord % tileSize;
+    var topMapOffset = viewportProperties.topMapCoord % tileSize;
     leftMapOffset = (leftMapOffset < 0) ? leftMapOffset + tileSize : leftMapOffset;
     topMapOffset = (topMapOffset < 0) ? topMapOffset + tileSize : topMapOffset;
 
@@ -181,7 +213,7 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
         tile.xIndex = (tile.xIndex < 0) ? tile.xIndex + numBasemapTiles : tile.xIndex;
         tile.leftScreenCoord = i * tileSize - leftMapOffset + (tileSize - Esri.basemapTileSizePx) / 2;
         tile.topScreenCoord = j * tileSize - topMapOffset + (tileSize - Esri.basemapTileSizePx) / 2;
-        tile.resizeFactor = resizeFactor;
+        tile.scaleFactor = scaleFactor;
         tile.size = tileSize;
       }
     }
@@ -194,6 +226,7 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
     buffer.top += deltaPx.y;
     buffer.bottom -= deltaPx.y;
     if (buffer.left < 0 || buffer.right < 0 || buffer.top < 0 || buffer.bottom < 0){
+      console.log("redrawing to reset buffer")
       positionInitialTiles(drawProperties);
       return;
     }
@@ -211,11 +244,10 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
   //initCode -------------------------------------------------------------------
 
   numTiles = {width:null, height:null};
-  frameNodes = [];
-  frameImageTrackers = [];
   displayIndex = 0;
   writeIndex = 1;
   tiles = [];
+  frames = [];
 
 
   //public attributes and methods ----------------------------------------------
@@ -225,44 +257,46 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
     rootNode: null,
 
     toggleFrames: function(){
-      frameNodes[displayIndex].style.display = "block";
-      frameNodes[writeIndex].style.display = "block";
-      frameNodes[writeIndex].style.zIndex = "2";
-      frameNodes[displayIndex].style.zIndex = "1";
+      frames[writeIndex].node.style.opacity = "1";
+      frames[displayIndex].node.style.opacity = "0";
       displayIndex = 1 - displayIndex;
       writeIndex = 1 - writeIndex;
       eventDispatcher.broadcast("basemapFrameTogglingComplete");
     },
 
+    //combine these two
     toggleFramesInitial: function(){
-      frameNodes[writeIndex].style.display = "block";
-      frameNodes[writeIndex].style.opacity = "0";
-      frameNodes[writeIndex].style.zIndex = "2";
-      frameNodes[displayIndex].style.zIndex = "1";
+      frames[writeIndex].node.style.opacity = "0";
+      frames[writeIndex].node.style.display = "block";
+      frames[displayIndex].node.style.opacity = "0";
+      frames[displayIndex].node.style.display = "block";
       var animation = NewAnimation();
-      animation.addRunFunction(400, function(totalProgress){
-        frameNodes[writeIndex].style.opacity = `${totalProgress}`;
+      animation.addRunFunction(500, function(totalProgress){
+        frames[writeIndex].node.style.opacity = `${totalProgress}`;
       });
       animation.setCallbackFunction(function(){
-        eventDispatcher.broadcast("intialBasemapFrameTogglingComplete");
         displayIndex = 1 - displayIndex;
         writeIndex = 1 - writeIndex;
+        eventDispatcher.broadcast("intialBasemapFrameTogglingComplete");
       });
       animation.run();
     },
 
     toggleFramesFinalZoom: function(){
-      frameNodes[writeIndex].style.opacity = "0";
-      frameNodes[writeIndex].style.zIndex = "2";
-      frameNodes[displayIndex].style.zIndex = "1";
+      frames[writeIndex].node.style.opacity = "0";
+      frames[writeIndex].node.style.zIndex = "2";
+      frames[displayIndex].node.style.zIndex = "1";
       var animation = NewAnimation();
       animation.addRunFunction(500, function(totalProgress){
-        frameNodes[writeIndex].style.opacity = `${totalProgress}`;
+        frames[writeIndex].node.style.opacity = `${totalProgress}`;
       });
       animation.setCallbackFunction(function(){
-        eventDispatcher.broadcast("finalBasemapFrameTogglingComplete");
+        frames[displayIndex].node.style.opacity = "0";
+        frames[writeIndex].node.style.zIndex = "1";
+        frames[displayIndex].node.style.zIndex = "1";
         displayIndex = 1 - displayIndex;
         writeIndex = 1 - writeIndex;
+        eventDispatcher.broadcast("finalBasemapFrameTogglingComplete");
       });
       animation.run();
     },
@@ -286,10 +320,10 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
     load: function(htmlStr){
       Utils.loadHTMLContent(webMapRootNode, htmlStr);
       this.rootNode = document.getElementById("basemap-layer");
-      frameNodes[0] = document.getElementById("frame-0");
-      frameNodes[1] = document.getElementById("frame-1");
-      frameNodes[0].style.display = "none";
-      frameNodes[1].style.display = "none";
+      frames[0] = NewFrame();
+      frames[1] = NewFrame();
+      frames[0].node = document.getElementById("frame-0");
+      frames[1].node = document.getElementById("frame-1");
       eventDispatcher.broadcast("basemapReady");
     },
 
@@ -297,76 +331,11 @@ var NewBasemapDisplay = function(eventDispatcher, webMapRootNode, webMapDimensio
       numTiles.width = calculateTilesNeeded("width");
       numTiles.height = calculateTilesNeeded("height");
       var totalTilesNeeded = numTiles.height * numTiles.width;
-      //don't think I need two
-      var frame0imageTracker = NewImageTracker(totalTilesNeeded, imageTrackerCallback);
-      var frame1imageTracker = NewImageTracker(totalTilesNeeded, imageTrackerCallback);
-      frameImageTrackers.push(frame0imageTracker);
-      frameImageTrackers.push(frame1imageTracker);
-      createImageTiles(frameNodes, totalTilesNeeded);
+      frameImageTracker = NewImageTracker(totalTilesNeeded, imageTrackerCallback);
+      createImageTiles(frames, totalTilesNeeded);
       eventDispatcher.broadcast("basemapTilesLoaded");
     },
 
   };
 
 };
-
-
-/*
-draw: function(viewpoint){
-  var mapProperties = containerService.currentMapProperties;
-  var zoomLevelFloor = Math.floor(viewpoint.z);
-  var diff = zoomLevelFloor - viewpoint.z;
-  var tileSize = (Esri.basemapTileSizePx / Math.pow(2, diff));
-  var resizeFactor = Math.pow(2, viewpoint.z - zoomLevelFloor);
-  var numBasemapTiles = Math.round(mapProperties.numPixels / tileSize);
-
-  var centerMapX = viewpoint.x / mapProperties.pixelSize;
-  var centerMapY = viewpoint.y / mapProperties.pixelSize;
-  var leftMapCoord = Math.floor(centerMapX - containerService.dimensionsPx.width * 0.5);
-  var topMapCoord =  Math.floor(centerMapY - containerService.dimensionsPx.height * 0.5);
-  var leftTileCoord = Math.floor(leftMapCoord / tileSize);
-  var topTileCoord = Math.floor(topMapCoord / tileSize);
-  var leftMapOffset = leftMapCoord % tileSize;
-  var topMapOffset = topMapCoord % tileSize;
-  leftMapOffset = (leftMapOffset < 0) ? leftMapOffset + tileSize : leftMapOffset;
-  topMapOffset = (topMapOffset < 0) ? topMapOffset + tileSize : topMapOffset;
-
-  var writeFrame = frameNodes[writeIndex];
-  var writeImageTracker = frameImageTrackers[writeIndex];
-  writeImageTracker.clear();
-
-  var tiles = writeFrame.querySelectorAll(".map-image");
-
-  for (var j = 0; j < numTiles.height; j++){
-    for (var i = 0; i < numTiles.width; i++){
-      var tileIndex = i + j * numTiles.width;
-      var tile = tiles[tileIndex];
-
-      var yTileIndex = j + topTileCoord;
-      if (yTileIndex < 0 || yTileIndex >= numBasemapTiles){
-        tile.style.display = "none";
-        writeImageTracker.report(tileIndex);
-        continue;
-      }
-      if (tile.style.display == "none"){
-        tile.style.display = "inline";
-      }
-
-      var xTileIndex = (i + leftTileCoord) % numBasemapTiles;
-      xTileIndex = (xTileIndex < 0) ? xTileIndex + numBasemapTiles : xTileIndex;
-      var newSrc = `${Esri.basemapURLString}${zoomLevelFloor}/${yTileIndex}/${xTileIndex}`
-      if (tile.src == newSrc){
-        writeImageTracker.report(tileIndex);
-      } else {
-        tile.src = `${Esri.basemapURLString}${zoomLevelFloor}/${yTileIndex}/${xTileIndex}`;
-      }
-
-      var left = (i * tileSize) - leftMapOffset + (tileSize - Esri.basemapTileSizePx) / 2;
-      var top = (j * tileSize) - topMapOffset  + (tileSize - Esri.basemapTileSizePx) / 2;
-      tile.style.transform = `translate(${left}px, ${top}px) scale(${resizeFactor, resizeFactor}`;
-    }
-  }
-},
-
-
-*/

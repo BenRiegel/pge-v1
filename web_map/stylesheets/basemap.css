@@ -8,12 +8,12 @@
 
 #frame-0{
   position: absolute;
-  z-index: 1;
+  display: none;
 }
 
 #frame-1{
   position: absolute;
-  z-index: 2;
+  display: none;
 }
 
 .map-image{

@@ -3,6 +3,9 @@
 
 var StartWebMapController = function(eventDispatcher, webMap, locationsView, summaryView){
 
+
+  //repeaters ------------------------------------------------------------------
+
   webMap.addEventListener("graphicsReady", function(){
     eventDispatcher.broadcast("graphicsReady");
   });
@@ -50,6 +53,18 @@ var StartWebMapController = function(eventDispatcher, webMap, locationsView, sum
 
   eventDispatcher.listen("popupReadyToClose", function(){
     webMap.popupDisplay.close();
+    webMap.enablePanning();
+    webMap.enableZooming();
+  });
+
+  eventDispatcher.listen("popupExpansionStarted", function(){
+    webMap.disablePanning();
+    webMap.disableZooming();
+  });
+
+  eventDispatcher.listen("popupContractionComplete", function(){
+    webMap.enablePanning();
+    webMap.enableZooming();
   });
 
   eventDispatcher.listen("siteClicked", function(graphic){
@@ -61,10 +76,6 @@ var StartWebMapController = function(eventDispatcher, webMap, locationsView, sum
   });
 
   eventDispatcher.listen("zoomTo", function(){
-    webMap.popupDisplay.close();
-  });
-
-  eventDispatcher.listen("popupCloseComplete", function(){
     var projectId = locationsView.currentSelectedSiteId;
     if (projectId !== null){
       var graphic = locationsView.sitesGraphicsLayer.graphics[projectId];
@@ -73,11 +84,27 @@ var StartWebMapController = function(eventDispatcher, webMap, locationsView, sum
     }
   });
 
-  eventDispatcher.listen("zoomToAnimationComplete", function(){
+
+  /*eventDispatcher.listen("zoomTo", function(){
+    locationsView.zoomingTo = true;
+    webMap.popupDisplay.close();
+  });*/
+
+  /*eventDispatcher.listen("popupCloseComplete", function(){
+    var projectId = locationsView.currentSelectedSiteId;
+    if (projectId !== null && locationsView.zoomingTo){
+      var graphic = locationsView.sitesGraphicsLayer.graphics[projectId];
+      var projectWorldCoords = graphic.worldCoords;
+      webMap.zoomTo(projectWorldCoords);
+    }
+  });*/
+
+  /*eventDispatcher.listen("zoomToAnimationComplete", function(){
     var projectId = locationsView.currentSelectedSiteId;
     if (projectId !== null){
       webMap.popupDisplay.open();
+      locationsView.zoomTo = false;
     }
-  });
+  });*/
 
 };

@@ -29,12 +29,17 @@ var NewPopupDisplay = function(eventDispatcher, webMapRootNode, webMapDimensions
 
     rootNode: null,
 
+    isOpen: false,
+
     open: function(){
       position.call(this);
       this.rootNode.classList.add("visible");
       var animation = NewAnimation();
       animation.addRunFunction(150, (totalProgress) => {
         this.rootNode.style.opacity = `${totalProgress}`;
+      });
+      animation.setCallbackFunction( () => {
+        this.isOpen = true;
       });
       animation.run();
     },
@@ -46,11 +51,17 @@ var NewPopupDisplay = function(eventDispatcher, webMapRootNode, webMapDimensions
           this.rootNode.style.opacity = `${1 - totalProgress}`;
         });
         animation.setCallbackFunction( () => {
+          this.isOpen = false;
           this.rootNode.classList.remove("visible");
           eventDispatcher.broadcast("popupCloseComplete");
         });
         animation.run();
       }
+    },
+
+    hide: function(){
+      this.isOpen = false;
+      this.rootNode.classList.remove("visible");
     },
 
     load: function(htmlStr){

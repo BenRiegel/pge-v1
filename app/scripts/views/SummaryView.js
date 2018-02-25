@@ -139,6 +139,7 @@ var NewSummaryView = function(eventDispatcher, webMap){
     },
 
     animatePopupExpansion: function(){
+      eventDispatcher.broadcast("popupExpansionStarted");
       var diffTop = 15 - initPopupMeasurements.top;
       var diffLeft = 15 - initPopupMeasurements.left;
       var diffWidth = expandWidth - initPopupMeasurements.width;
@@ -260,7 +261,6 @@ var NewSummaryView = function(eventDispatcher, webMap){
 
     contractPopup: function(){
       if (popupNode.classList.contains("expanded")){
-
         iframeNode.style.opacity = 0;
         projectInfoNode.style.opacity = 1;
         loaderNode.classList.remove("loaded");

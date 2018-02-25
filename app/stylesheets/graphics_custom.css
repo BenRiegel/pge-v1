@@ -8,28 +8,6 @@
 }
 
 
-
-/* I don't know what this is */
-/*#cluster-info{
-  text-align:center;
-  height:25px;
-  line-height:25px;
-  display:none;
-  padding:3px 10px 3px 10px;
-  color:#888888;
-  font-family: 'Lora', serif;
-  font-size: 14px;
-  border:0px solid red;
-}
-
-#cluster-info:hover{
-  cursor: pointer;
-  color:#333333;
-}*/
-
-
-
-
 .site-point{
   position: absolute;
   border:0;
