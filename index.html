@@ -7,11 +7,11 @@
 
     <title>A People's Guide to Energy</title>
 
-    <!--these need to be ordered ?-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
     <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/css/esri.css">
     <link rel="stylesheet" href="lib/stylesheets/utils.css">
+    <link rel="stylesheet" href="web_map/stylesheets/container.css">
     <link rel="stylesheet" href="web_map/stylesheets/basemap.css">
     <link rel="stylesheet" href="web_map/stylesheets/graphics.css">
     <link rel="stylesheet" href="web_map/stylesheets/popup.css">
@@ -55,63 +55,68 @@
 
       </div>
 
-      <footer>
-  <!--      <a href="https://www.facebook.com/sharer/sharer.php?u=pgeproject.netlify.com" target="_blank">
-          Share on Facebook
-        </a>-->
-      </footer>
     </main>
 
+    <script src="lib/scripts/Animation.js"></script>
     <script src="lib/scripts/EventDispatcher.js"></script>
     <script src="lib/scripts/HttpRequest.js"></script>
-    <script src="lib/scripts/Animation.js"></script>
 
+    <script src="select_menu/scripts/private/controllers/SelectMenuDisplayController.js"></script>
+    <script src="select_menu/scripts/private/controllers/SelectMenuEventsReceiverController.js"></script>
+    <script src="select_menu/scripts/private/controllers/SelectMenuPublicController.js"></script>
+    <script src="select_menu/scripts/private/controllers/SelectMenuStatesServiceController.js"></script>
+    <script src="select_menu/scripts/private/models/services/SelectMenuStatesService.js"></script>
+    <script src="select_menu/scripts/private/views/displays/SelectMenuDisplay.js"></script>
+    <script src="select_menu/scripts/private/views/events_receivers/SelectMenuEventsReceiver.js"></script>
     <script src="select_menu/scripts/public/SelectMenu.js"></script>
-    <script src="select_menu/scripts/services/SelectMenuStates.js"></script>
-    <script src="select_menu/scripts/ui/displays/SelectMenuDisplay.js"></script>
-    <script src="select_menu/scripts/ui/events/SelectMenuEventsReceiver.js"></script>
-    <script src="select_menu/scripts/controllers/SelectMenuPublicController.js"></script>
-    <script src="select_menu/scripts/controllers/SelectMenuEventsReceiverController.js"></script>
-    <script src="select_menu/scripts/controllers/SelectMenuDisplayController.js"></script>
-    <script src="select_menu/scripts/controllers/SelectMenuStatesController.js"></script>
 
-    <script src="web_map/scripts/controllers/AppController.js"></script>
-    <script src="web_map/scripts/controllers/DrawingEventServiceController.js"></script>
-    <script src="web_map/scripts/controllers/BasemapDisplayController.js"></script>
-    <script src="web_map/scripts/controllers/GraphicsDisplayController.js"></script>
-    <script src="web_map/scripts/controllers/PanEventsReceiverController.js"></script>
-    <script src="web_map/scripts/controllers/ZoomEventsReceiverController.js"></script>
-    <script src="web_map/scripts/controllers/PopupDisplayController.js"></script>
-    <script src="web_map/scripts/controllers/ZoomControlsDisplayController.js"></script>
+    <script src="web_map/scripts/private/controllers/AnimationMapMoverServiceController.js"></script>
+    <script src="web_map/scripts/private/controllers/AppController.js"></script>
+    <script src="web_map/scripts/private/controllers/ContainerDisplayController.js"></script>
+    <script src="web_map/scripts/private/controllers/FrameTogglerServiceController.js"></script>
+    <script src="web_map/scripts/private/controllers/MapBasemapController.js"></script>
+    <script src="web_map/scripts/private/controllers/MapGraphicsModelController.js"></script>
+    <script src="web_map/scripts/private/controllers/MapGraphicsViewController.js"></script>
+    <script src="web_map/scripts/private/controllers/PanEventsReceiverController.js"></script>
+    <script src="web_map/scripts/private/controllers/PopupDisplayController.js"></script>
+    <script src="web_map/scripts/private/controllers/UserPanMapMoverServiceController.js"></script>
+    <script src="web_map/scripts/private/controllers/WebMapStatesServiceController.js"></script>
+    <script src="web_map/scripts/private/controllers/ZoomControlsDisplayController.js"></script>
+    <script src="web_map/scripts/private/controllers/ZoomEventsReceiverController.js"></script>
 
-    <script src="web_map/scripts/helpers/WebMercator.js"></script>
-    <script src="web_map/scripts/helpers/Utils.js"></script>
-    <script src="web_map/scripts/helpers/Esri.js"></script>
+    <script src="web_map/scripts/private/models/helpers/Esri.js"></script>
+    <script src="web_map/scripts/private/models/helpers/WebMercator.js"></script>
+    <script src="web_map/scripts/private/models/services/AnimationMapMoverService.js"></script>
+    <script src="web_map/scripts/private/models/services/FrameTogglerService.js"></script>
+    <script src="web_map/scripts/private/models/services/UserPanMapMoverService.js"></script>
+    <script src="web_map/scripts/private/models/services/WebMapStatesService.js"></script>
+    <script src="web_map/scripts/private/models/BasemapTileModel.js"></script>
+    <script src="web_map/scripts/private/models/GraphicModel.js"></script>
+    <script src="web_map/scripts/private/models/GraphicsLayerModel.js"></script>
+    <script src="web_map/scripts/private/models/MapBasemapModel.js"></script>
+    <script src="web_map/scripts/private/models/MapGraphicsModel.js"></script>
+
+    <script src="web_map/scripts/private/views/displays/ContainerDisplay.js"></script>
+    <script src="web_map/scripts/private/views/displays/PopupDisplay.js"></script>
+    <script src="web_map/scripts/private/views/displays/ZoomControlsDisplay.js"></script>
+    <script src="web_map/scripts/private/views/events_receivers/PanEventsReceiver.js"></script>
+    <script src="web_map/scripts/private/views/events_receivers/ZoomEventsReceiver.js"></script>
+    <script src="web_map/scripts/private/views/BasemapTileView.js"></script>
+    <script src="web_map/scripts/private/views/GraphicsLayerView.js"></script>
+    <script src="web_map/scripts/private/views/GraphicView.js"></script>
+    <script src="web_map/scripts/private/views/MapBasemapView.js"></script>
+    <script src="web_map/scripts/private/views/MapGraphicsView.js"></script>
+
     <script src="web_map/scripts/public/Graphic.js"></script>
     <script src="web_map/scripts/public/GraphicsLayer.js"></script>
     <script src="web_map/scripts/public/WebMap.js"></script>
 
-    <script src="web_map/scripts/services/ContainerService.js"></script>
-    <script src="web_map/scripts/services/ViewpointService.js"></script>
-    <script src="web_map/scripts/services/ScaleService.js"></script>
-    <script src="web_map/scripts/services/PixelService.js"></script>
-    <script src="web_map/scripts/services/ViewportService.js"></script>
-    <script src="web_map/scripts/services/DrawingEventService.js"></script>
-    <script src="web_map/scripts/services/ImageTracker.js"></script>
-    <script src="web_map/scripts/ui/displays/BasemapDisplay.js"></script>
-    <script src="web_map/scripts/ui/displays/GraphicsDisplay.js"></script>
-    <script src="web_map/scripts/ui/displays/PopupDisplay.js"></script>
-    <script src="web_map/scripts/ui/displays/ZoomControlsDisplay.js"></script>
-    <script src="web_map/scripts/ui/events_receivers/PanEventsReceiver.js"></script>
-    <script src="web_map/scripts/ui/events_receivers/ZoomEventsReceiver.js"></script>
-
-
-    <script src="app/scripts/controllers/TagsViewController.js"></script>
-    <script src="app/scripts/controllers/ProjectsModelController.js"></script>
     <script src="app/scripts/controllers/LocationsViewController.js"></script>
+    <script src="app/scripts/controllers/ProjectsModelController.js"></script>
     <script src="app/scripts/controllers/SelectMenuController.js"></script>
-    <script src="app/scripts/controllers/WebMapController.js"></script>
     <script src="app/scripts/controllers/SummaryViewController.js"></script>
+    <script src="app/scripts/controllers/TagsViewController.js"></script>
+    <script src="app/scripts/controllers/WebMapController.js"></script>
     <script src="app/scripts/models/ProjectsModel.js"></script>
     <script src="app/scripts/views/LocationsView.js"></script>
     <script src="app/scripts/views/SummaryView.js"></script>

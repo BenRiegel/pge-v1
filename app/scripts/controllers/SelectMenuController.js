@@ -3,7 +3,6 @@
 
 var StartSelectMenuController = function(eventDispatcher, selectMenu, tagsView){
 
-
   //private, configurable constants --------------------------------------------
 
   const initialSelectedOptionName = "All Sites";

@@ -3,7 +3,6 @@
 
 var NewLocationsView = function(eventDispatcher){
 
-
   //private, configurable constants --------------------------------------------
 
   const sitePointsClassName = "site-point";
@@ -12,81 +11,103 @@ var NewLocationsView = function(eventDispatcher){
 
   //private functions ----------------------------------------------------------
 
-  var eventHandler = function(evt){
+  var filter = function(newOptionName){
+    var graphicsList = this.graphics;
+    graphicsList.forEach(function(graphic){
+      graphic.model.customAttributes.filtered = !graphic.model.attributes.tags.includes(newOptionName);
+      graphic.model.hidden = graphic.model.customAttributes.filtered;
+    });
+  };
+
+  var assignPrevClusters = function(idList){
+    var graphicModels = this.sitesGraphicsLayer.model.graphicModels;
+    graphicModels.forEach( (graphic, i) => {
+      if (idList.includes(i)){
+        var graphicView = this.sitesGraphicsLayer.view.graphicViews[i];
+        graphicView.addClass("prev-cluster");
+      }
+    });
+  };
+
+  var clickEventHandler = function(evt){
     var graphicId = evt.target.dataset.id;
-    var graphic = this.sitesGraphicsLayer.graphics[graphicId];
-    if (graphic.type == "point"){
-      this.currentSelectedSiteId = graphicId;
+    var graphic = this.sitesGraphicsLayer.model.graphicModels[graphicId];
+    if (graphic.customAttributes.type == "point"){
+      this.currentSelectedSiteAttributes = graphic.attributes;
       eventDispatcher.broadcast("siteClicked", graphic);
     } else {
+      assignPrevClusters.call(this, graphic.customAttributes.clusterAttributes.idList);
       eventDispatcher.broadcast("clusterClicked", graphic);
     }
   }
-
-  var filter = function(newOptionName){
-    this.graphics.forEach(function(graphic){
-      graphic.filtered = !graphic.attributes.tags.includes(newOptionName);
-      graphic.hidden = graphic.filtered;
-    });
-    this.refresh();
-  };
 
   var getDistance = function(c1, c2){
     return Math.sqrt( (c2.x - c1.x) * (c2.x - c1.x) + (c2.y - c1.y) * (c2.y - c1.y) );
   }
 
-  var sitesPosition = function(pixelProperties, leftMapCoord, topMapCoord){
+  var sitesLayerPosition = function(webMapStates){
 
-    this.graphics.forEach(function(graphic){
-      graphic.numPoints = 1;
-      graphic.radius = sitesRadius;
-      graphic.type = "point";
-      graphic.coordSet = [graphic.mapCoords];
-      graphic.hidden = graphic.filtered;
-      graphic.clustered = false;
-      graphic.newWorldCoords = null;
-      graphic.mapCoords.x = graphic.worldCoords.x / pixelProperties.size;
-      graphic.mapCoords.y = graphic.worldCoords.y / pixelProperties.size;
+    var mapPixelSize = webMapStates.mapPixelSize;
+    var mapPixelNum = webMapStates.mapPixelNum;
+    var leftMapCoord = webMapStates.viewpointTopLeftMap.left;
+    var topMapCoord = webMapStates.viewpointTopLeftMap.top;
+
+    this.model.graphicModels.forEach(function(graphic){
+      graphic.mapCoords.x = graphic.worldCoords.x / mapPixelSize;
+      graphic.mapCoords.y = graphic.worldCoords.y / mapPixelSize;
+      graphic.hidden = graphic.customAttributes.filtered;
+      graphic.customAttributes.type = "point";
+      graphic.customAttributes.radius = sitesRadius;
+      graphic.customAttributes.clustered = false;
+      graphic.customAttributes.clusterAttributes = {
+        numPoints: 1,
+        newWorldCoords: null,
+        coordSet: [graphic.mapCoords],
+        idList: [graphic.attributes.id],
+      };
       var screenCoordX = graphic.mapCoords.x - leftMapCoord;
-      screenCoordX = (screenCoordX < 0) ? screenCoordX + pixelProperties.num : screenCoordX;
+      screenCoordX = (screenCoordX < 0) ? screenCoordX + mapPixelNum : screenCoordX;
+      screenCoordX = (screenCoordX > mapPixelNum) ? screenCoordX - mapPixelNum : screenCoordX;
       var screenCoordY = graphic.mapCoords.y - topMapCoord;
       graphic.screenCoords.x = screenCoordX;
       graphic.screenCoords.y = screenCoordY;
     });
 
-    for (var i = 0; i < this.graphics.length; i++){
+    for (var i = 0; i < this.model.graphicModels.length; i++){
 
-      var graphic = this.graphics[i];
-      if (graphic.filtered || graphic.clustered){
+      var graphic = this.model.graphicModels[i];
+      if (graphic.customAttributes.filtered || graphic.customAttributes.clustered){
         continue;
       }
       var done = false;
       var j = 0;
       while (!done){
 
-        var compareGraphic = this.graphics[j];
+        var compareGraphic = this.model.graphicModels[j];
         var clusterCreated = false;
 
-        if (i != j && compareGraphic.filtered == false && compareGraphic.clustered == false){
+        if (i != j && compareGraphic.customAttributes.filtered == false && compareGraphic.customAttributes.clustered == false){
           var distanceX = Math.abs(graphic.mapCoords.x - compareGraphic.mapCoords.x);
           var distanceY = Math.abs(graphic.mapCoords.y - compareGraphic.mapCoords.y);
-          var clusterDistanceThreshold = graphic.radius + compareGraphic.radius;
+          var clusterDistanceThreshold = graphic.customAttributes.radius + compareGraphic.customAttributes.radius;
 
           if (distanceX <= clusterDistanceThreshold && distanceY <= clusterDistanceThreshold){
 
             clusterCreated = true;
-            compareGraphic.clustered = true;
-            var combinedCoordSet = graphic.coordSet.concat(compareGraphic.coordSet);
+            compareGraphic.customAttributes.clustered = true;
+            var combinedCoordSet = graphic.customAttributes.clusterAttributes.coordSet.concat(compareGraphic.customAttributes.clusterAttributes.coordSet);
+            var combinedIdList = graphic.customAttributes.clusterAttributes.idList.concat(compareGraphic.customAttributes.clusterAttributes.idList);
+
             var newNumPoints = combinedCoordSet.length;
 
             var clusterCoords = {
-              x: (compareGraphic.mapCoords.x * compareGraphic.numPoints + graphic.mapCoords.x * graphic.numPoints)/newNumPoints,
-              y: (compareGraphic.mapCoords.y * compareGraphic.numPoints + graphic.mapCoords.y * graphic.numPoints)/newNumPoints
+              x: (compareGraphic.mapCoords.x * compareGraphic.customAttributes.clusterAttributes.numPoints + graphic.mapCoords.x * graphic.customAttributes.clusterAttributes.numPoints)/newNumPoints,
+              y: (compareGraphic.mapCoords.y * compareGraphic.customAttributes.clusterAttributes.numPoints + graphic.mapCoords.y * graphic.customAttributes.clusterAttributes.numPoints)/newNumPoints
             }
 
             var newWorldCoords = {
-              x: (compareGraphic.worldCoords.x * compareGraphic.numPoints + graphic.worldCoords.x * graphic.numPoints)/newNumPoints,
-              y: (compareGraphic.worldCoords.y * compareGraphic.numPoints + graphic.worldCoords.y * graphic.numPoints)/newNumPoints
+              x: (compareGraphic.worldCoords.x * compareGraphic.customAttributes.clusterAttributes.numPoints + graphic.worldCoords.x * graphic.customAttributes.clusterAttributes.numPoints)/newNumPoints,
+              y: (compareGraphic.worldCoords.y * compareGraphic.customAttributes.clusterAttributes.numPoints + graphic.worldCoords.y * graphic.customAttributes.clusterAttributes.numPoints)/newNumPoints
             }
 
             var maxDist = 0;
@@ -100,12 +121,13 @@ var NewLocationsView = function(eventDispatcher){
             var newRadius = (maxDist < 10)? 10 : maxDist;
             newRadius = (newRadius > 16)? 16 : newRadius;
 
-            graphic.type = "cluster";
+            graphic.customAttributes.type = "cluster";
             graphic.mapCoords = clusterCoords;
-            graphic.newWorldCoords = newWorldCoords;
-            graphic.numPoints = newNumPoints;
-            graphic.coordSet = combinedCoordSet;
-            graphic.radius = newRadius;
+            graphic.customAttributes.clusterAttributes.newWorldCoords = newWorldCoords;
+            graphic.customAttributes.clusterAttributes.numPoints = newNumPoints;
+            graphic.customAttributes.clusterAttributes.coordSet = combinedCoordSet;
+            graphic.customAttributes.clusterAttributes.idList = combinedIdList;
+            graphic.customAttributes.radius = newRadius;
           }
         }
 
@@ -114,76 +136,82 @@ var NewLocationsView = function(eventDispatcher){
         } else {
           j++;
         }
-        if (j == this.graphics.length){
+        if (j == this.model.graphicModels.length){
           done = true;
         }
       }
 
     }
 
-    this.graphics.forEach(function(graphic){
+    this.model.graphicModels.forEach(function(graphic){
 
-      if (graphic.clustered){
+      if (graphic.customAttributes.clustered){
         graphic.hidden = true;
       }
 
-      if (graphic.type == "cluster"){
+      if (graphic.customAttributes.type == "cluster"){
         var screenCoordX = graphic.mapCoords.x - leftMapCoord;
-        screenCoordX = (screenCoordX < 0) ? screenCoordX + pixelProperties.num : screenCoordX;
+        screenCoordX = (screenCoordX < 0) ? screenCoordX + mapPixelNum : screenCoordX;
+        screenCoordX = (screenCoordX > mapPixelNum) ? screenCoordX - mapPixelNum : screenCoordX;
         var screenCoordY = graphic.mapCoords.y - topMapCoord;
         graphic.screenCoords.x = screenCoordX;
         graphic.screenCoords.y = screenCoordY;
       }
-
-      graphic.nodes[0].innerHTML = graphic.numPoints;
-      graphic.nodes[1].innerHTML = graphic.numPoints;
-      graphic.setWidth(graphic.radius);
     });
 
+    for (var i = 0; i < this.model.graphicModels.length; i++){
+      var graphicModel = this.model.graphicModels[i];
+      var graphicView = this.view.graphicViews[i];
+      graphicView.nodes[0].innerHTML = graphicModel.customAttributes.clusterAttributes.numPoints;
+      graphicView.nodes[1].innerHTML = graphicModel.customAttributes.clusterAttributes.numPoints;
+      graphicView.setWidth(graphicModel.customAttributes.radius);
+    }
 
   };
 
 
-  //public attributes and methods ----------------------------------------------
+  //public properties and methods ----------------------------------------------
 
   return {
 
+    currentSelectedSiteAttributes: null,
+
     sitesGraphicsLayer: null,
 
-    currentSelectedSiteId: null,
-
-    zoomingTo: false,
-
-    getSitesGraphic: function(graphicId){
-      return this.sitesGraphicsLayer.graphics[graphicId];
+    clearPrevClusters: function(){
+      var graphicViews = this.sitesGraphicsLayer.view.graphicViews;
+      graphicViews.forEach(function(view){
+        view.removeClass("prev-cluster");
+      });
     },
 
-    initSitesGraphicsLayer: function(graphicsLayer){
-      this.sitesGraphicsLayer = graphicsLayer;
-      this.sitesGraphicsLayer.hide();
-      this.sitesGraphicsLayer.addEventListener("click", eventHandler.bind(this));
+    initSitesGraphicsLayer: function(){
+      this.sitesGraphicsLayer = NewGraphicsLayer("sites-graphics-layer");
+      this.sitesGraphicsLayer.addEventListener("click", clickEventHandler.bind(this));
       this.sitesGraphicsLayer.filter = filter.bind(this.sitesGraphicsLayer);
-      this.sitesGraphicsLayer.position = sitesPosition.bind(this.sitesGraphicsLayer);
+      this.sitesGraphicsLayer.model.positionGraphicsDefault = sitesLayerPosition.bind(this.sitesGraphicsLayer);
       eventDispatcher.broadcast("graphicsLayerInitialized");
     },
 
     loadProjectsGraphics: function(projects){
       var graphicsList = [];
-      projects.forEach((project) => {
-        var graphic = NewGraphic(project.geoCoords, project.id, sitePointsClassName);
-        graphic.attributes = project;
-        graphic.filtered = false;
-        graphic.clustered = false;
-        graphic.mapCoords = {x:null, y:null};
-        graphic.numPoints = 1;
-        graphic.radius = sitesRadius;
-        graphic.type = "point";
-        graphic.newWorldCoords = null;
-        graphic.coordSet = [graphic.mapCoords];
+      projects.forEach( (project, i) => {
+        var graphic = NewGraphic(project.geoCoords);
+        graphic.setId(i);
+        graphic.addClass(sitePointsClassName);
+        graphic.setWidth(sitesRadius);
+        graphic.model.attributes = project;
+        graphic.model.customAttributes = {
+          type: "point",
+          radius: sitesRadius,
+          filtered: false,
+          clustered: false,
+          clusterAttributes: null,
+        };
         graphicsList.push(graphic);
       });
       this.sitesGraphicsLayer.addGraphics(graphicsList);
-      eventDispatcher.broadcast("pointGraphicsLoaded");
+      eventDispatcher.broadcast("pointGraphicsLoaded", this.sitesGraphicsLayer);
     },
 
   };

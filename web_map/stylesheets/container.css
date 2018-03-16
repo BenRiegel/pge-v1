@@ -1,0 +1,7 @@
+#map{
+  cursor: auto;
+}
+
+#map.waiting *{
+  cursor: wait;
+}

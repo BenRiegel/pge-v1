@@ -3,7 +3,6 @@
 
 var NewTagsView = function(eventDispatcher){
 
-
   //private, configurable constants --------------------------------------------
 
   const selectMenuTemplate = [
@@ -60,7 +59,7 @@ var NewTagsView = function(eventDispatcher){
   };
 
 
-  //public attributes and methods ----------------------------------------------
+  //public properties and methods ----------------------------------------------
 
   return {
 

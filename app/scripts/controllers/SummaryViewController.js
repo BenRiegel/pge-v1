@@ -3,7 +3,6 @@
 
 var StartSummaryViewController = function(eventDispatcher, projectsModel, summaryView, locationsView){
 
-
   NewHttpRequest("../app/templates/popup_content_custom.html", function(htmlStr){
     eventDispatcher.broadcast("popupContentDataReceived", htmlStr);
   });
@@ -13,9 +12,8 @@ var StartSummaryViewController = function(eventDispatcher, projectsModel, summar
   });
 
   eventDispatcher.listen("panToAnimationComplete", function(){
-    var projectId = locationsView.currentSelectedSiteId;
-    var project = projectsModel.list[projectId];
-    summaryView.loadPopup(project);
+    var projectAttributes = locationsView.currentSelectedSiteAttributes;
+    summaryView.loadPopup(projectAttributes);
   });
 
   eventDispatcher.listen("readMoreButtonClicked", function(){
@@ -27,11 +25,9 @@ var StartSummaryViewController = function(eventDispatcher, projectsModel, summar
   });
 
   eventDispatcher.listen("popupExpansionComplete", function(){
-    var projectId = locationsView.currentSelectedSiteId;
-    var project = projectsModel.list[projectId];
-    var projectUrl = project.url;
+    var projectAttributes = locationsView.currentSelectedSiteAttributes;
     summaryView.toggleReadMoreButton();
-    summaryView.loadIframe(projectUrl);
+    summaryView.loadIframe(projectAttributes.url);
   });
 
   eventDispatcher.listen("iframeLoaded", function(){

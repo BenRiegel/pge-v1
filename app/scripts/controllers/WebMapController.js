@@ -3,7 +3,6 @@
 
 var StartWebMapController = function(eventDispatcher, webMap, locationsView, summaryView){
 
-
   //repeaters ------------------------------------------------------------------
 
   webMap.addEventListener("graphicsReady", function(){
@@ -34,11 +33,14 @@ var StartWebMapController = function(eventDispatcher, webMap, locationsView, sum
     eventDispatcher.broadcast("animationMoveStarted");
   });
 
-
   //----------------------------------------------------------------------------
 
-  eventDispatcher.listen("pointGraphicsLoaded", function(){
-    webMap.graphicsDisplay.addGraphicsLayer(locationsView.sitesGraphicsLayer);
+  eventDispatcher.listen("addGraphicsLayerRequest", function(sitesGraphicsLayer){
+    webMap.addGraphicsLayer(sitesGraphicsLayer);
+  });
+
+  eventDispatcher.listen("graphicsLayerRefreshRequest", function(graphicsLayer){
+    webMap.refreshGraphicsLayer(graphicsLayer);
   });
 
   eventDispatcher.listen("popupReady && popupContentDataReceived", function(eventData){
@@ -48,6 +50,7 @@ var StartWebMapController = function(eventDispatcher, webMap, locationsView, sum
   });
 
   eventDispatcher.listen("popupLoaded", function(){
+    webMap.clearWaiting();
     webMap.popupDisplay.open();
   });
 
@@ -68,11 +71,12 @@ var StartWebMapController = function(eventDispatcher, webMap, locationsView, sum
   });
 
   eventDispatcher.listen("siteClicked", function(graphic){
+    webMap.wait();
     webMap.panTo(graphic.worldCoords);
   });
 
   eventDispatcher.listen("clusterClicked", function(graphic){
-    webMap.zoomTo(graphic.newWorldCoords);
+    webMap.zoomTo(graphic.customAttributes.clusterAttributes.newWorldCoords);
   });
 
   eventDispatcher.listen("zoomTo", function(){
@@ -83,28 +87,5 @@ var StartWebMapController = function(eventDispatcher, webMap, locationsView, sum
       webMap.zoomTo(projectWorldCoords);
     }
   });
-
-
-  /*eventDispatcher.listen("zoomTo", function(){
-    locationsView.zoomingTo = true;
-    webMap.popupDisplay.close();
-  });*/
-
-  /*eventDispatcher.listen("popupCloseComplete", function(){
-    var projectId = locationsView.currentSelectedSiteId;
-    if (projectId !== null && locationsView.zoomingTo){
-      var graphic = locationsView.sitesGraphicsLayer.graphics[projectId];
-      var projectWorldCoords = graphic.worldCoords;
-      webMap.zoomTo(projectWorldCoords);
-    }
-  });*/
-
-  /*eventDispatcher.listen("zoomToAnimationComplete", function(){
-    var projectId = locationsView.currentSelectedSiteId;
-    if (projectId !== null){
-      webMap.popupDisplay.open();
-      locationsView.zoomTo = false;
-    }
-  });*/
 
 };

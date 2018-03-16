@@ -2,12 +2,6 @@
   position:absolute;
 }
 
-
-#clusters-graphics-layer{
-  position:absolute;
-}
-
-
 .site-point{
   position: absolute;
   border:0;
@@ -20,11 +14,10 @@
   cursor:pointer;
 }
 
-
 .site-point:hover{
   background-color: #483D8B;
 }
 
-.site-point.prevCluster{
+.site-point.prev-cluster{
   background-color: #483D8B;
 }

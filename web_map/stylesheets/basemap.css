@@ -7,17 +7,23 @@
 }
 
 #frame-0{
-  position: absolute;
-  display: none;
+  opacity: 0;
 }
 
 #frame-1{
+  opacity: 0;
+}
+
+.basemap-frame{
   position: absolute;
-  display: none;
+  z-index: 1;
+}
+
+.basemap-frame.in-front{
+  z-index: 2;
 }
 
 .map-image{
   position:absolute;
   border:0;
-  width:256.5px;  /*don't know why this must be 256.5 instead of 256*/
 }

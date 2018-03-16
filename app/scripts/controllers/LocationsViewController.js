@@ -1,24 +1,29 @@
 "use strict";
 
 
-var StartLocationsViewController = function(eventDispatcher, webMap, projectsModel, locationsView){
+var StartLocationsViewController = function(eventDispatcher, projectsModel, locationsView){
 
   eventDispatcher.listen("graphicsReady", function(){
-    var graphicsLayer = webMap.graphicsDisplay.createGraphicsLayer("sites-graphics-layer");
-    locationsView.initSitesGraphicsLayer(graphicsLayer);
+    locationsView.initSitesGraphicsLayer();
   });
 
   eventDispatcher.listen("graphicsLayerInitialized && projectsModelLoaded", function(){
     locationsView.loadProjectsGraphics(projectsModel.list);
   });
 
-  eventDispatcher.listen("initialMenuOptionSelected", function(newOptionName){
-    locationsView.sitesGraphicsLayer.show();
+  eventDispatcher.listen("pointGraphicsLoaded && initialMenuOptionSelected", function(eventData){
+    var newOptionName = eventData["initialMenuOptionSelected"];
     locationsView.sitesGraphicsLayer.filter(newOptionName);
-  }, true);
+    eventDispatcher.broadcast("addGraphicsLayerRequest", locationsView.sitesGraphicsLayer);
+  });
 
   eventDispatcher.listen("newMenuOptionSelected", function(newOptionName){
     locationsView.sitesGraphicsLayer.filter(newOptionName);
+    eventDispatcher.broadcast("graphicsLayerRefreshRequest", locationsView.sitesGraphicsLayer);
+  });
+
+  eventDispatcher.listen("zoomToAnimationComplete", function(){
+    locationsView.clearPrevClusters();
   });
 
 };

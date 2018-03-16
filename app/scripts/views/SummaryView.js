@@ -3,9 +3,13 @@
 
 var NewSummaryView = function(eventDispatcher, webMap){
 
+  //private configurable constants ---------------------------------------------
 
   const maxImageWidth = 200;
   const maxImageHeight = 125;
+
+
+  //private variables ----------------------------------------------------------
 
   var popupNode;
   var projectInfoNode;
@@ -18,13 +22,13 @@ var NewSummaryView = function(eventDispatcher, webMap){
   var animationNode;
   var menuNode;
   var readMoreButtonTextNode;
-
   var initPopupMeasurements;
   var expandWidth;
   var expandHeight;
   var iframeLoaded = false;
 
 
+  //private functions ----------------------------------------------------------
   var calculateExpansionDimensions = function(){
     expandWidth = webMap.container.dimensionsPx.width - 30;
     expandHeight = webMap.container.dimensionsPx.height - 30;
@@ -60,7 +64,6 @@ var NewSummaryView = function(eventDispatcher, webMap){
     readMoreButtonTextNode = document.getElementById("read-more-button").childNodes[3];
   };
 
-
   var calculateNewImageDimensions = function(naturalWidth, naturalHeight){
     var ratio = naturalWidth / naturalHeight;
     if (ratio > (maxImageWidth / maxImageHeight)){
@@ -73,7 +76,6 @@ var NewSummaryView = function(eventDispatcher, webMap){
     return {width:newWidth, height:newHeight};
   };
 
-
   var getMenuOptionId = function(initNode){
     var currentNode = initNode;
     while (currentNode){
@@ -85,7 +87,6 @@ var NewSummaryView = function(eventDispatcher, webMap){
     return "";
   };
 
-  //put this elsewhere
   var menuClickEventHandler = function(evt){
     var menuOptionId = getMenuOptionId(evt.target);
     switch (menuOptionId){
@@ -110,7 +111,7 @@ var NewSummaryView = function(eventDispatcher, webMap){
   };
 
 
-
+  //public properties and methods ----------------------------------------------
 
   return {
 
@@ -120,7 +121,7 @@ var NewSummaryView = function(eventDispatcher, webMap){
         projectInfoNode.style.opacity = `${1 - totalProgress}`;
       });
       animation.setCallbackFunction(function(){
-        loaderNode.style.width = `${initPopupMeasurements.width - 30}px`;   //rename loader
+        loaderNode.style.width = `${initPopupMeasurements.width - 30}px`;
         loaderNode.style.height = `${initPopupMeasurements.height - 65}px`;
         eventDispatcher.broadcast("popupContentFadeComplete");
       });
@@ -252,7 +253,7 @@ var NewSummaryView = function(eventDispatcher, webMap){
         var newDimensions = calculateNewImageDimensions(this.naturalWidth, this.naturalHeight);
         this.style.width = `${newDimensions.width}px`;
         this.style.height = `${newDimensions.height}px`;
-        resizePopup();            //merge these
+        resizePopup();
         recordPopupDimensions();
         eventDispatcher.broadcast("popupLoaded");
       };
@@ -272,7 +273,6 @@ var NewSummaryView = function(eventDispatcher, webMap){
       eventDispatcher.broadcast("popupReadyToClose");
     },
 
-
     togglePopupWindow: function(){
       if (popupNode.classList.contains("expanded")){
         this.animateIframeFadeOut();
@@ -283,6 +283,5 @@ var NewSummaryView = function(eventDispatcher, webMap){
     },
 
   };
-
 
 };

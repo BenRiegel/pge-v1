@@ -29,7 +29,7 @@ var NewSelectMenu = function(configProperties){
   StartSelectMenuStatesController(eventDispatcher.private, selectMenuStates);
 
 
-  //public attributes and methods ----------------------------------------------
+  //public properties and methods ----------------------------------------------
 
   return {
 

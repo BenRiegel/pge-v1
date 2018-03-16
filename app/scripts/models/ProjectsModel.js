@@ -3,8 +3,7 @@
 
 var NewProjectsModel = function(eventDispatcher) {
 
-
-  //public attributes and methods ----------------------------------------------
+  //public properties and methods ----------------------------------------------
 
   return {
 

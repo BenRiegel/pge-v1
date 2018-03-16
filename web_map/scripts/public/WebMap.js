@@ -7,45 +7,57 @@ var NewWebMap = function(configProperties){
   //private variables ----------------------------------------------------------
 
   var eventDispatcher;
-  var container;
-  var viewpoint;
-  var scale;
-  var pixel;
-  var viewport;
-  var drawingEventService;
-  var basemapDisplay;
-  var graphicsDisplay;
+
+  var webMapStates;
+  var mapGraphicsModel;
+  var mapBasemapModel;
+  var animationMapMover;
+  var userPanMapMover;
+  var frameToggler;
+  var mapBasemapView;
+  var containerDisplay;
+  var mapGraphicsView;
   var popupDisplay;
   var zoomControlsDisplay;
   var panEventsReceiver;
   var zoomEventsReceiver;
 
 
-  //init code ------------------------------------------------------------------
+  //private code block ----------------------------------------------------------
 
   eventDispatcher = {
     private: NewEventDispatcher(),
     public: NewEventDispatcher(),
   }
 
-  container = NewContainerService(eventDispatcher.private, configProperties.rootNodeId);
-  viewpoint = NewViewpointService(eventDispatcher.private, configProperties.initViewpointLatLon);
-  scale = NewScaleService(eventDispatcher.private, configProperties.initScaleLevel, container.dimensionsPx);
-  pixel = NewPixelService();
-  viewport = NewViewportService(container.dimensionsPx);
-  drawingEventService = NewDrawingEventService(eventDispatcher.private, viewpoint, scale, pixel, viewport);
-  basemapDisplay = NewBasemapDisplay(eventDispatcher.private, container.node, container.dimensionsPx);
-  graphicsDisplay = NewGraphicsDisplay(eventDispatcher.private, container.node, viewpoint, scale, pixel, viewport);
-  popupDisplay = NewPopupDisplay(eventDispatcher.private, container.node, container.dimensionsPx);
-  zoomControlsDisplay = NewZoomControlsDisplay(eventDispatcher.private, container.node);
-  panEventsReceiver = NewPanEventsReceiver(eventDispatcher.private, basemapDisplay);
-  zoomEventsReceiver = NewZoomEventsReceiver(eventDispatcher.private, zoomControlsDisplay);
+  webMapStates = NewWebMapStatesService(eventDispatcher.private,
+                                        configProperties.initViewpointLatLon,
+                                        configProperties.initScaleLevel);
+  mapBasemapModel = NewMapBasemapModel(eventDispatcher.private);
+  mapGraphicsModel = NewMapGraphicsModel(eventDispatcher.private);
 
-  //change this one
-  StartAppController(eventDispatcher.private, eventDispatcher.public);
-  StartDrawingEventServiceController(eventDispatcher.private, drawingEventService);
-  StartBasemapDisplayController(eventDispatcher.private, basemapDisplay);
-  StartGraphicsDisplayController(eventDispatcher.private, graphicsDisplay);
+  animationMapMover = NewAnimationMapMoverService(eventDispatcher.private, webMapStates);
+  userPanMapMover = NewUserPanMapMoverService(eventDispatcher.private, webMapStates);
+  frameToggler = NewFrameTogglerService(eventDispatcher.private);
+  mapBasemapView = NewMapBasemapView(eventDispatcher.private);
+  mapGraphicsView = NewMapGraphicsView(eventDispatcher.private);
+  containerDisplay = NewContainerDisplay(eventDispatcher.private, configProperties.rootNodeId);
+  popupDisplay = NewPopupDisplay(eventDispatcher.private);
+  zoomControlsDisplay = NewZoomControlsDisplay(eventDispatcher.private);
+  panEventsReceiver = NewPanEventsReceiver(eventDispatcher.private);
+  zoomEventsReceiver = NewZoomEventsReceiver(eventDispatcher.private);
+
+  StartAppController(eventDispatcher);
+  StartWebMapStatesController(eventDispatcher.private, webMapStates);
+  StartContainerDisplayController(eventDispatcher.private, containerDisplay);
+  StartAnimationMapMoverServiceController(eventDispatcher.private, animationMapMover);
+  StartUserPanMapMoverServiceController(eventDispatcher.private, userPanMapMover);
+  StartMapBasemapController(eventDispatcher.private, mapBasemapModel, mapBasemapView, webMapStates, containerDisplay);
+
+
+  StartFrameTogglerServiceController(eventDispatcher.private, frameToggler);
+  StartMapGraphicsModelController(eventDispatcher.private, mapGraphicsModel, mapGraphicsView, webMapStates);
+  StartMapGraphicsViewController(eventDispatcher.private, mapGraphicsView);
   StartPopupDisplayController(eventDispatcher.private, popupDisplay);
   StartZoomControlsDisplayController(eventDispatcher.private, zoomControlsDisplay);
   StartPanEventsReceiverController(eventDispatcher.private, panEventsReceiver);
@@ -57,17 +69,26 @@ var NewWebMap = function(configProperties){
   return {
 
     //not happy about these
-    graphicsDisplay: graphicsDisplay,
+    graphicsDisplay: mapGraphicsView,
 
     popupDisplay: popupDisplay,
 
-    container: container,
+    container: containerDisplay,
 
     addEventListener: function(eventName, listener){
       eventDispatcher.public.listen(eventName, listener);
     },
 
+    addGraphicsLayer: function(graphicsLayer){
+      eventDispatcher.private.broadcast("addGraphicsLayerRequest", graphicsLayer);
+    },
+
+    refreshGraphicsLayer: function(graphicsLayer){
+      eventDispatcher.private.broadcast("refreshGraphicsLayerRequest", graphicsLayer);
+    },
+
     panTo: function(location){
+      //error check this
       eventDispatcher.private.broadcast("animationMoveRequest", {type:"pan-to", location:location});
     },
 
@@ -89,6 +110,14 @@ var NewWebMap = function(configProperties){
 
     disableZooming: function(){
       zoomEventsReceiver.disable();
+    },
+
+    wait: function(){
+      containerDisplay.showWorkingCursor();
+    },
+
+    clearWaiting: function(){
+      containerDisplay.removeWorkingCursor();
     },
 
   };
