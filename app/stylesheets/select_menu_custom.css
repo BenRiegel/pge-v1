@@ -9,6 +9,7 @@
   min-height: 25px;
   width: 200px;
   z-index: 4;
+  cursor:default;
 }
 
 #select-menu.open{

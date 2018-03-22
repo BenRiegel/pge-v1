@@ -48,9 +48,12 @@ var NewGraphicsLayerView = function(layerName){
 
     toggleFrames: function(){
       frameNodes[displayIndex].style.opacity = "0";
+      frameNodes[displayIndex].style.display = "none";
       frameNodes[writeIndex].style.opacity = "1";
+      frameNodes[writeIndex].style.display = "block";
       displayIndex = 1 - displayIndex;
       writeIndex = 1 - writeIndex;
+
     },
 
     addEventListener: function(eventType, listener){
