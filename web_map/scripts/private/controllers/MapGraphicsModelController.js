@@ -13,9 +13,7 @@ var StartMapGraphicsModelController = function(eventDispatcher, mapGraphicsModel
   eventDispatcher.listen("refreshGraphicsLayerRequest", function(graphicsLayer){
     graphicsLayer.model.positionGraphicsDefault(webMapStates);
     graphicsLayer.view.draw(graphicsLayer.model.graphicModels);
-    requestAnimationFrame(function(){
-      graphicsLayer.view.toggleFrames();
-    });
+    graphicsLayer.view.toggleFrames();
   });
 
   eventDispatcher.listen("graphicsDrawingRequest", function(frameProperties){
